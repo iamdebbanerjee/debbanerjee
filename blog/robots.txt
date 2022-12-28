@@ -1,6 +1,0 @@
-User-agent: *
-Sitemap: https://debbanerjee.com/sitemap.xml
-Disallow: /ghost/
-Disallow: /p/
-Disallow: /email/
-Disallow: /r/
