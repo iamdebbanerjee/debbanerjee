@@ -21,7 +21,7 @@ IMHO, Ghost has the" />
     <meta property="og:url" content="https://debbanerjee.com/blog/how-to-install-a-local-ghost-blog-on-ubuntu-desktop/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1586339393565-32161f258eac?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;MnwxMTc3M3wwfDF8c2VhcmNofDY1fHxibG9nfGVufDB8fHx8MTY3MjU2NDc1MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000" />
     <meta property="article:published_time" content="2023-01-02T02:02:47.000Z" />
-    <meta property="article:modified_time" content="2023-01-02T12:51:49.000Z" />
+    <meta property="article:modified_time" content="2023-01-02T13:00:28.000Z" />
     <meta property="article:tag" content="local-ghost-blog" />
     <meta property="article:tag" content="ghost cms" />
     
@@ -67,7 +67,7 @@ IMHO, Ghost has the" />
     "headline": "How To Install A Local Ghost Blog On Ubuntu Desktop",
     "url": "https://debbanerjee.com/blog/how-to-install-a-local-ghost-blog-on-ubuntu-desktop/",
     "datePublished": "2023-01-02T02:02:47.000Z",
-    "dateModified": "2023-01-02T12:51:49.000Z",
+    "dateModified": "2023-01-02T13:00:28.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "https://images.unsplash.com/photo-1586339393565-32161f258eac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VhcmNofDY1fHxibG9nfGVufDB8fHx8MTY3MjU2NDc1MA&ixlib=rb-4.0.3&q=80&w=2000",
@@ -142,7 +142,7 @@ IMHO, Ghost has the" />
     </figure>
 
 <section class="gh-content gh-canvas">
-    <p>I like a minimal online editor for writing online. It should not come in my way of putting my thoughts into words when I am writing. </p><p>Yet, it should provide all the required editing and formatting tools that are expected from a modern online writing platform.</p><p>IMHO, <a href="https://ghost.org/">Ghost</a> has the best editor for online writing at present.</p><p>Today, I'll list the steps to install a local version of Ghost on an Ubuntu desktop.</p><h2 id="installing-ghost-locally-on-a-ubuntu-vm">Installing Ghost locally on a Ubuntu VM</h2><ul><li><code>sudo apt-get upgrade</code></li><li><code>sudo apt-get update</code></li><li>Install cURL - <code>sudo apt install curl</code></li><li>install NGINX - <code>sudo apt-get install nginx</code></li><li>Allow NGINX through firewall - <code>sudo ufw allow 'Nginx Full’</code></li><li>Install MySQL - <code>sudo apt-get install mysql-server</code></li><li>Install supported version of Node JS - <code>curl -sL [https://deb.nodesource.com/setup_16.x](https://deb.nodesource.com/setup_16.x) | sudo -E bash</code> and <code>sudo apt-get install -y nodejs</code></li><li>Instal Ghost CLI - <code>sudo npm install ghost-cli@latest -g</code></li><li>Test with - <code>ghost help</code></li><li>Create the directory where Ghost will be installed locally - <code>mkdir ghost-local</code></li><li>Change to that directory - <code>cd ghost-local</code></li><li>Install Ghost locally - <code>ghost install local</code></li><li>Once the installation is complete, run and stop Ghost with - <code>ghost start</code> and <code>ghost stop</code> commands.</li><li>Local Ghost installation URL - https://debbanerjee.com/blog and Ghost Admin URL - https://debbanerjee.com/blog/ghost/</li></ul>
+    <p>I like a minimal online editor for writing online. It should not come in my way of putting my thoughts into words when I am writing. </p><p>Yet, it should provide all the required editing and formatting tools that are expected from a modern online writing platform.</p><p>IMHO, <a href="https://ghost.org/">Ghost</a> has the best editor for online writing at present.</p><p>Today, I'll list the steps to install a local version of Ghost on an Ubuntu desktop.</p><h2 id="installing-ghost-locally-on-a-ubuntu-vm">Installing Ghost locally on a Ubuntu VM</h2><ul><li><code>sudo apt-get upgrade</code></li><li><code>sudo apt-get update</code></li><li>Install cURL - <code>sudo apt install curl</code></li><li>install NGINX - <code>sudo apt-get install nginx</code></li><li>Allow NGINX through firewall - <code>sudo ufw allow 'Nginx Full’</code></li><li>Install MySQL - <code>sudo apt-get install mysql-server</code></li><li>Install supported version of Node JS - <code>curl -sL [https://deb.nodesource.com/setup_16.x](https://deb.nodesource.com/setup_16.x) | sudo -E bash</code> and <code>sudo apt-get install -y nodejs</code></li><li>Instal Ghost CLI - <code>sudo npm install ghost-cli@latest -g</code></li><li>Test with - <code>ghost help</code></li><li>Create the directory where Ghost will be installed locally - <code>mkdir ghost-local</code></li><li>Change to that directory - <code>cd ghost-local</code></li><li>Install Ghost locally - <code>ghost install local</code></li><li>Once the installation is complete, run and stop Ghost with - <code>ghost start</code> and <code>ghost stop</code> commands.</li><li>Now you can access your local Ghost installation by visiting the URL - "https://debbanerjee.com/blog" from you browser.</li></ul>
 </section>
 
 
