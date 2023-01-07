@@ -1,3 +1,22 @@
+:root {
+
+    /* Colors */
+    --primary-color: #00ADB5;
+    --secondary-color: #393E46;
+    --light-color: #EEEEEE;
+    --dark-color: #222831;
+
+    /* Typography */
+
+    --primary-font: 'Source Serif Pro', serif;
+    --secondary-font: 'Lato', sans-serif;
+    --special-font: 'Staatliches', cursive;
+
+}
+
+
+/* Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,7 +25,36 @@
 
 body {
     font-size: 16px;
+    font-family: var(--primary-font);
 }
+
+h1, h2, h3, h4, h5, h6,
+label, th, button, input[type="submit"] {
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-family: var(--secondary-font);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+
+/* Navbar Section */
+
 
 .navbar {
     width: 100%;
@@ -20,14 +68,16 @@ body {
 .navbar .logo {
     width: 80%;
     font-size: 3rem;
+    color: var(--secondary-color);
+    font-family: var(--special-font);
 }
 
-.social-links {
+.navbar-social {
     width: 20%;
     display: flex;
 }
 
-.social-links ul {
+.navbar-social ul {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -35,6 +85,26 @@ body {
     align-items: center;
 }
 
-.social-links ul li {
+.navbar-social ul li {
     list-style: none;
+}
+
+.navbar-social ul li a {
+    padding: 0 0.5rem;
+}
+
+/* Hero Section */
+
+.hero {
+    height: calc(400px + 15vw);
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#hero-heading-line-2 {
+    display: block;
 }
