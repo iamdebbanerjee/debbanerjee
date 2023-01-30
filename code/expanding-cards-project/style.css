@@ -1,0 +1,17 @@
+
+/* Import Google Fonts - Lato, Source Serif Pro and Staatliches */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Source+Serif+Pro:wght@200;400;700&family=Staatliches&display=swap');
+
+/* CSS Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.125rem;
+}
