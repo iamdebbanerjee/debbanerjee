@@ -41,6 +41,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1;
+    transition: flex 0.3s ease-in;
 }
 
 .panel::before {
@@ -57,7 +58,7 @@ body {
 
 .panel.active {
     flex: 5;
-    transition: flex 0.7s ease-in;
+    transition: flex 0.73 ease-in;
 }
 
 .panel h3 {
