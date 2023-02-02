@@ -107,6 +107,16 @@ body {
     cursor: pointer;
 }
 
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    background-color: var(--dull-color);
+    color: #333;
+    cursor: not-allowed;
+}
+
 .btn.back {
     grid-row: 3 / 4;
     grid-column: 2 / 3;
