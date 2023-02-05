@@ -4,7 +4,7 @@ const showMenu = document.getElementById('menu-open');
 const hideMenu = document.getElementById('menu-close');
 
 showMenu.addEventListener('click', openMenu);
-closeMenu.addEventListener('click', closeMenu);
+hideMenu.addEventListener('click', closeMenu);
 
 function openMenu() {
     getContainer.classList.add('menu-active');
