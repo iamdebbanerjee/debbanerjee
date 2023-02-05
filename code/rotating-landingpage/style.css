@@ -9,6 +9,7 @@
 body {
 	font-family: 'Lato', sans-serif;
 	font-size: 1.125rem;
+	background-color: #333;
 }
 
 h1, h2, h3 {
@@ -17,6 +18,8 @@ h1, h2, h3 {
 
 .container {
 	margin: 0 auto;
+	width: 100%;
+	background-color: #fafafa;
 }
 
 .circle-container {
@@ -26,7 +29,7 @@ h1, h2, h3 {
 .text-container {
 	margin: 0 auto;
 	max-width: 50rem;
-	padding: 3rem 5rem;
+	padding: 3rem 5rem;	
 }
 
 h1, h2, h3, p, small, img {
