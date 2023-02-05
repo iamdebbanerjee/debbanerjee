@@ -20,6 +20,12 @@ h1, h2, h3 {
 	margin: 0 auto;
 	width: 100%;
 	background-color: #fafafa;
+	transform-origin: top left;
+	transition: transform 0.4s linear;
+}
+
+.container.menu-active {
+	transform: rotate(-20deg);
 }
 
 .circle-container {
@@ -28,6 +34,7 @@ h1, h2, h3 {
 	height: fit-content;
 	top: -100px;
 	left: -100px;
+	z-index: 100;
 }
 
 .circle {
@@ -35,23 +42,34 @@ h1, h2, h3 {
 	height: 200px;
 	background-color: #ff7979;
 	border-radius: 50%;
-	position: relative
+	position: relative;
+	transition: transform 0.4s linear;
 }
 
-.circle i.fa-bars {
+.circle.menu-active {
+	transform: rotate(-70deg);	
+}
+
+.circle button#menu-open {
 	position: absolute;
 	top: 125px;
 	left: 125px;
 	font-size: 1.5rem;
 	color: #ffffff;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
-.circle i.fa-xmark {
+.circle button#menu-close {
 	position: absolute;
 	top: 125px;
-	left: 50px;
+	left: 55px;
 	font-size: 1.5rem;
 	color: #ffffff;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .text-container {
@@ -67,3 +85,26 @@ h1, h2, h3, p, small, img {
 img {
 	max-width: 100%;
 }
+
+nav {
+	position: fixed;
+	bottom: 100px;
+	left: 50px;
+	z-index: -1;
+}
+
+nav ul {
+	list-style: none;
+}
+
+nav ul li {
+	text-transform: uppercase;
+	color: #ffffff;
+	margin: 22px 0;
+	padding: 8px;
+}
+
+nav ul li i {
+	margin: 0 4px;
+}
+
