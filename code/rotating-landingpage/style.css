@@ -23,7 +23,35 @@ h1, h2, h3 {
 }
 
 .circle-container {
+	position: fixed;
+	width: fit-content;
+	height: fit-content;
+	top: -100px;
+	left: -100px;
+}
 
+.circle {
+	width: 200px;
+	height: 200px;
+	background-color: #ff7979;
+	border-radius: 50%;
+	position: relative
+}
+
+.circle i.fa-bars {
+	position: absolute;
+	top: 125px;
+	left: 125px;
+	font-size: 1.5rem;
+	color: #ffffff;
+}
+
+.circle i.fa-xmark {
+	position: absolute;
+	top: 125px;
+	left: 50px;
+	font-size: 1.5rem;
+	color: #ffffff;
 }
 
 .text-container {
