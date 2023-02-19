@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans:ital,wght@0,200;0,400;0,700;1,400&family=Noto+Serif&family=Source+Serif+Pro:wght@400;700&family=Staatliches&display=swap');
 
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
 
 body {
 	height: 100vh;
@@ -14,15 +19,39 @@ body {
 	align-items: center;
 }
 
-.search .search-query {
-	padding: 4px 8px;
-	font-size: 18px;
-	font-family: 'Montserrat', serif;
-	border: none;
+.search {
+	position: relative;
 }
 
-.search .btn {
+.search .search-query {
+	position: absolute;
+	top: 0;
+	left: 0;
 	padding: 4px 8px;
 	font-size: 18px;
+	width: 40px;
+	font-family: 'Montserrat', serif;
+/*	border: none;*/
+	transition: width 0.7s ease;
 }
+
+.search.active .search-query {
+	width: 200px;
+}
+
+
+.search .btn {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 4px 8px;
+	font-size: 18px;
+	width: 40px;
+	transition: transform 0.7s ease;
+}
+
+.search.active .btn {
+	transform: translateX(160px);
+}
+
 
