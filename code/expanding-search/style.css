@@ -21,6 +21,7 @@ body {
 
 .search {
 	position: relative;
+	border: 2px solid red;
 }
 
 .search .search-query {
@@ -31,12 +32,14 @@ body {
 	font-size: 18px;
 	width: 40px;
 	font-family: 'Montserrat', serif;
-/*	border: none;*/
+	border: none;
 	transition: width 0.7s ease;
+	transition: transform 0.7s ease;
 }
 
 .search.active .search-query {
 	width: 200px;
+	transform: translateX(-100px);
 }
 
 
@@ -44,14 +47,16 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	padding: 4px 8px;
-	font-size: 18px;
+	background-color: #cacaca;
+	padding: 4px 12px;
+	font-size: 19px;
 	width: 40px;
+	border: none;
 	transition: transform 0.7s ease;
 }
 
 .search.active .btn {
-	transform: translateX(160px);
+	transform: translateX(60px);
 }
 
 
