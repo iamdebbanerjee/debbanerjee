@@ -8,55 +8,63 @@
 
 body {
 	height: 100vh;
-	background: linear-gradient(45deg, rgba(28,172,120,1) 0%, rgba(152,251,152,1) 100%);
+	background: #fafafa;
 }
 
 .search-form {
 	height: 100%;
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
 }
 
 .search {
 	position: relative;
-	border: 2px solid red;
+	height: 40px;
 }
 
 .search .search-query {
+	background: #fafafa;
 	position: absolute;
 	top: 0;
 	left: 0;
 	padding: 4px 8px;
 	font-size: 18px;
-	width: 40px;
+	width: 200px;
+	height: 100%;
 	font-family: 'Montserrat', serif;
-	border: none;
-	transition: width 0.7s ease;
+	border: 0;
+	opacity: 0;
+	transition:  opacity 0.7s ease;
 	transition: transform 0.7s ease;
 }
 
 .search.active .search-query {
-	width: 200px;
-	transform: translateX(-100px);
+	opacity: 1;
 }
 
 
 .search .btn {
+	background: #fafafa;
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-color: #cacaca;
 	padding: 4px 12px;
 	font-size: 19px;
 	width: 40px;
-	border: none;
+	height: 100%;
+	border: 0;
 	transition: transform 0.7s ease;
 }
 
 .search.active .btn {
-	transform: translateX(60px);
+	transform: translateX(160px);
+}
+
+.search .search-query:focus,
+.search .btn:focus {
+	outline: none;
 }
 
 
