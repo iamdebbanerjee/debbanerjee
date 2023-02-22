@@ -1,0 +1,73 @@
+
+/* Import Noto Serif and Poppins Fonts from Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+  /* CSS Variables */
+
+  :root {
+    --primary-color: #5FA7AB;
+    --secondary-color: #353535;
+    --background-color: #FFFFFF;
+  }
+
+
+  /* CSS Reset */
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Font Styles */
+
+  body, p, input, select, button {
+    font-size: 1.25rem;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1, h2, h3, label {
+    font-family: 'Noto Serif', serif;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Color Styles */
+
+  body {
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+  }
+
+  button {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+  }
+
+  /* Form Styles */
+
+  #main-form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-group {
+    height: 100vh;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+
