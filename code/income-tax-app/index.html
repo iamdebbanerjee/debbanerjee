@@ -5,14 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Tax Assistant</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <form id="main-form" action="#">
         <div class="form-group">
-            <h3>Sample question - What is your basic salary?</h3>
+            <h3>What is your basic salary?</h3>
             <input type="number" name="basic-salary" id="basic-salary">
+            <div class="input-control">
+                <button><i class="fas fa-chevron-left"></i></button>
+                <button>Ok</button>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <h3>What is current rate of Dearness Allowance?</h3>
+            <input type="number" name="da" id="da">
+            <div class="input-control">
+                <button><i class="fas fa-chevron-left"></i></button>
+                <button>Ok</button>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <h3>What is your applicable rate of House Rent Alloance?</h3>
+            <input type="number" name="hra" id="hra">
+            <div class="input-control">
+                <button><i class="fas fa-chevron-left"></i></button>
+                <button>Ok</button>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <h3>How much is your transport allowance?</h3>
+            <input type="number" name="tpa" id="tpa">
             <div class="input-control">
                 <button><i class="fas fa-chevron-left"></i></button>
                 <button>Ok</button>

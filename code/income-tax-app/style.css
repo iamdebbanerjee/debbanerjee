@@ -58,16 +58,18 @@
 
   #main-form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   .form-group {
     height: 100vh;
-    max-width: 90vw;
+    width: 75vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
   }
 
-
+/*  */
