@@ -6,12 +6,16 @@ const forwardBtn = document.querySelectorAll('.move-ahead');
 
 
 
+
+
 // Button events
 
-backBtn[1].addEventListener('click', () => {
-   window.scroll({
-    top: '-100vh',
-    left: 0,
-    behavior: 'smooth'
-    });
- });
+
+
+// backBtn[1].addEventListener('click', () => {
+//    window.scroll({
+//     top: '-100vh',
+//     left: 0,
+//     behavior: 'smooth'
+//     });
+//  });
