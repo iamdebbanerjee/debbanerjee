@@ -25,7 +25,7 @@
 
   /* Font Styles */
 
-  body, p, input, select, button {
+  body, p, input, select, a {
     font-size: 1.25rem;
     font-family: 'Poppins', sans-serif;
   }
@@ -74,7 +74,8 @@
     border-bottom: 2px solid var(--primary-color);
   }
 
-  button {
+  .btn {
+    text-decoration: none;
     margin: 0 0.5rem;
     background-color: var(--primary-color);
     color: var(--light-color);
@@ -84,14 +85,21 @@
     box-shadow: 2px 4px 2px #386264;
   }
 
-  button:hover {
+  .btn:hover {
     background-color: #386264;
     cursor: pointer;    
   }
 
-  button:active {
+  .btn:active {
     background-color: var(--primary-color);
     box-shadow: inset 2px 4px 2px #386264;
+  }
+
+  .btn[disabled] {
+    background-color: #a3a3a3;
+    color: #353535;
+    cursor: not-allowed;
+    box-shadow: 2px 4px 2px #353535;
   }
 
   /* Form Styles */
