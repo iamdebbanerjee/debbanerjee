@@ -19,6 +19,10 @@
     padding: 0;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Font Styles */
 
   body, p, input, select, button {
@@ -48,7 +52,6 @@
   body {
     background-color: var(--light-color);
     color: var(--secondary-color);
-    scroll-behavior: smooth;
   }
 
   .question {

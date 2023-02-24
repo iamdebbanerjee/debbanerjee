@@ -10,40 +10,40 @@
 </head>
 <body>
     <form id="main-form" action="#">
-        <div class="form-group">
+        <div class="form-group" id="basic">
             <h3 class="question">What is your basic salary?</h3>
             <input type="number" name="basic-salary" id="basic-salary">
             <div class="input-control">
-                <button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button>
+                <button type="button" class="move-back" disabled><i class="fas fa-chevron-left"></i></button>
                 <button type="button" class="save-and-move-ahead">Ok</button>
-                <button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button>
+                <a href="#da"><button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button></a>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="da">
             <h3 class="question">What is current rate of Dearness Allowance?</h3>
             <input type="number" name="da" id="da">
             <div class="input-control">
-                <button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button>
+                <a href="#basic"><button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button></a>
                 <button type="button" class="save-and-move-ahead">Ok</button>
-                <button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button>
+                <a href="#hra"><button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button></a>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="hra">
             <h3>What is your applicable rate of House Rent Alloance?</h3>
             <input type="number" name="hra" id="hra">
             <div class="input-control">
-                <button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button>
+                <a href="#da"><button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button></a>
                 <button type="button" class="save-and-move-ahead">Ok</button>
-                <button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button>
+                <a href="#tpa"><button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button></a>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="tpa">
             <h3>How much is your transport allowance?</h3>
             <input type="number" name="tpa" id="tpa">
             <div class="input-control">
-                <button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button>
+                <a href="#hra"><button type="button" class="move-back"><i class="fas fa-chevron-left"></i></button></a>
                 <button type="button" class="save-and-move-ahead">Ok</button>
-                <button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button>
+                <a href="#"><button type="button" class="move-ahead"><i class="fas fa-chevron-right"></i></button></a>
             </div>
         </div>
     </form>
