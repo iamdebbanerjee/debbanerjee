@@ -1,58 +1,48 @@
 // User Input Variables
 
-const calculateBtn = document.querySelectorAll('.calculate');
-const okBtn = document.querySelectorAll('.save');
+const calculateBtns = document.querySelectorAll('.calculate');
+const okBtns = document.querySelectorAll('.save');
 let userBasic = document.getElementById('basic-salary');
 let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
 
-// okBtn[1].addEventListener('click', () => {console.log(userBasic.value), console.log(userDA.value)});
+// calculateBtns[calculateBtns.length-1].addEventListener('click', () => {console.log(calculateBtns, okBtns, userBasic.value,userDA.value,userHRA.value, userTPA.value )});
+
 
 
 // System variables
 
-let actualBasic = Number(JSON.parse(localStorage.getItem('Basic')));
-let actualDA = (Number(JSON.parse(localStorage.getItem('DA'))) * actualBasic)/100;
-let actualHRA = (Number(JSON.parse(localStorage.getItem('HRA'))) * actualBasic)/100;
-let actualTPA = ((Number(JSON.parse(localStorage.getItem('TPA')))) * (Number(JSON.parse(localStorage.getItem('DA'))))/100) + (Number(JSON.parse(localStorage.getItem('TPA'))));
-let grossSalary = actualBasic + actualDA + actualHRA + actualTPA; 
+// let actualBasic = parseInt(localStorage.getItem('Basic'));
+// let actualDA = (parseInt(localStorage.getItem('DA'))) * actualBasic/100;
+// let actualHRA = (parseInt(localStorage.getItem('HRA'))) * actualBasic/100;
+// let actualTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
+// let grossSalary = actualBasic + actualDA + actualHRA + actualTPA; 
 
 
 // Button events
 
-okBtn.forEach((save) => {
-    save.addEventListener('click', saveLocalStorage);
-});
-
-calculateBtn.forEach(function(save){
-    save.addEventListener('click',  calculateLocalStorage);
-});
-
-    
-
-
-
-// Functions
-
-function saveLocalStorage() {
-    localStorage.setItem('Basic', JSON.stringify(userBasic.value));
-    localStorage.setItem('DA', JSON.stringify(userDA.value));
-    localStorage.setItem('HRA', JSON.stringify(userHRA.value));
-    localStorage.setItem('TPA', JSON.stringify(userTPA.value));
-}
-
-function calculateLocalStorage(){
-    localStorage.setItem('Actual DA', JSON.stringify(actualDA));
-    localStorage.setItem('Actual HRA', JSON.stringify(actualHRA));
-    localStorage.setItem('Actual TPA', JSON.stringify(actualTPA));
-    localStorage.setItem('Gross Salary', JSON.stringify(grossSalary));
-}
+ okBtns.forEach(function(okBtn) {
+    okBtn.addEventListener('click', () => {
+        localStorage.setItem('Basic', userBasic.value);
+        localStorage.setItem('DA', userDA.value);
+        localStorage.setItem('HRA', userHRA.value);
+        localStorage.setItem('TPA', userTPA.value);
+    });
+ });
 
 
 
-
-// Console Log test
-
-console.log(actualBasic, actualDA, actualHRA, actualTPA, grossSalary);
-console.log(typeof(actualBasic),typeof(actualDA), typeof(actualHRA), typeof(actualTPA), typeof(grossSalary));
+calculateBtns.forEach(function(calculateBtn){
+        calculateBtn.addEventListener('click',  ()=> {
+            let actualBasic = parseInt(localStorage.getItem('Basic'));
+            let actualDA = (parseInt(localStorage.getItem('DA'))) * actualBasic/100;
+            let actualHRA = (parseInt(localStorage.getItem('HRA'))) * actualBasic/100;
+            let actualTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
+            let grossSalary = actualBasic + actualDA + actualHRA + actualTPA;
+            localStorage.setItem('Actual DA', JSON.stringify(actualDA));
+            localStorage.setItem('Actual HRA', JSON.stringify(actualHRA));
+            localStorage.setItem('Actual TPA', JSON.stringify(actualTPA));
+            localStorage.setItem('Gross Salary', JSON.stringify(grossSalary));
+        });
+    });
