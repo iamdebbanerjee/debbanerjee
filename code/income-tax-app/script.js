@@ -35,14 +35,14 @@ let userTPA = document.getElementById('tpa-rate');
 
 calculateBtns.forEach(function(calculateBtn){
         calculateBtn.addEventListener('click',  ()=> {
-            let actualBasic = parseInt(localStorage.getItem('Basic'));
-            let actualDA = (parseInt(localStorage.getItem('DA'))) * actualBasic/100;
-            let actualHRA = (parseInt(localStorage.getItem('HRA'))) * actualBasic/100;
-            let actualTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
-            let grossSalary = actualBasic + actualDA + actualHRA + actualTPA;
-            localStorage.setItem('Actual DA', JSON.stringify(actualDA));
-            localStorage.setItem('Actual HRA', JSON.stringify(actualHRA));
-            localStorage.setItem('Actual TPA', JSON.stringify(actualTPA));
-            localStorage.setItem('Gross Salary', JSON.stringify(grossSalary));
+            let marchBasic = parseInt(localStorage.getItem('Basic'));
+            let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
+            let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
+            let marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
+            let marchGrossSalary = marchBasic + marchDA + marchHRA + marchTPA;
+            localStorage.setItem('March DA', JSON.stringify(marchDA));
+            localStorage.setItem('March HRA', JSON.stringify(marchHRA));
+            localStorage.setItem('March TPA', JSON.stringify(marchTPA));
+            localStorage.setItem('March Gross Salary', JSON.stringify(marchGrossSalary));
         });
     });

@@ -74,6 +74,11 @@
     border-bottom: 2px solid var(--primary-color);
   }
 
+  input[type = radio] {
+    width: 33.33%;
+    display: inline;
+  }
+
   .btn {
     text-decoration: none;
     margin: 0 0.5rem;
@@ -116,7 +121,7 @@
     width: 90vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
   }
 
