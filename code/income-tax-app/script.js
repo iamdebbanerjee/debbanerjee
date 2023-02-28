@@ -28,6 +28,7 @@ let userTPA = document.getElementById('tpa-rate');
         localStorage.setItem('DA', userDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
+        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
     });
  });
 
