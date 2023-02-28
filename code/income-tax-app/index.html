@@ -15,7 +15,21 @@
             <input type="number" name="basic-salary" id="basic-salary">
             <div class="input-control">
                 <a href="" class="btn move-back" disabled><i class="fas fa-chevron-up"></i></a>
-                <a href="#da" class="btn save">Ok</a>
+                <a href="#increment-month" class="btn save">Ok</a>
+                <a href="#increment-month" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </div>
+        <div class="form-group" id="increment-month">
+            <h3>What is your increment month?</h3>
+            <div class="input-rd-chkbx">
+                <input type="radio" name="increment-month" id="increment-month-july" value = "July">
+                <label for="increment-month-july">July</label>           
+                <input type="radio" name="increment-month" id="increment-month-january" value = "January">
+                <label for="increment-month-january">January</label>
+            </div>                     
+            <div class="input-control">
+                <a href="#basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                <a href="#" class="btn save">Ok</a>
                 <a href="#da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
@@ -23,7 +37,7 @@
             <h3 class="question">What is current rate of Dearness Allowance?</h3>
             <input type="number" name="da" id="da-rate">
             <div class="input-control">
-                <a href="#basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                <a href="#increment-month" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                 <a href="#hra" class="btn save">Ok</a>
                 <a href="#hra" class="btn move-ahead"><i class="fas fa-chevron-down"></i></button></a>
             </div>
@@ -42,33 +56,34 @@
             <input type="number" name="tpa" id="tpa-rate">
             <div class="input-control">
                 <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                <a href="#" class="btn save calculate">Ok</a>
-                <a href="#" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                <a href="#expected-da" class="btn save calculate">Ok</a>
+                <a href="#expected-da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
         <div class="form-group" id="expected-da">
             <h3>How much DA do you expect from the month of July this year?</h3>
             <input type="number" name="expected-da" id="expected-da">
             <div class="input-control">
-                <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                <a href="#" class="btn save">Ok</a>
-                <a href="#" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                <a href="#tpa" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                <a href="#additional-pay" class="btn save">Ok</a>
+                <a href="#additional-pay" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
-        <div class="form-group" id="increment-month">
-            <h3>What is your increment month?</h3>
+        <div class="form-group" id="additional-pay">
+            <h3>Did you recieve any additional pay (like - arrears, leave encashment with LTC, CEA etc.) ?</h3>
             <div class="input-rd-chkbx">
-                <input type="radio" name="increment-month" id="July" value = "July">
-                <label for="July">July</label>           
-                <input type="radio" name="increment-month" id="January" value = "January">
-                <label for="January">January</label>
+                <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
+                <label for="additional-pay-yes">Yes</label>           
+                <input type="radio" name="additional-pay" id="additional-pay-no" value = "no">
+                <label for="additional-pay-no">No</label>
             </div>                     
             <div class="input-control">
-                <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                <a href="#expected-da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                 <a href="#" class="btn save">Ok</a>
                 <a href="#" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
+        
 
     </form>
     <script src="script.js"></script>
