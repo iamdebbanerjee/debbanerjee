@@ -12,10 +12,10 @@
     <form id="main-form" action="#">
         <div class="form-group" id="basic">
             <h3 class="question">What was your basic salary in March this year?</h3>
-            <input type="number" name="basic-salary" id="march-basic-salary">
+            <input type="number" name="march-basic-salary" id="march-basic-salary">
             <div class="input-control">
                 <a href="" class="btn move-back" disabled><i class="fas fa-chevron-up"></i></a>
-                <a href="#increment-month" class="btn save">Ok</a>
+                <a href="#increment-month" class="btn save" id="set-increment-month">Ok</a>
                 <a href="#increment-month" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
             </div>
         </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="form-group" id="da">
-            <h3 class="question">What is current rate of Dearness Allowance?</h3>
+            <h3 class="question">What is the rate of DA (Dearness Allowance) in March this year?</h3>
             <input type="number" name="da" id="da-rate">
             <div class="input-control">
                 <a href="#increment-month" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="form-group" id="hra">
-            <h3>What is your applicable rate of house rent allowance?</h3>
+            <h3>What is your current rate of HRA (House Rent Allowance)?</h3>
             <input type="number" name="hra" id="hra-rate">
             <div class="input-control">
                 <a href="#da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="form-group" id="tpa">
-            <h3>How much is your transport allowance?</h3>
+            <h3>How much is your base TA (Transport allowance) in your present city?</h3>
             <input type="number" name="tpa" id="tpa-rate">
             <div class="input-control">
                 <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="form-group" id="additional-pay">
-            <h3>Did you recieve any additional pay (like - arrears, leave encashment with LTC, CEA etc.) ?</h3>
+            <h3>How much additional pay like - arrears, leave encashment with LTC, CEA etc. have you received / expect to receive this year?</h3>
             <div class="input-rd-chkbx">
                 <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
                 <label for="additional-pay-yes">Yes</label>           
