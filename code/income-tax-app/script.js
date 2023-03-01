@@ -39,6 +39,7 @@ let janToFebGrossSalary = 0;
         localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
         localStorage.setItem('Next Basic', nextBasic.value);
         localStorage.setItem('DA', userDA.value);
+        localStorage.setItem('Next DA', nextDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
         
