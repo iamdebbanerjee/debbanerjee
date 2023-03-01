@@ -1,11 +1,16 @@
+
+
+
 // User Input Variables
 
 const calculateBtns = document.querySelectorAll('.calculate');
 const okBtns = document.querySelectorAll('.save');
-let userBasic = document.getElementById('basic-salary');
+let userBasic = document.getElementById('march-basic-salary');
 let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
+let nextBasic = document.getElementById('next-basic-salary');
+let nextDA  = document.getElementById('expected-da');
 
 // calculateBtns[calculateBtns.length-1].addEventListener('click', () => {console.log(calculateBtns, okBtns, userBasic.value,userDA.value,userHRA.value, userTPA.value )});
 
@@ -24,11 +29,13 @@ let userTPA = document.getElementById('tpa-rate');
 
  okBtns.forEach(function(okBtn) {
     okBtn.addEventListener('click', () => {
-        localStorage.setItem('Basic', userBasic.value);
+        localStorage.setItem('March Basic', userBasic.value);
+        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
+        localStorage.setItem('Next Basic', nextBasic.value);
         localStorage.setItem('DA', userDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
-        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
+        
     });
  });
 
@@ -36,7 +43,7 @@ let userTPA = document.getElementById('tpa-rate');
 
 calculateBtns.forEach(function(calculateBtn){
         calculateBtn.addEventListener('click',  ()=> {
-            let marchBasic = parseInt(localStorage.getItem('Basic'));
+            let marchBasic = parseInt(localStorage.getItem('March Basic'));
             let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
             let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
             let marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
