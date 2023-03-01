@@ -13,7 +13,7 @@ let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
 let nextBasic = document.getElementById('next-basic-salary');
-let nextDA  = document.getElementById('expected-da');
+let nextDA  = document.getElementById('july-expected-da');
 
 // Internal variables
 
@@ -28,6 +28,7 @@ let januaryTPA = 0;
 let marchToJuneGrossSalary = 0;
 let julyToDecGrossSalary = 0;
 let janToFebGrossSalary = 0;
+let yearlyGrossSalary = 0;
 
 
 
@@ -69,28 +70,30 @@ calculateBtns.forEach(function(calculateBtn){
 
             // July to February Incomes
             if (incrementMonth === "July") {
-                julyBasic = nextBasic.value;
-                januaryBasic = nextBasic.value;
-                julyDa = julyBasic*((userDA.value + nextDA.value)/100);
-                julyHRA = (julyBasic*userHRA.value)/100;
-                julyTPA = userTPA.value + (userTPA.value*((userDA.value + nextDA.value)/100));
-                januaryDA = januaryBasic*((userDA.value + nextDA.value)/100);
-                januaryHRA = (januaryBasic*userHRA.value)/100;
-                januaryTPA = userTPA.value + ((userTPA.value*januaryDA)/100);
+                julyBasic = parseInt(localStorage.getItem('Next Basic'));
+                januaryBasic = julyBasic;
+                julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+                julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+                julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+                januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+                januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+                januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA'))+parseInt(localStorage.getItem('Next DA')))/100));
                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA);
+                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+                yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
 
             } else {
                 julyBasic = marchBasic;
-                januaryBasic = nextBasic.value;
-                julyDa = julyBasic*((userDA.value + nextDA.value)/100);
-                julyHRA = (julyBasic*userHRA.value)/100;
-                julyTPA = userTPA.value + (userTPA.value*((userDA.value + nextDA.value)/100));
-                januaryDA = januaryBasic*((userDA.value + nextDA.value)/100);
-                januaryHRA = (januaryBasic*userHRA.value)/100;
-                januaryTPA = userTPA.value + ((userTPA.value*januaryDA)/100);
+                januaryBasic = parseInt(localStorage.getItem('Next Basic'));
+                julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+                julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+                julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+                januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+                januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+                januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA);
+                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+                yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
             }
 
             // Save July to Feb Incomes to Local Storage
@@ -104,6 +107,7 @@ calculateBtns.forEach(function(calculateBtn){
             localStorage.setItem('January HRA', JSON.stringify(januaryHRA));
             localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
             localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
+            localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
 
         });
     });
