@@ -28,6 +28,7 @@
   body, p, input, select, a {
     font-size: 1.25rem;
     font-family: 'Poppins', sans-serif;
+    letter-spacing: 1.5;
   }
 
   h1, h2, h3 {
@@ -47,9 +48,22 @@
     font-size: 2rem;
   }
 
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
   label {
-    font-size: 2rem;
-    padding: 1rem;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Container */
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
   }
 
   /* Element Styles */
@@ -60,6 +74,7 @@
   }
 
   .question {
+    font-size: 2.5rem;
     margin-bottom: 2rem;;
   }
 
@@ -70,6 +85,7 @@
   input {
     width: 100%;
     height: 2.5rem;
+    margin-bottom: 1rem;
     border: none;
     border-bottom: 2px solid var(--secondary-color);
   }
@@ -124,7 +140,7 @@
 
   .form-group {
     height: 100vh;
-    width: 90vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -136,6 +152,22 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;    
+  }
+
+  .input-multi label {
+    padding-left: 0; 
+  }
+
+  .input-multi input {
+    display: block;
+    width: 80%;
+    padding: 0.5rem;
+    border: 1px solid #353535;
+    border-radius: 6px;
+  }
+
+  .input-multi input:focus {
+    border: 1px solid #5FA7AB;
   }
    
 /*  */
