@@ -1,9 +1,4 @@
 
-// document.getElementById('set-increment-month').addEventListener('click', ()=>{
-//         let incrementMonthInput = document.querySelector('input[name="increment-month"]:checked');
-//         let incrementMonth = incrementMonthInput.value;
-//     });
-
 // User Input Variables
 
 const calculateBtns = document.querySelectorAll('.calculate');
