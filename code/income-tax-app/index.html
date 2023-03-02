@@ -11,6 +11,7 @@
 <body>
     <div class="container">
         <form id="main-form" action="#">
+            <!-- Income under the head Salary -->
             <div class="form-group" id="basic">
                 <h3 class="question">What was your basic salary in March this year?</h3>
                 <input type="number" name="march-basic-salary" id="march-basic-salary">
@@ -81,48 +82,62 @@
             </div>
             <div class="form-group" id="additional-pay">
                 <h3 class="question">Did you get any additional pay this year?</h3>
-                <p>(Example - LTC, CEA, Leave encahshment etc.)</p>
-                <div class="input-rd-chkbx">
+                <p>Some text about additional pay. Like - Bonus, LTc</p>
+                <!-- <div class="input-rd-chkbx">
                     <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
                     <label for="additional-pay-yes">Yes</label>           
                     <input type="radio" name="additional-pay" id="additional-pay-no" value = "no">
                     <label for="additional-pay-no">No</label>
-                </div>                     
+                </div>                      -->
                 <div class="input-control">
                     <a href="#expected-da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#additional-pay-details" class="btn save calculate">Ok</a>
-                    <a href="#additional-pay-details" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#additional-pay-details-1" class="btn save calculate">Ok</a>
+                    <a href="#additional-pay-details-1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
-            <div class="form-group" id="additional-pay-details">
+            <div class="form-group" id="additional-pay-details-1">
                 <h3 class="question">Please enter the details below - </h3>
                 <div class="input-multi">
+                    <label for="bonus">Bonus</label>
+                    <input type="number" name="bonus" id="bonus">
                     <label for="cea">Children Education Allowance (C.E.A)</label>
                     <input type="number" name="cea" id="cea">
                     <label for="medical">Medical Reimbursement</label>
                     <input type="number" name="medical" id="medical">
+                </div>
+                <div class="input-control">
+                    <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#additional-pay-details-2" class="btn save calculate">Ok</a>
+                    <a href="#additional-pay-details-2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="additional-pay-details-2">
+                <h3 class="question">More additional pay details - </h3>
+                <div class="input-multi">
                     <label for="ltc">Leave Travel Concession (L.T.C)</label>
                     <input type="number" name="ltc" id="ltc">
                     <label for="leave-encashment">Leave Encashment</label>
                     <input type="number" name="leave-encashment" id="leave-encashment">
-                    <label for="bonus">Bonus</label>
-                    <input type="number" name="bonus" id="bonus">
+                    <label for="arrears">Arrears</label>
+                    <input type="number" name="arrears" id="arrears">
                 </div>
                 <div class="input-control">
                     <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#additional-pay-details" class="btn save calculate">Ok</a>
-                    <a href="#additional-pay-details" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
-                </div>
-            </div>
-            <div class="form-group" id="deductions-intro">
-                <h3 class="question">Now we shall calculate the various deductions - </h3>
-                <p>Some text about various sections. What information the user needs to keep ready etc.? </p>
-                <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <a href="" class="btn save calculate">Ok</a>
                     <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
+            <!-- Income from House Property -->
+
+            <!-- Income from Business & Profession -->
+
+            <!-- Income from Capital Gains -->
+
+            <!-- Income from other sources -->
+
+            <!-- Exemptions -->
+
+            <!-- Deductions -->
             <div class="form-group" id="deductions-intro">
                 <h3 class="question">Now we shall calculate the various deductions - </h3>
                 <p>Some text about various sections. What information the user needs to keep ready etc.? </p>
