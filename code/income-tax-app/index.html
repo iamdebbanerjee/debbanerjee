@@ -45,13 +45,14 @@
             <div class="form-group" id="tpa">
                 <h3 class="question">How much is your TPA  in your pay level?</h3>
                 <p>(Hint - Level 1-2: 1350, Level 3-8: 3600, Level 9 & above: 7200)</p>
-                <input type="number" name="tpa" id="tpa-rate">
+                <input type="number" name="tpa" id="tpa-rate" placeholder="Enter only value. Do not enter any unit/symbol.">
                 <div class="input-control">
                     <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <button type="submit" class="btn save"><a href="#increment-month" class="" id="">Enter</a></button>
                     <a href="#increment-month" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
+            <!-- Increment month, Next Basic Pay, Expected DA, Additional Pay -->
             <div class="form-group" id="increment-month">
                 <h3 class="question">What is your increment month?</h3>
                 <div class="input-rd-chkbx">
@@ -61,34 +62,36 @@
                     <label for="increment-month-january">January</label>
                 </div>                     
                 <div class="input-control">
-                    <a href="#basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#next-basic" class="btn save">Ok</a>
+                    <a href="#tpa" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#next-basic" class="" id="">Enter</a></button>
                     <a href="#next-basic" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="next-basic">
                 <h3 class="question">What will be your next basic pay after increment?</h3>
-                <input type="number" name="next-basic-salary" id="next-basic-salary">
+                <p>(Please click <a href="https://gservants.com/wp-content/uploads/2016/07/Pay-Matrix-Table-for-Central-Government-Employees.png" target="_blank">this link</a> to find out, if you are not sure.)</p>
+                <input type="number" name="next-basic-salary" id="next-basic-salary" placeholder="Enter only value. Do not enter any unit/symbol.">
                 <div class="input-control">
                     <a href="#increment-month" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#da" class="btn save">Ok</a>
-                    <a href="#da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <button type="submit" class="btn save"><a href="#expected-da" class="" id="">Enter</a></button>
+                    <a href="#expected-da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             
             
             <div class="form-group" id="expected-da">
-                <h3 class="question">How much DA do you expect from the month of July this year?</h3>
+                <h3 class="question">How much DA do you expect from July this year?</h3>
+                <p>(Hint - You can use 3-4% as average or use <a href="https://govtempdiary.com/expected-da-from-july-2023-calculator" target="_blank">this calculator</a> to get an idea.)</p>
                 <input type="number" name="expected-da" id="july-expected-da">
                 <div class="input-control">
-                    <a href="#tpa" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#additional-pay" class="btn save">Ok</a>
+                    <a href="#next-basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#additional-pay" class="" id="">Enter</a></button>
                     <a href="#additional-pay" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="additional-pay">
                 <h3 class="question">Did you get any additional pay this year?</h3>
-                <p>Some text about additional pay. Like - Bonus, LTc</p>
+                <p>Additional pay means Arrears, Bonus, CEA, LTC reimbursement, Leave encashment etc.</p>
                 <!-- <div class="input-rd-chkbx">
                     <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
                     <label for="additional-pay-yes">Yes</label>           
@@ -97,12 +100,12 @@
                 </div>                      -->
                 <div class="input-control">
                     <a href="#expected-da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#additional-pay-details-1" class="btn save calculate">Ok</a>
+                    <button type="submit" class="btn save"><a href="#additional-pay-details-1" class="" id="">Enter</a></button>
                     <a href="#additional-pay-details-1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="additional-pay-details-1">
-                <h3 class="question">Please enter the details below - </h3>
+                <h3 class="question">Please enter the details below </h3>
                 <div class="input-multi">
                     <label for="bonus">Bonus</label>
                     <input type="number" name="bonus" id="bonus">
@@ -113,12 +116,12 @@
                 </div>
                 <div class="input-control">
                     <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#additional-pay-details-2" class="btn save calculate">Ok</a>
+                    <button type="submit" class="btn save"><a href="#additional-pay-details-2" class="" id="">Enter</a></button>
                     <a href="#additional-pay-details-2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="additional-pay-details-2">
-                <h3 class="question">More additional pay details - </h3>
+                <h3 class="question">More details</h3>
                 <div class="input-multi">
                     <label for="ltc">Leave Travel Concession (L.T.C)</label>
                     <input type="number" name="ltc" id="ltc">
@@ -128,9 +131,9 @@
                     <input type="number" name="arrears" id="arrears">
                 </div>
                 <div class="input-control">
-                    <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save calculate">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#additional-pay-details-1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#house-property" class="" id="">Enter</a></button>
+                    <a href="#house-property" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <!-- Income from House Property -->

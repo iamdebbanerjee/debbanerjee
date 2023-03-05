@@ -59,6 +59,11 @@
     margin-bottom: 1rem;
   }
 
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+
   /* Container */
 
   .container {
@@ -165,15 +170,17 @@
   }
 
   .input-multi label {
-    padding-left: 0; 
+    padding-left: 0;
+    font-size: 1rem; 
   }
 
   .input-multi input {
     display: block;
     width: 80%;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     border: 1px solid #353535;
     border-radius: 6px;
+    font-size: 1rem;
   }
 
   .input-multi input:focus {
