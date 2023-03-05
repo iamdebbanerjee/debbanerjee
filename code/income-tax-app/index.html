@@ -12,12 +12,43 @@
     <div class="container">
         <form id="main-form" action="#">
             <!-- Income under the head Salary -->
+            <!-- BASIC, DA, HRA,  TPA -->
             <div class="form-group" id="basic">
-                <h3 class="question">What was your basic salary in March this year?</h3>
-                <input type="number" name="march-basic-salary" id="march-basic-salary">
+                <h3 class="question">How much is your basic pay in March this year?</h3>
+                <input type="number" name="march-basic-salary" id="march-basic-salary" placeholder="Enter only value. Do not enter any symbol or unit.">
                 <div class="input-control">
                     <a href="" class="btn move-back" disabled><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#increment-month" class="save" id="set-increment-month">Enter</a></button>
+                    <button type="submit" class="btn save"><a href="#da" class="" id="">Enter</a></button>
+                    <a href="#da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="da">
+                <h3 class="question">What is the rate of DA in March?</h3>
+                <p>(Please include expected DA if it is not yet declared by the Government.)</p>
+                <input type="number" name="da" id="da-rate" placeholder="Enter only value. Do not enter any symbol or unit.">
+                <div class="input-control">
+                    <a href="#basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#hra" class="" id="">Enter</a></button>
+                    <a href="#hra" class="btn move-ahead"><i class="fas fa-chevron-down"></i></button></a>
+                </div>
+            </div>
+            <div class="form-group" id="hra">
+                <h3 class="question">What is your rate of HRA in March?</h3>
+                <p>(Hint - X city 27%, Y city 18%, Z city 9%.)</p>
+                <input type="number" name="hra" id="hra-rate" placeholder="Enter only value. Do not enter % symbol.">
+                <div class="input-control">
+                    <a href="#da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#tpa" class="" id="">Enter</a></button>
+                    <a href="#tpa" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="tpa">
+                <h3 class="question">How much is your TPA  in your pay level?</h3>
+                <p>(Hint - Level 1-2: 1350, Level 3-8: 3600, Level 9 & above: 7200)</p>
+                <input type="number" name="tpa" id="tpa-rate">
+                <div class="input-control">
+                    <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#increment-month" class="" id="">Enter</a></button>
                     <a href="#increment-month" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -44,33 +75,8 @@
                     <a href="#da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
-            <div class="form-group" id="da">
-                <h3 class="question">What is the rate of DA (Dearness Allowance) in March this year?</h3>
-                <input type="number" name="da" id="da-rate">
-                <div class="input-control">
-                    <a href="#increment-month" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#hra" class="btn save">Ok</a>
-                    <a href="#hra" class="btn move-ahead"><i class="fas fa-chevron-down"></i></button></a>
-                </div>
-            </div>
-            <div class="form-group" id="hra">
-                <h3 class="question">What is your current rate of HRA (House Rent Allowance)?</h3>
-                <input type="number" name="hra" id="hra-rate">
-                <div class="input-control">
-                    <a href="#da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#tpa" class="btn save">Ok</a>
-                    <a href="#tpa" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
-                </div>
-            </div>
-            <div class="form-group" id="tpa">
-                <h3 class="question">How much is your base TA (Transport allowance) in your present city?</h3>
-                <input type="number" name="tpa" id="tpa-rate">
-                <div class="input-control">
-                    <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#expected-da" class="btn save">Ok</a>
-                    <a href="#expected-da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
-                </div>
-            </div>
+            
+            
             <div class="form-group" id="expected-da">
                 <h3 class="question">How much DA do you expect from the month of July this year?</h3>
                 <input type="number" name="expected-da" id="july-expected-da">

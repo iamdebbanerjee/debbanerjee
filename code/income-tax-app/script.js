@@ -30,7 +30,7 @@ let yearlyGrossSalary = 0;
 // Button events
 
  okBtns.forEach(function(okBtn) {
-    okBtn.addEventListener('click', () => {
+    okBtn.addEventListener('click', (e) => {
         localStorage.setItem('March Basic', userBasic.value);
         localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
         localStorage.setItem('Next Basic', nextBasic.value);
@@ -38,7 +38,9 @@ let yearlyGrossSalary = 0;
         localStorage.setItem('Next DA', nextDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
-        
+
+
+        e.preventDefault();
     });
  });
 

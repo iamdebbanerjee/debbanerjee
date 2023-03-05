@@ -37,19 +37,19 @@
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   h3 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   p {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 1rem;
   }
 
@@ -71,6 +71,7 @@
   body {
     background-color: var(--light-color);
     color: var(--secondary-color);
+    overflow: hidden;
   }
 
   .question {
@@ -99,6 +100,10 @@
   input[type="checkbox"] {
     width: 2rem;
     display: inline-block;
+  }
+
+  input::placeholder {
+    font-size: 0.75rem;
   }
 
   .btn {
