@@ -30,17 +30,18 @@ let yearlyGrossSalary = 0;
 // Button events
 
  okBtns.forEach(function(okBtn) {
-    okBtn.addEventListener('click', (e) => {
-        localStorage.setItem('March Basic', userBasic.value);
-        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
-        localStorage.setItem('Next Basic', nextBasic.value);
+    okBtn.addEventListener('click', () => {
+        localStorage.setItem('March Basic', userBasic.value);        
         localStorage.setItem('DA', userDA.value);
-        localStorage.setItem('Next DA', nextDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
+        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
+        localStorage.setItem('Next Basic', nextBasic.value);
+        localStorage.setItem('Next DA', nextDA.value);
 
 
-        e.preventDefault();
+
+        // e.preventDefault();
     });
  });
 
