@@ -90,8 +90,8 @@
                 </div>
             </div>
             <div class="form-group" id="additional-pay">
-                <h3 class="question">Did you get any additional pay this year?</h3>
-                <p>Additional pay means Arrears, Bonus, CEA, LTC reimbursement, Leave encashment etc.</p>
+                <h3 class="question">In next 2 steps, enter any additional pay other than monthly salary</h3>
+                <p>Example - Arrears, Bonus, CEA, LTC reimbursement, Leave encashment etc.</p>
                 <!-- <div class="input-rd-chkbx">
                     <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
                     <label for="additional-pay-yes">Yes</label>           
@@ -105,30 +105,30 @@
                 </div>
             </div>
             <div class="form-group" id="additional-pay-details-1">
-                <h3 class="question">Please enter the details below </h3>
+                <h3 class="question">Please enter the details below -</h3>
                 <div class="input-multi">
                     <label for="bonus">Bonus</label>
-                    <input type="number" name="bonus" id="bonus">
+                    <input type="number" name="bonus" id="bonus" placeholder="Only value, no symbol/unit">
                     <label for="cea">Children Education Allowance (C.E.A)</label>
-                    <input type="number" name="cea" id="cea">
-                    <label for="medical">Medical Reimbursement</label>
-                    <input type="number" name="medical" id="medical">
-                </div>
+                    <input type="number" name="cea" id="cea" placeholder="Only value, no symbol/unit">
+                    <label for="arrears">Arrears</label>
+                    <input type="number" name="arrears" id="arrears" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <button type="submit" class="btn save"><a href="#additional-pay-details-2" class="" id="">Enter</a></button>
                     <a href="#additional-pay-details-2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
+                </div>
             </div>
             <div class="form-group" id="additional-pay-details-2">
-                <h3 class="question">More details</h3>
+                <h3 class="question">More details -</h3>
                 <div class="input-multi">
                     <label for="ltc">Leave Travel Concession (L.T.C)</label>
-                    <input type="number" name="ltc" id="ltc">
+                    <input type="number" name="ltc" id="ltc" placeholder="Only value, no symbol/unit">
                     <label for="leave-encashment">Leave Encashment</label>
-                    <input type="number" name="leave-encashment" id="leave-encashment">
-                    <label for="arrears">Arrears</label>
-                    <input type="number" name="arrears" id="arrears">
+                    <input type="number" name="leave-encashment" id="leave-encashment" placeholder="Only value, no symbol/unit">
+                    <label for="medical">Others</label>
+                    <input type="number" name="other-additional-pay" id="other-additional-pay" placeholder="Enter total value here">
                 </div>
                 <div class="input-control">
                     <a href="#additional-pay-details-1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
@@ -139,8 +139,7 @@
             <!-- Income from House Property -->
             <div class="form-group" id="house-property">
                 <h3 class="question">Income from House & Property</h3>
-                <p>If you earned any rental income, you can add it here.</p>
-                <p> Also, if you have a home loan EMI, you can enter yeraly total interest paid as a (-ve) value here -</p>
+                <p>If you have any rental income, enter it here. Alternatively, if you pay home loan EMI, enter aproximate yearly total interest (-ve) value here.</p>
                 <input type="number" name="income-house-property" id="income-house-property">
                 <div class="input-control">
                     <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
