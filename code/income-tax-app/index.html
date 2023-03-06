@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group" id="additional-pay">
-                <h3 class="question">In next 2 steps, enter any additional pay other than monthly salary</h3>
+                <h3 class="question">In next 2 steps, enter all additional pay other than salary</h3>
                 <p>Example - Arrears, Bonus, CEA, LTC reimbursement, Leave encashment etc.</p>
                 <!-- <div class="input-rd-chkbx">
                     <input type="radio" name="additional-pay" id="additional-pay-yes" value = "yes">
@@ -140,112 +140,117 @@
             <div class="form-group" id="house-property">
                 <h3 class="question">Income from House & Property</h3>
                 <p>If you have any rental income, enter it here. Alternatively, if you pay home loan EMI, enter aproximate yearly total interest (-ve) value here.</p>
-                <input type="number" name="income-house-property" id="income-house-property">
+                <input type="number" name="income-house-property" id="income-house-property" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#additional-pay-details-2" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#business-profession" class="" id="">Enter</a></button>
+                    <a href="#business-profession" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
-
             <!-- Income from Business & Profession -->
             <div class="form-group" id="business-profession">
                 <h3 class="question">Income from Business & Profession</h3>
-                <p> How much income did you earn under the head Business & Profession?</p>
-                <input type="number" name="income-business-profession" id="income-business-profession">
+                <p>If you do not have any such income, then enter 0 (zero)</p>
+                <input type="number" name="income-business-profession" id="income-business-profession" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#house-property" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#capital-gains" class="" id="">Enter</a></button>
+                    <a href="#capital-gains" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <!-- Income from Capital Gains -->
             <div class="form-group" id="capital-gains">
                 <h3 class="question">Income under Capital Gains</h3>
-                <p>How much income did you earn under the head Capital Gains?</p>
-                <input type="number" name="income-capital-gains" id="income-capital-gains">
+                <p>Enter Long Term and Short Term capital gains separately. If no capital gains then enter both as 0(zero).</p>
+                <div class="input-multi">
+                    <label for="stcg">STCG</label>
+                    <input type="number" name="stcg" id="stcg" placeholder="Enter STCG here">
+                    <label for="ltcg">LTCG</label>
+                    <input type="number" name="ltcg" id="stcg" placeholder="Enter LTCG here">
+                </div>                
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#business-profession" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#other-sources" class="" id="">Enter</a></button>
+                    <a href="#other-sources" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <!-- Income from other sources -->
             <div class="form-group" id="other-sources">
                 <h3 class="question">Income under Other Sources</h3>
-                <p>How much total income did you earn under the head Capital Gains?</p>
+                <p>Please add any other income and enter here. Else enter 0 (zero).</p>
                 <input type="number" name="income-other-sources" id="income-other-sources">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#capital-gains" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#hra-exemption" class="" id="">Enter</a></button>
+                    <a href="#hra-exemption" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <!-- Exemptions -->
             <div class="form-group" id="hra-exemption">
-                <h3 class="question">Do you live in a rented house?</h3>
-                <p>If yes, please enter monthly rent below. Otherwise enter 0.</p>
-                <input type="number" name="exemption-hra" id="exemption-hra">
+                <h3 class="question">HRA & Rented Accomodation</h3>
+                <p>If you have rent receipts, enter your montly rent below.</p>
+                <input type="number" name="exemption-hra" id="exemption-hra" >
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#other-sources" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#deductions-intro" class="" id="">Enter</a></button>
+                    <a href="#deductions-intro" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             
             <!-- Deductions -->
             <div class="form-group" id="deductions-intro">
-                <h3 class="question">Now we shall calculate the various deductions - </h3>
-                <p>Some text about various sections. What information the user needs to keep ready etc.? </p>
+                <h3 class="question">Next, let us calculate your deductions -</h3>
+                <p>GPF, Life & Health insurance premiums, PLI, PPF, SSY, NSC, NPS, ELSS etc.</p>
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save calculate">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#hra-exemption" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#sd" class="" id="">Enter</a></button>
+                    <a href="#sd" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="sd">
-                <h3 class="question">Standard Deduction u/s 16(i)/(ia)</h3>
+                <h3 class="question">Standard Deduction</h3>
+                <p>Standard deduction is &#8377;50000 for everybody. So we've taken this value as default. Just check and hit Enter.</p>
                 <input type="number" name="standard-deduction" id="standard-deduction" value="50000" disabled>
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#deductions-intro" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#p-tax" class="" id="">Enter</a></button>
+                    <a href="#p-tax" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="p-tax">
                 <h3 class="question">How much professional tax do you pay every month</h3>
                 <input type="number" name="monthly-p-tax" id="monthly-p-tax">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#sd" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#gpf" class="" id="">Enter</a></button>
+                    <a href="#gpf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="gpf">
                 <h3 class="question">How much money do you plan to save in GPF this year?</h3>
                 <input type="number" name="gpf-investment" id="gpf-investment">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#p-tax" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#hba1" class="btn save">Ok</a>
+                    <a href="#hba1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="hba1">
                 <h3 class="question">How much money do you have to pay for your Home Loan EMi interest?</h3>
                 <input type="number" name="hba-principal" id="gpf-principal">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#hba1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#hba2" class="btn save">Ok</a>
+                    <a href="#hba2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="hba2">
                 <h3 class="question">How much money do you have to pay for your Home Loan EMi interest?</h3>
                 <input type="number" name="hba-interest" id="hba-interest">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#hba1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#lic" class="btn save">Ok</a>
+                    <a href="#lic" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="lic">
@@ -253,27 +258,27 @@
                 <p>LIC/PLI/ULIP etc.</p>
                 <input type="number" name="life-insurance" id="life-insurance">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#hba2" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#ppf" class="btn save">Ok</a>
+                    <a href="#ppf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="ppf">
                 <h3 class="question">How much PPF investment do you expect to make this year?</h3>
                 <input type="number" name="ppf-investment" id="ppf-investment">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#lic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#elss" class="btn save">Ok</a>
+                    <a href="#elss" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="elss">
                 <h3 class="question">How much elss investment do you expect to make this year?</h3>
                 <input type="number" name="elss-investment" id="elss-investment">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#ppf" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#tts" class="btn save">Ok</a>
+                    <a href="#tts" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="tts">
@@ -281,9 +286,9 @@
                 <p>Including CGEGIS...</p>
                 <input type="number" name="tax-free-schemes-total" id="tax-free-schemes-total">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#elss" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#mediclaim" class="btn save">Ok</a>
+                    <a href="#mediclaim" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="mediclaim">
@@ -291,18 +296,27 @@
                 <p>Including - CGHS, medical insurance for self, spouse, parents etc.</p>
                 <input type="number" name="medical-insurance" id="medical-insurance">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#savings" class="btn save">Ok</a>
+                    <a href="#savings" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="savings">
                 <h3 class="question">Total interest you earned this year from savings accounts?</h3>
                 <input type="number" name="savings-interest" id="savings-interest">
                 <div class="input-control">
-                    <a href="" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="" class="btn save">Ok</a>
-                    <a href="" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                    <a href="#mediclaim" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#final-submit" class="btn save">Ok</a>
+                    <a href="#final-submit" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="final-submit">
+                <h3 class="question">Calculate your expected Tax</h3>
+                <p>Hit Submit below</p>
+                <div class="input-control">
+                    <a href="#mediclaim" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#final-submit" class="btn save">Ok</a>
+                    <a href="" class="btn move-ahead" disabled><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
         </form>
