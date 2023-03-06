@@ -140,8 +140,9 @@
   .btn[disabled] {
     background-color: #a3a3a3;
     color: #353535;
-    cursor: not-allowed;
     box-shadow: 2px 4px 2px #353535;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   /* Form Styles */
