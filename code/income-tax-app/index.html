@@ -199,7 +199,7 @@
             <div class="form-group" id="hra-exemption">
                 <h3 class="question">HRA & Rented Accomodation</h3>
                 <p>If you have rent receipts, enter your montly rent below. Otherwise enter 0(zero).</p>
-                <input type="number" name="exemption-hra" id="exemption-hra" placeholder="Only value, no symbol/unit">
+                <input type="number" name="rent-receipt" id="rent-receipt" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#deductions-intro" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <button type="submit" class="btn save"><a href="#sd" class="" id="">Enter</a></button>
@@ -223,6 +223,21 @@
                 <input type="number" name="monthly-p-tax" id="monthly-p-tax" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#sd" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <button type="submit" class="btn save"><a href="#gpf-or-nps" class="" id="">Enter</a></button>
+                    <a href="#gpf-or-nps" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <!-- GPF or NPS -->
+            <div class="form-group" id="gpf-or-nps">
+                <h3 class="question">Did you join Govt. Service before 01.01.2004?</h3>
+                <div class="input-rd-chkbx">
+                    <input type="radio" name="gpf-subscriber" id="gpf-subscriber" value = "GPF" checked>
+                    <label for="increment-month-january">Yes</label>
+                    <input type="radio" name="nps-subscriber" id="inps-subscriber" value = "NPS">
+                    <label for="increment-month-july">No</label>           
+                </div>                     
+                <div class="input-control">
+                    <a href="#p-tax" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <button type="submit" class="btn save"><a href="#gpf" class="" id="">Enter</a></button>
                     <a href="#gpf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
@@ -231,7 +246,7 @@
                 <h3 class="question">How much you want to save in GPF this year?</h3>
                 <input type="number" name="gpf-investment" id="gpf-investment" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
-                    <a href="#p-tax" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#gpf-or-nps" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
                     <button type="submit" class="btn save"><a href="#hba1" class="" id="">Enter</a></button>
                     <a href="#hba1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>

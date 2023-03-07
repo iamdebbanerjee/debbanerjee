@@ -1,14 +1,33 @@
 
-// User Input Variables
+/* User Input Variables*/
 
+// Action Buttons
 const calculateBtns = document.querySelectorAll('.calculate');
 const okBtns = document.querySelectorAll('.save');
+
+// Input Fields Data
 let userBasic = document.getElementById('march-basic-salary');
 let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
 let nextBasic = document.getElementById('next-basic-salary');
 let nextDA  = document.getElementById('july-expected-da');
+let userBonus = document.getElementById('bonus');
+let userCEA = document.getElementById('cea');
+let userArrears = document.getElementById('arrears');
+let userLTC = document.getElementById('ltc');
+let userLeaveEncashment = document.getElementById('leave-encashment');
+let userOtherAdditionalPay = document.getElementById('other-additional-pay');
+let userIncomeHouseProperty = document.getElementById('income-house-property');
+let userIncomeBusinessProfession = document.getElementById('income-business-profession');
+let userSTCG = document.getElementById('stcg');
+let userLTCG = document.getElementById('ltcg');
+let userIncomeOtherSources = document.getElementById('income-other-sources');
+let userRentReceipt = document.getElementById('rent-receipt');
+let userSrandardDeduction = document.getElementById('standard-deduction');
+let userProfessionalTax = document.getElementById('p-tax');
+let userGPF = document.getElementById('gpf-investment');
+
 
 // Internal variables
 
