@@ -65,6 +65,14 @@ let yearlyGrossSalary = 0;
         localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
         localStorage.setItem('Next Basic', nextBasic.value);
         localStorage.setItem('Next DA', nextDA.value);
+        localStorage.setItem('Bonus', userBonus.value);
+        localStorage.setItem('CEA', userCEA.value);
+        localStorage.setItem('Arrears', userArrears.value);
+        localStorage.setItem('LTC', userLTC.value);
+        localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
+        localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
+
+
 
 
 
