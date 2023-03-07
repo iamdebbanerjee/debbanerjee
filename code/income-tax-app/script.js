@@ -23,6 +23,7 @@ let userIncomeBusinessProfession = document.getElementById('income-business-prof
 let userSTCG = document.getElementById('stcg');
 let userLTCG = document.getElementById('ltcg');
 let userIncomeOtherSources = document.getElementById('income-other-sources');
+let userHraCitytype = document.querySelector('input[name="hra-city-type"]:checked');
 let userRentReceipt = document.getElementById('rent-receipt');
 let userStandardDeduction = document.getElementById('standard-deduction');
 let userProfessionalTax = document.getElementById('p-tax');
@@ -51,7 +52,13 @@ let marchToJuneGrossSalary = 0;
 let julyToDecGrossSalary = 0;
 let janToFebGrossSalary = 0;
 let yearlyGrossSalary = 0;
+let incomeUnderSalaryHead = 0;
+let incomeUnderHousePropertyHead = 0;
+let yearlyHraReceived = 0;
 let yearlyRentPaid = 0;
+let hraCityFactor = 0;
+let finalHRARelief = 0;
+
 
 
 
@@ -77,6 +84,7 @@ let yearlyRentPaid = 0;
         localStorage.setItem('STCG', userSTCG.value);
         localStorage.setItem('LTCG', userLTCG.value);
         localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+        localStorage.setItem('Rent City Type', userHraCitytype.value);
         localStorage.setItem('Monthly Rent Paid', userRentReceipt.value);
         localStorage.setItem('Standard Deduction', userStandardDeduction.value);
         localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
@@ -90,13 +98,6 @@ let yearlyRentPaid = 0;
         localStorage.setItem('Yearly Other TAX Savings', userOtherTTS.value);
         localStorage.setItem('Yearly Mediclaim Premium', userMediclaim.value);
         localStorage.setItem('Yearly Savings Interest', userSavingsInterest.value);
-
-
-
-
-
-
-        // e.preventDefault();
     });
  });
 
@@ -106,7 +107,7 @@ calculateBtns.forEach(function(calculateBtn){
         calculateBtn.addEventListener('click',  ()=> {
 
             let incrementMonth = localStorage.getItem('Increment Month');
-            // March to June Incomes
+            // March to June Salary Incomes
             let marchBasic = parseInt(localStorage.getItem('March Basic'));
             let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
             let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
@@ -121,7 +122,7 @@ calculateBtns.forEach(function(calculateBtn){
             localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
 
 
-            // July to February Incomes
+            // July to February Salary Incomes
             if (incrementMonth === "July") {
                 julyBasic = parseInt(localStorage.getItem('Next Basic'));
                 januaryBasic = julyBasic;
@@ -161,6 +162,30 @@ calculateBtns.forEach(function(calculateBtn){
             localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
             localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
             localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
+
+            // HRA Exemption calculation
+            yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))*4) + (parseInt(localStorage.getItem('July HRA'))*6) + (parseInt(localStorage.getItem('January HRA'))*2);
+            yearlyRentPaid = parseInt(localStorage.getItem('Monthly Rent paid')) * 12;
+            if(localStorage.getItem('Rent City Type') === 'Metro'){
+                hraCityFactor = 0.5
+            } else {
+                hraCityFactor = 0.4;
+            }
+            
+           
+            
+            
+            // All 5 Heads Income Calculation
+
+
+
+            incomeUnderSalaryHead = (parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus'))+ parseInt(localStorage.getItem('CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) +
+            parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'))) - (parseInt(localStorage.getItem('LTC')));
+
+
+
+            // Save All 5 Heads Income To Local Storage
+            localStorage.setItem('Income Under Salary Head', incomeUnderSalaryHead);
 
         });
     });
