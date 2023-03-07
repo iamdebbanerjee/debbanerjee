@@ -26,8 +26,16 @@ let userIncomeOtherSources = document.getElementById('income-other-sources');
 let userRentReceipt = document.getElementById('rent-receipt');
 let userSrandardDeduction = document.getElementById('standard-deduction');
 let userProfessionalTax = document.getElementById('p-tax');
+let userPFType = document.querySelector('input[name="pf-type"]:checked');
 let userGPF = document.getElementById('gpf-investment');
-
+let userHBAPrincipal = document.getElementById('hba-principal');
+let userHBAInterest = document.getElementById('hba-interest');
+let userLifeInsurance = document.getElementById('life-insurance');
+let userPPF = document.getElementById('ppf-investment');
+let userELSS = document.getElementById('elss-investment');
+let userOtherTTS = document.getElementById('tax-free-schemes-total');
+let userMediclaim = document.getElementById('medical-insurance');
+let userSavingsInterest = document.getElementById('savings-interest');
 
 // Internal variables
 
