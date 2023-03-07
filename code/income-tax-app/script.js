@@ -24,7 +24,7 @@ let userSTCG = document.getElementById('stcg');
 let userLTCG = document.getElementById('ltcg');
 let userIncomeOtherSources = document.getElementById('income-other-sources');
 let userRentReceipt = document.getElementById('rent-receipt');
-let userSrandardDeduction = document.getElementById('standard-deduction');
+let userStandardDeduction = document.getElementById('standard-deduction');
 let userProfessionalTax = document.getElementById('p-tax');
 let userPFType = document.querySelector('input[name="pf-type"]:checked');
 let userGPF = document.getElementById('gpf-investment');
@@ -51,6 +51,7 @@ let marchToJuneGrossSalary = 0;
 let julyToDecGrossSalary = 0;
 let janToFebGrossSalary = 0;
 let yearlyGrossSalary = 0;
+let yearlyRentPaid = 0;
 
 
 
@@ -71,6 +72,25 @@ let yearlyGrossSalary = 0;
         localStorage.setItem('LTC', userLTC.value);
         localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
         localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
+        localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
+        localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
+        localStorage.setItem('STCG', userSTCG.value);
+        localStorage.setItem('LTCG', userLTCG.value);
+        localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+        localStorage.setItem('Monthly Rent Paid', userRentReceipt.value);
+        localStorage.setItem('Standard Deduction', userStandardDeduction.value);
+        localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
+        localStorage.setItem('User PF Type', userPFType.value);
+        localStorage.setItem('Yearly GPF Savings', userGPF.value);
+        localStorage.setItem('Yearly HBA Principal', userHBAPrincipal.value);
+        localStorage.setItem('Yearly HBA Interest', userHBAInterest.value);
+        localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance.value);
+        localStorage.setItem('Yearly PPF Investment', userPPF.value);
+        localStorage.setItem('Yearly ELSS Investment', userELSS.value);
+        localStorage.setItem('Yearly Other TAX Savings', userOtherTTS.value);
+        localStorage.setItem('Yearly Mediclaim Premium', userMediclaim.value);
+        localStorage.setItem('Yearly Savings Interest', userSavingsInterest.value);
+
 
 
 
