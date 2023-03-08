@@ -2,7 +2,7 @@
 /* User Input Variables*/
 
 // Action Buttons
-const calculateBtns = document.querySelectorAll('.calculate');
+const calculateBtn = document.querySelector('.calculate');
 const okBtns = document.querySelectorAll('.save');
 
 // Input Fields Data
@@ -55,11 +55,27 @@ let yearlyGrossSalary = 0;
 let incomeUnderSalaryHead = 0;
 let incomeUnderHousePropertyHead = 0;
 let yearlyHraReceived = 0;
-let yearlyRentPaid = 0;
+let yearlyRentPaidInExcess = 0;
 let hraCityFactor = 0;
+let hraSalaryCap = 0;
 let finalHRARelief = 0;
 
+/* Calculation Functions */
 
+// Finding the smallest one between 3 given values
+
+function leastAmong3 (val1, val2, val3) {
+    let checkerValue = 0;
+    if (val1 <= val2 ){
+        checkerValue = val1;
+    } else {
+        checkerValue = val2;
+    }
+    if(val3 <= checkerValue){
+        checkerValue = val3;
+    }
+    return checkerValue;
+}
 
 
 // Button events
@@ -103,7 +119,7 @@ let finalHRARelief = 0;
 
 
 
-calculateBtns.forEach(function(calculateBtn){
+// calculateBtns.forEach(function(calculateBtn){
         calculateBtn.addEventListener('click',  ()=> {
 
             let incrementMonth = localStorage.getItem('Increment Month');
@@ -163,14 +179,35 @@ calculateBtns.forEach(function(calculateBtn){
             localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
             localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
 
-            // HRA Exemption calculation
-            yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))*4) + (parseInt(localStorage.getItem('July HRA'))*6) + (parseInt(localStorage.getItem('January HRA'))*2);
-            yearlyRentPaid = parseInt(localStorage.getItem('Monthly Rent paid')) * 12;
-            if(localStorage.getItem('Rent City Type') === 'Metro'){
-                hraCityFactor = 0.5
-            } else {
-                hraCityFactor = 0.4;
-            }
+            
+            
+            /* HRA ExemPTION calculation and Save to LocalStorage */
+
+                // Total Yearly HRA received
+                yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))* 4) + 
+                                    (parseInt(localStorage.getItem('July HRA'))* 6) + 
+                                    (parseInt(localStorage.getItem('January HRA'))* 2);
+                console.log(yearlyHraReceived);
+                // Yearly Rent paid in Excess of 10% of Salary (Basic + DA)
+                yearlyRentPaidInExcess = (parseInt(localStorage.getItem('Monthly Rent paid')) * 12) - (
+                    (
+                        (parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
+                        (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
+                        (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)
+                    ) * 0.1);
+
+                // HRA City Factor and 40% or 50% of salary
+                if (localStorage.getItem('Rent City Type') === "Metro") {
+                    hraCityFactor = 0.5;
+                } else {
+                    hraCityFactor = 0.4;
+                }
+                hraSalaryCap = ((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
+                                (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
+                                (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)) * hraCityFactor;
+            finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
+            localStorage.setItem('Final HRA Exemption', finalHRARelief);
+
             
            
             
@@ -188,4 +225,4 @@ calculateBtns.forEach(function(calculateBtn){
             localStorage.setItem('Income Under Salary Head', incomeUnderSalaryHead);
 
         });
-    });
+    // });
