@@ -5,13 +5,14 @@
 // const calculateBtn = document.querySelector('.calculate');
 const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
 const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
-const okBtns = document.querySelectorAll('.save');
+const saveSalaryBtn = document.getElementById('save-salary');
 
 // Input Fields Data
 let userBasic = document.getElementById('march-basic-salary');
 let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
+
 let nextBasic = document.getElementById('next-basic-salary');
 let nextDA  = document.getElementById('july-expected-da');
 let userBonus = document.getElementById('bonus');
@@ -25,7 +26,7 @@ let userIncomeBusinessProfession = document.getElementById('income-business-prof
 let userSTCG = document.getElementById('stcg');
 let userLTCG = document.getElementById('ltcg');
 let userIncomeOtherSources = document.getElementById('income-other-sources');
-// let userHraCitytype = document.querySelector('input[name="hra-city-type"]:checked');
+let userHraCityType = document.querySelector('input[name="hra-city-type"]:checked');
 let userRentReceipt = document.getElementById('rent-receipt');
 let userStandardDeduction = document.getElementById('standard-deduction');
 let userProfessionalTax = document.getElementById('p-tax');
@@ -62,133 +63,135 @@ let hraCityFactor = 0;
 let hraSalaryCap = 0;
 let finalHRARelief = 0;
 
-/* Calculation Functions */
+// /* Calculation Functions */
 
-// Finding the smallest one between 3 given values
+// // Finding the smallest one between 3 given values
 
-function leastAmong3 (val1, val2, val3) {
-    let checkerValue = 0;
-    if (val1 <= val2 ){
-        checkerValue = val1;
-    } else {
-        checkerValue = val2;
-    }
-    if(val3 <= checkerValue){
-        checkerValue = val3;
-    }
-    return checkerValue;
-}
+// function leastAmong3 (val1, val2, val3) {
+//     let checkerValue = 0;
+//     if (val1 <= val2 ){
+//         checkerValue = val1;
+//     } else {
+//         checkerValue = val2;
+//     }
+//     if(val3 <= checkerValue){
+//         checkerValue = val3;
+//     }
+//     return checkerValue;
+// }
 
-// Calculate Yearly Gross Salary
+// // Calculate Yearly Gross Salary
 
-function calculateGrossSalary(){
-    let incrementMonth = localStorage.getItem('Increment Month');
-            // March to June Salary Incomes
-            let marchBasic = parseInt(localStorage.getItem('March Basic'));
-            let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
-            let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
-            let marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
-            marchToJuneGrossSalary = (marchBasic + marchDA + marchHRA + marchTPA) * 4;
-
-
-            // Save March to June Incomes to Local Storage
-            localStorage.setItem('March DA', JSON.stringify(marchDA));
-            localStorage.setItem('March HRA', JSON.stringify(marchHRA));
-            localStorage.setItem('March TPA', JSON.stringify(marchTPA));
-            localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
+// function calculateGrossSalary(){
+//     let incrementMonth = localStorage.getItem('Increment Month');
+//             // March to June Salary Incomes
+//             let marchBasic = parseInt(localStorage.getItem('March Basic'));
+//             let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
+//             let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
+//             let marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
+//             marchToJuneGrossSalary = (marchBasic + marchDA + marchHRA + marchTPA) * 4;
 
 
-            // July to February Salary Incomes
-            if (incrementMonth === "July") {
-                julyBasic = parseInt(localStorage.getItem('Next Basic'));
-                januaryBasic = julyBasic;
-                julyDA = (julyBasic*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA'))))/100;
-                julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
-                julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-                januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-                januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
-                januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA'))+parseInt(localStorage.getItem('Next DA')))/100));
-                julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
-                yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
+//             // Save March to June Incomes to Local Storage
+//             localStorage.setItem('March DA', JSON.stringify(marchDA));
+//             localStorage.setItem('March HRA', JSON.stringify(marchHRA));
+//             localStorage.setItem('March TPA', JSON.stringify(marchTPA));
+//             localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
 
-            } else {
-                julyBasic = marchBasic;
-                januaryBasic = parseInt(localStorage.getItem('Next Basic'));
-                julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-                julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
-                julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
-                januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-                januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
-                januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
-                julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-                janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
-                yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
-            }
 
-            // Save July to Feb Incomes to Local Storage
-            localStorage.setItem('July Basic', JSON.stringify(julyBasic));
-            localStorage.setItem('July DA', JSON.stringify(julyDA));
-            localStorage.setItem('July HRA', JSON.stringify(julyHRA));
-            localStorage.setItem('July TPA', JSON.stringify(julyTPA));
-            localStorage.setItem('July to December Gross Salary', JSON.stringify(julyToDecGrossSalary));
-            localStorage.setItem('January Basic', JSON.stringify(januaryBasic));
-            localStorage.setItem('January DA', JSON.stringify(januaryDA));
-            localStorage.setItem('January HRA', JSON.stringify(januaryHRA));
-            localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
-            localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
-            localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
+//             // July to February Salary Incomes
+//             if (incrementMonth === "July") {
+//                 julyBasic = parseInt(localStorage.getItem('Next Basic'));
+//                 januaryBasic = julyBasic;
+//                 julyDA = (julyBasic*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA'))))/100;
+//                 julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+//                 julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+//                 januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+//                 januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+//                 januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA'))+parseInt(localStorage.getItem('Next DA')))/100));
+//                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
+//                 janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+//                 yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
+
+//             } else {
+//                 julyBasic = marchBasic;
+//                 januaryBasic = parseInt(localStorage.getItem('Next Basic'));
+//                 julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+//                 julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+//                 julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+//                 januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+//                 januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+//                 januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+//                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
+//                 janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+//                 yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
+//             }
+
+//             // Save July to Feb Incomes to Local Storage
+//             localStorage.setItem('July Basic', JSON.stringify(julyBasic));
+//             localStorage.setItem('July DA', JSON.stringify(julyDA));
+//             localStorage.setItem('July HRA', JSON.stringify(julyHRA));
+//             localStorage.setItem('July TPA', JSON.stringify(julyTPA));
+//             localStorage.setItem('July to December Gross Salary', JSON.stringify(julyToDecGrossSalary));
+//             localStorage.setItem('January Basic', JSON.stringify(januaryBasic));
+//             localStorage.setItem('January DA', JSON.stringify(januaryDA));
+//             localStorage.setItem('January HRA', JSON.stringify(januaryHRA));
+//             localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
+//             localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
+//             localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
 
             
-}
+// }
 
-// Calculate HRA Exemption
+// // Calculate HRA Exemption
 
-function calculateHRAExemption() {
-    /* HRA ExemPTION calculation and Save to LocalStorage */
-    // Total Yearly HRA received
-    yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))* 4) + 
-                        (parseInt(localStorage.getItem('July HRA'))* 6) + 
-                        (parseInt(localStorage.getItem('January HRA'))* 2);
-    console.log(yearlyHraReceived);
-    // Yearly Rent paid in Excess of 10% of Salary (Basic + DA)
-    yearlyRentPaidInExcess = (parseInt(localStorage.getItem('Monthly Rent paid')) * 12) - (
-        (
-            (parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
-            (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
-            (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)
-        ) * 0.1);
+// function calculateHRAExemption() {
+//     /* HRA ExemPTION calculation and Save to LocalStorage */
+//     // Total Yearly HRA received
+//     yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))* 4) + 
+//                         (parseInt(localStorage.getItem('July HRA'))* 6) + 
+//                         (parseInt(localStorage.getItem('January HRA'))* 2);
+//     console.log(yearlyHraReceived);
+//     // Yearly Rent paid in Excess of 10% of Salary (Basic + DA)
+//     yearlyRentPaidInExcess = (parseInt(localStorage.getItem('Monthly Rent paid')) * 12) - (
+//         (
+//             (parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
+//             (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
+//             (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)
+//         ) * 0.1);
 
-    // HRA City Factor and 40% or 50% of salary
-    if (localStorage.getItem('Rent City Type') === "Metro") {
-        hraCityFactor = 0.5;
-    } else {
-        hraCityFactor = 0.4;
-    }
-    hraSalaryCap = ((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
-                    (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
-                    (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)) * hraCityFactor;
-finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
-localStorage.setItem('Final HRA Exemption', finalHRARelief);
-}
+//     // HRA City Factor and 40% or 50% of salary
+//     if (localStorage.getItem('Rent City Type') === "Metro") {
+//         hraCityFactor = 0.5;
+//     } else {
+//         hraCityFactor = 0.4;
+//     }
+//     hraSalaryCap = ((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA')) * 4) + 
+//                     (parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')) * 6) + 
+//                     (parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')) * 2)) * hraCityFactor;
+// finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
+// localStorage.setItem('Final HRA Exemption', finalHRARelief);
+// }
 
-/* Calculate Gross Salary */
+// /* Calculate Gross Salary */
 
-calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
+// calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
 
-/* Calculate HRA Exemption Amount */
-calcHraExemptionBtn.addEventListener('click', calculateHRAExemption);
+// /* Calculate HRA Exemption Amount */
+// calcHraExemptionBtn.addEventListener('click', calculateHRAExemption);
 
 
-// Button events
+/* Button events */
 
- okBtns.forEach(function(okBtn) {
-    okBtn.addEventListener('click', () => {
+// Save Salary Button
+saveSalaryBtn.addEventListener('click', () => {
+        let userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
+
         localStorage.setItem('March Basic', userBasic.value);        
         localStorage.setItem('DA', userDA.value);
         localStorage.setItem('HRA', userHRA.value);
         localStorage.setItem('TPA', userTPA.value);
-        localStorage.setItem('Increment Month', document.querySelector('input[name="increment-month"]:checked').value);
+        localStorage.setItem('Increment Month', JSON.stringify(userIncrementMonth.value));
         localStorage.setItem('Next Basic', nextBasic.value);
         localStorage.setItem('Next DA', nextDA.value);
         localStorage.setItem('Bonus', userBonus.value);
@@ -202,7 +205,7 @@ calcHraExemptionBtn.addEventListener('click', calculateHRAExemption);
         localStorage.setItem('STCG', userSTCG.value);
         localStorage.setItem('LTCG', userLTCG.value);
         localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
-        localStorage.setItem('Rent City Type', document.querySelector('input[name="hra-city-type"]:checked').value);
+        localStorage.setItem('Rent City Type', userHraCitytype.value);
         localStorage.setItem('Monthly Rent Paid', userRentReceipt.value);
         localStorage.setItem('Standard Deduction', userStandardDeduction.value);
         localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
@@ -216,5 +219,9 @@ calcHraExemptionBtn.addEventListener('click', calculateHRAExemption);
         localStorage.setItem('Yearly Other TAX Savings', userOtherTTS.value);
         localStorage.setItem('Yearly Mediclaim Premium', userMediclaim.value);
         localStorage.setItem('Yearly Savings Interest', userSavingsInterest.value);
-    });
- });
+        }
+    );
+
+// Save House Property Income Button
+
+
