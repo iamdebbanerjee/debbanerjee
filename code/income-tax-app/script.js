@@ -6,13 +6,17 @@
 const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
 const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
 const saveSalaryBtn = document.getElementById('save-salary');
+const saveHousePropertyIncomeBtn = document.getElementById('save-house-property-income');
+const saveBusinessIncomeBtn = document.getElementById('save-business-income');
+const saveCapitalGainsIncomeBtn = document.getElementById('save-capital-gains');
+const saveOtherSourcesIncomeBtn = document.getElementById('save-other-sources-income');
 
 // Input Fields Data
 let userBasic = document.getElementById('march-basic-salary');
 let userDA = document.getElementById('da-rate');
 let userHRA = document.getElementById('hra-rate');
 let userTPA = document.getElementById('tpa-rate');
-
+let userIncrementMonth;
 let nextBasic = document.getElementById('next-basic-salary');
 let nextDA  = document.getElementById('july-expected-da');
 let userBonus = document.getElementById('bonus');
@@ -21,11 +25,11 @@ let userArrears = document.getElementById('arrears');
 let userLTC = document.getElementById('ltc');
 let userLeaveEncashment = document.getElementById('leave-encashment');
 let userOtherAdditionalPay = document.getElementById('other-additional-pay');
-let userIncomeHouseProperty = document.getElementById('income-house-property');
-let userIncomeBusinessProfession = document.getElementById('income-business-profession');
-let userSTCG = document.getElementById('stcg');
-let userLTCG = document.getElementById('ltcg');
-let userIncomeOtherSources = document.getElementById('income-other-sources');
+let userIncomeHouseProperty;
+let userIncomeBusinessProfession;
+let userSTCG;
+let userLTCG;
+let userIncomeOtherSources;
 let userHraCityType = document.querySelector('input[name="hra-city-type"]:checked');
 let userRentReceipt = document.getElementById('rent-receipt');
 let userStandardDeduction = document.getElementById('standard-deduction');
@@ -185,7 +189,7 @@ let finalHRARelief = 0;
 
 // Save Salary Button
 saveSalaryBtn.addEventListener('click', () => {
-        let userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
+        userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
 
         localStorage.setItem('March Basic', userBasic.value);        
         localStorage.setItem('DA', userDA.value);
@@ -200,11 +204,10 @@ saveSalaryBtn.addEventListener('click', () => {
         localStorage.setItem('LTC', userLTC.value);
         localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
         localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
-        localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
-        localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
-        localStorage.setItem('STCG', userSTCG.value);
-        localStorage.setItem('LTCG', userLTCG.value);
-        localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+        
+
+        
+       
         localStorage.setItem('Rent City Type', userHraCitytype.value);
         localStorage.setItem('Monthly Rent Paid', userRentReceipt.value);
         localStorage.setItem('Standard Deduction', userStandardDeduction.value);
@@ -223,5 +226,31 @@ saveSalaryBtn.addEventListener('click', () => {
     );
 
 // Save House Property Income Button
+saveHousePropertyIncomeBtn.addEventListener('click', () =>{
+        userIncomeHouseProperty = document.getElementById('income-house-property');
+        localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
+    }
+);
 
+// Save Business & Profession Income
+saveBusinessIncomeBtn.addEventListener('click', () => {
+    userIncomeBusinessProfession = document.getElementById('income-business-profession');
+    localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
+    }
+);
 
+// Save Capital Gains Income Button
+saveCapitalGainsIncomeBtn.addEventListener('click', () => {
+        userSTCG = document.getElementById('stcg');
+        userLTCG = document.getElementById('ltcg');
+        localStorage.setItem('STCG', userSTCG.value);
+        localStorage.setItem('LTCG', userLTCG.value);
+    }
+);
+
+// Save Other Sources Income Button
+saveOtherSourcesIncomeBtn.addEventListener('click', () => {
+        userIncomeOtherSources = document.getElementById('income-other-sources');
+        localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+    }
+);
