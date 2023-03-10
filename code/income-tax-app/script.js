@@ -11,6 +11,8 @@ const saveCapitalGainsIncomeBtn = document.getElementById('save-capital-gains');
 const saveOtherSourcesIncomeBtn = document.getElementById('save-other-sources-income');
 const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
 const saveMonthlyRentPaidBtn = document.getElementById('save-monthly-rent-paid');
+const saveStandardDeductionBtn = document.getElementById('save-standard-deduction');
+const savePTaxBtn = document.getElementById('save-p-tax');
 // const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
 
 
@@ -163,6 +165,7 @@ function calcHraExemption() {
     yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))* 4) + 
                         (parseInt(localStorage.getItem('July HRA'))* 6) + 
                         (parseInt(localStorage.getItem('January HRA'))* 2);
+    console.log(yearlyHraReceived);
     // Yearly Rent paid in Excess of 10% of Salary (Basic + DA)
     yearlyRentPaidInExcess = (
         parseInt(localStorage.getItem('Monthly Rent Paid')) * 12
@@ -173,6 +176,7 @@ function calcHraExemption() {
             ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA'))) * 2)
         ) * 0.1
     );
+    console.log(yearlyRentPaidInExcess);
 
     // HRA City Factor and 40% or 50% of salary
     if (localStorage.getItem('Rent City Type') === "Metro") {
@@ -180,11 +184,16 @@ function calcHraExemption() {
     } else {
         hraCityFactor = 0.4;
     }
-    hraSalaryCap = (((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA'))) * 4) + 
+    hraSalaryCap = (
+                    ((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA'))) * 4) + 
                     ((parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA'))) * 6) + 
                     ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA'))) * 2)) * hraCityFactor;
-finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
-localStorage.setItem('Final HRA Exemption', finalHRARelief);
+    console.log(hraSalaryCap);
+    finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
+    if (finalHRARelief < 0) {
+        finalHRARelief = 0;
+    }
+    localStorage.setItem('Final HRA Exemption', finalHRARelief);
 }
 
 
@@ -213,8 +222,7 @@ saveSalaryBtn.addEventListener('click', () => {
         
        
         
-        // localStorage.setItem('Standard Deduction', userStandardDeduction.value);
-        // localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
+
         // localStorage.setItem('User PF Type', userPFType.value);
         // localStorage.setItem('Yearly GPF Savings', userGPF.value);
         // localStorage.setItem('Yearly HBA Principal', userHBAPrincipal.value);
@@ -229,47 +237,60 @@ saveSalaryBtn.addEventListener('click', () => {
     );
 
 // Save House Property Income Button
-saveHousePropertyIncomeBtn.addEventListener('click', () =>{
-        userIncomeHouseProperty = document.getElementById('income-house-property');
-        localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
-    }
-);
+    saveHousePropertyIncomeBtn.addEventListener('click', () =>{
+            userIncomeHouseProperty = document.getElementById('income-house-property');
+            localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
+        }
+    );
 
 // Save Business & Profession Income
-saveBusinessIncomeBtn.addEventListener('click', () => {
-    userIncomeBusinessProfession = document.getElementById('income-business-profession');
-    localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
-    }
-);
+    saveBusinessIncomeBtn.addEventListener('click', () => {
+        userIncomeBusinessProfession = document.getElementById('income-business-profession');
+        localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
+        }
+    );
 
 // Save Capital Gains Income Button
-saveCapitalGainsIncomeBtn.addEventListener('click', () => {
-        userSTCG = document.getElementById('stcg');
-        userLTCG = document.getElementById('ltcg');
-        localStorage.setItem('STCG', userSTCG.value);
-        localStorage.setItem('LTCG', userLTCG.value);
-    }
-);
+    saveCapitalGainsIncomeBtn.addEventListener('click', () => {
+            userSTCG = document.getElementById('stcg');
+            userLTCG = document.getElementById('ltcg');
+            localStorage.setItem('STCG', userSTCG.value);
+            localStorage.setItem('LTCG', userLTCG.value);
+        }
+    );
 
 // Save Other Sources Income Button
-saveOtherSourcesIncomeBtn.addEventListener('click', () => {
-        userIncomeOtherSources = document.getElementById('income-other-sources');
-        localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+    saveOtherSourcesIncomeBtn.addEventListener('click', () => {
+            userIncomeOtherSources = document.getElementById('income-other-sources');
+            localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+        }
+    );
+
+//  Calculate Gross Salary
+    calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
+
+// Save Monthly Rent Paid & Calculate HRA Exemption Amount
+
+    saveMonthlyRentPaidBtn.addEventListener('click', () => {
+    // Get HRA related user inputs and store them to Local STorage
+    userHraCityType = (document.querySelector('input[name="hra-city-type"]:checked')).value;
+    userRentReceipt = document.getElementById('rent-receipt').value;
+    localStorage.setItem('Rent City Type', userHraCityType);
+    localStorage.setItem('Monthly Rent Paid', userRentReceipt);
+
+    // Call HRA calculation function
+
+    calcHraExemption();
+    });
+
+// Save Standard Deduction
+saveStandardDeductionBtn.addEventListener('click', () => {
+        localStorage.setItem('Standard Deduction', userStandardDeduction.value);
     }
 );
 
-//  Calculate Gross Salary
-calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
-
-/* Save Monthly Rent Paid & Calculate HRA Exemption Amount */
-saveMonthlyRentPaidBtn.addEventListener('click', () => {
-// Get HRA related user inputs and store them to Local STorage
-userHraCityType = (document.querySelector('input[name="hra-city-type"]:checked')).value;
-userRentReceipt = document.getElementById('rent-receipt').value;
-localStorage.setItem('Rent City Type', userHraCityType);
-localStorage.setItem('Monthly Rent Paid', userRentReceipt);
-
-// Call HRA calculation function
-
-calcHraExemption();
-});
+// Save Professional Tax
+savePTaxBtn.addEventListener('click', () => {
+    localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
+}
+);
