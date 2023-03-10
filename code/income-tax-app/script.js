@@ -3,13 +3,14 @@
 
 // Action Buttons
 // const calculateBtn = document.querySelector('.calculate');
-const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
-const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
+
 const saveSalaryBtn = document.getElementById('save-salary');
 const saveHousePropertyIncomeBtn = document.getElementById('save-house-property-income');
 const saveBusinessIncomeBtn = document.getElementById('save-business-income');
 const saveCapitalGainsIncomeBtn = document.getElementById('save-capital-gains');
 const saveOtherSourcesIncomeBtn = document.getElementById('save-other-sources-income');
+const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
+const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
 
 // Input Fields Data
 let userBasic = document.getElementById('march-basic-salary');
@@ -47,6 +48,10 @@ let userSavingsInterest = document.getElementById('savings-interest');
 
 // Internal variables
 
+let marchBasic = 0;
+let marchDA = 0;
+let marchHRA = 0;
+let marchTPA = 0;
 let julyBasic = 0;
 let januaryBasic = 0;
 let julyDA = 0;
@@ -55,6 +60,7 @@ let julyHRA = 0;
 let januaryHRA = 0;
 let julyTPA = 0;
 let januaryTPA = 0;
+let incrementMonth;
 let marchToJuneGrossSalary = 0;
 let julyToDecGrossSalary = 0;
 let janToFebGrossSalary = 0;
@@ -86,66 +92,65 @@ let finalHRARelief = 0;
 
 // // Calculate Yearly Gross Salary
 
-// function calculateGrossSalary(){
-//     let incrementMonth = localStorage.getItem('Increment Month');
-//             // March to June Salary Incomes
-//             let marchBasic = parseInt(localStorage.getItem('March Basic'));
-//             let marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
-//             let marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
-//             let marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
-//             marchToJuneGrossSalary = (marchBasic + marchDA + marchHRA + marchTPA) * 4;
+function calculateGrossSalary(){
+    incrementMonth = localStorage.getItem('Increment Month');
+    
+    // March to June Salary Incomes
+    marchBasic = parseInt(localStorage.getItem('March Basic'));
+    marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic/100;
+    marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic/100;
+    marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA')))/100 + (parseInt(localStorage.getItem('TPA')));
+            marchToJuneGrossSalary = (marchBasic + marchDA + marchHRA + marchTPA) * 4;
 
 
-//             // Save March to June Incomes to Local Storage
-//             localStorage.setItem('March DA', JSON.stringify(marchDA));
-//             localStorage.setItem('March HRA', JSON.stringify(marchHRA));
-//             localStorage.setItem('March TPA', JSON.stringify(marchTPA));
-//             localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
+    // Save March to June Incomes to Local Storage
+    localStorage.setItem('March DA', JSON.stringify(marchDA));
+    localStorage.setItem('March HRA', JSON.stringify(marchHRA));
+    localStorage.setItem('March TPA', JSON.stringify(marchTPA));
+    localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
 
 
-//             // July to February Salary Incomes
-//             if (incrementMonth === "July") {
-//                 julyBasic = parseInt(localStorage.getItem('Next Basic'));
-//                 januaryBasic = julyBasic;
-//                 julyDA = (julyBasic*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA'))))/100;
-//                 julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
-//                 julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-//                 januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-//                 januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
-//                 januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA'))+parseInt(localStorage.getItem('Next DA')))/100));
-//                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-//                 janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
-//                 yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
+    // July to February Salary Incomes
+    if (incrementMonth === "July") {
+        julyBasic = parseInt(localStorage.getItem('Next Basic'));
+        januaryBasic = julyBasic;
+        julyDA = (julyBasic*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA'))))/100;
+        julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+        julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*(parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+        januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+        januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+        januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA'))+parseInt(localStorage.getItem('Next DA')))/100));
+        julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
+        janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+        yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
 
-//             } else {
-//                 julyBasic = marchBasic;
-//                 januaryBasic = parseInt(localStorage.getItem('Next Basic'));
-//                 julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-//                 julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
-//                 julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
-//                 januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
-//                 januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
-//                 januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
-//                 julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
-//                 janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
-//                 yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
-//             }
+    } else {
+        julyBasic = marchBasic;
+        januaryBasic = parseInt(localStorage.getItem('Next Basic'));
+        julyDA = julyBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+        julyHRA = (julyBasic*parseInt(localStorage.getItem('HRA')))/100;
+        julyTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+        januaryDA = januaryBasic*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100);
+        januaryHRA = (januaryBasic*parseInt(localStorage.getItem('HRA')))/100;
+        januaryTPA = parseInt(localStorage.getItem('TPA')) + (parseInt(localStorage.getItem('TPA'))*((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))/100));
+        julyToDecGrossSalary = (julyBasic + julyDA + julyHRA +julyTPA)*6;
+        janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA)*2;
+        yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
+    }
 
-//             // Save July to Feb Incomes to Local Storage
-//             localStorage.setItem('July Basic', JSON.stringify(julyBasic));
-//             localStorage.setItem('July DA', JSON.stringify(julyDA));
-//             localStorage.setItem('July HRA', JSON.stringify(julyHRA));
-//             localStorage.setItem('July TPA', JSON.stringify(julyTPA));
-//             localStorage.setItem('July to December Gross Salary', JSON.stringify(julyToDecGrossSalary));
-//             localStorage.setItem('January Basic', JSON.stringify(januaryBasic));
-//             localStorage.setItem('January DA', JSON.stringify(januaryDA));
-//             localStorage.setItem('January HRA', JSON.stringify(januaryHRA));
-//             localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
-//             localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
-//             localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
-
-            
-// }
+    // Save July to Feb Incomes to Local Storage
+    localStorage.setItem('July Basic', JSON.stringify(julyBasic));
+    localStorage.setItem('July DA', JSON.stringify(julyDA));
+    localStorage.setItem('July HRA', JSON.stringify(julyHRA));
+    localStorage.setItem('July TPA', JSON.stringify(julyTPA));
+    localStorage.setItem('July to December Gross Salary', JSON.stringify(julyToDecGrossSalary));
+    localStorage.setItem('January Basic', JSON.stringify(januaryBasic));
+    localStorage.setItem('January DA', JSON.stringify(januaryDA));
+    localStorage.setItem('January HRA', JSON.stringify(januaryHRA));
+    localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
+    localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
+    localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);            
+}
 
 // // Calculate HRA Exemption
 
@@ -177,9 +182,7 @@ let finalHRARelief = 0;
 // localStorage.setItem('Final HRA Exemption', finalHRARelief);
 // }
 
-// /* Calculate Gross Salary */
 
-// calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
 
 // /* Calculate HRA Exemption Amount */
 // calcHraExemptionBtn.addEventListener('click', calculateHRAExemption);
@@ -254,3 +257,7 @@ saveOtherSourcesIncomeBtn.addEventListener('click', () => {
         localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
     }
 );
+
+//  Calculate Gross Salary 
+
+calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
