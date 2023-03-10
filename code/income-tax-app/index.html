@@ -78,7 +78,7 @@
                 </div>
             </div>  
             <div class="form-group" id="expected-da">
-                <h3 class="question">How much DA do you expect from July?</h3>
+                <h3 class="question">How much percent(%) DA increase do you expect from July?</h3>
                 <p>(Hint - You can use 3-4% as average or use <a href="https://govtempdiary.com/expected-da-from-july-2023-calculator" target="_blank">this calculator</a> to get an idea.)</p>
                 <input type="number" name="expected-da" id="july-expected-da">
                 <div class="input-control">
@@ -198,7 +198,7 @@
                 <h3 class="question">HRA & Rented Accomodation</h3>
                 <p>If you have rent receipts, enter your montly rent below. Otherwise enter 0(zero).</p>
                 <div class="input-rd-chkbx">
-                    <input type="radio" name="hra-city-type" id="hra-city-type-non-metro" value = "Non Metro" checked>
+                    <input type="radio" name="hra-city-type" id="hra-city-type-non-metro" value = "Non Metro">
                     <label for="hra-city-type-non-metro">Non Metro</label>
                     <input type="radio" name="hra-city-type" id="hra-city-type-metro" value = "Metro">
                     <label for="hra-city-type-metro">Metro</label>           
@@ -206,7 +206,7 @@
                 <input type="number" name="rent-receipt" id="rent-receipt" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#deductions-intro" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save" id="calculate-hra-exemption"><a href="#sd" class="" id="">Enter</a></button>
+                    <a href="#sd" class="btn" id="save-monthly-rent-paid">Enter</a>
                     <a href="#sd" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>            
