@@ -13,7 +13,9 @@ const calcGrossSalaryBtn = document.getElementById('calculate-gross-salary');
 const saveMonthlyRentPaidBtn = document.getElementById('save-monthly-rent-paid');
 const saveStandardDeductionBtn = document.getElementById('save-standard-deduction');
 const savePTaxBtn = document.getElementById('save-p-tax');
-// const calcHraExemptionBtn = document.getElementById('calculate-hra-exemption');
+const savePFTypeBtn = document.getElementById('save-pf-type');
+const saveGPFContributionBtn = document.getElementById('save-gpf-contribution');
+
 
 
 
@@ -40,8 +42,9 @@ let userHraCityType;
 let userRentReceipt = document.getElementById('rent-receipt');
 let userStandardDeduction = document.getElementById('standard-deduction');
 let userProfessionalTax = document.getElementById('p-tax');
-let userPFType = document.querySelector('input[name="pf-type"]:checked');
-let userGPF = document.getElementById('gpf-investment');
+let userPFType;
+let userGPF;
+let yearlyGPFSavings;
 let userHBAPrincipal = document.getElementById('hba-principal');
 let userHBAInterest = document.getElementById('hba-interest');
 let userLifeInsurance = document.getElementById('life-insurance');
@@ -220,11 +223,6 @@ saveSalaryBtn.addEventListener('click', () => {
         
 
         
-       
-        
-
-        // localStorage.setItem('User PF Type', userPFType.value);
-        // localStorage.setItem('Yearly GPF Savings', userGPF.value);
         // localStorage.setItem('Yearly HBA Principal', userHBAPrincipal.value);
         // localStorage.setItem('Yearly HBA Interest', userHBAInterest.value);
         // localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance.value);
@@ -294,3 +292,19 @@ savePTaxBtn.addEventListener('click', () => {
     localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
 }
 );
+
+// PF Type setting along with div#gpf scroll behaviour
+savePFTypeBtn.addEventListener('click', () => {
+    userPFType = document.querySelector('input[name="pf-type"]:checked').value;
+    localStorage.setItem('User PF Type', userPFType);
+    // if(userPFType = "NPS"){
+    //     savePFTypeBtn.setAttribute('href', '#hba1');
+    // }
+});
+
+// Save GPF contribution
+saveGPFContributionBtn.addEventListener('click', () => {
+    userGPF = document.getElementById('gpf-investment').value;
+    yearlyGPFSavings = userGPF * 12;
+    localStorage.setItem('Yearly GPF Savings', yearlyGPFSavings);
+});
