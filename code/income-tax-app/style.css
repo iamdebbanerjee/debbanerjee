@@ -107,6 +107,12 @@
     display: inline-block;
   }
 
+/*  Hiding default values of input elements
+
+input[attribute = "value"] {display: none;}
+
+*/
+
   input::placeholder {
     font-size: 0.75rem;
   }
