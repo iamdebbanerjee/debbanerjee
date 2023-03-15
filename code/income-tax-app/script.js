@@ -15,6 +15,8 @@ const saveStandardDeductionBtn = document.getElementById('save-standard-deductio
 const savePTaxBtn = document.getElementById('save-p-tax');
 const savePFTypeBtn = document.getElementById('save-pf-type');
 const saveGPFContributionBtn = document.getElementById('save-gpf-contribution');
+const saveHBAPrincipalBtn = document.getElementById('save-hba-principal');
+const saveHBAInterestBtn = document.getElementById('save-hba-interest');
 
 
 
@@ -41,7 +43,7 @@ let userIncomeOtherSources;
 let userHraCityType;
 let userRentReceipt = document.getElementById('rent-receipt');
 let userStandardDeduction = document.getElementById('standard-deduction');
-let userProfessionalTax = document.getElementById('p-tax');
+let userProfessionalTax;
 let userPFType;
 let userGPF;
 let yearlyGPFSavings;
@@ -289,7 +291,8 @@ saveStandardDeductionBtn.addEventListener('click', () => {
 
 // Save Professional Tax
 savePTaxBtn.addEventListener('click', () => {
-    localStorage.setItem('Monthly Professional Tax', userProfessionalTax.value);
+    userProfessionalTax = document.getElementById('monthly-p-tax');
+    localStorage.setItem('Yearly Professional Tax', userProfessionalTax.value*12);
 }
 );
 
@@ -308,3 +311,6 @@ saveGPFContributionBtn.addEventListener('click', () => {
     yearlyGPFSavings = userGPF * 12;
     localStorage.setItem('Yearly GPF Savings', yearlyGPFSavings);
 });
+
+// Save Home Loan Principal and Interest
+
