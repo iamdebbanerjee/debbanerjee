@@ -17,6 +17,8 @@ const savePFTypeBtn = document.getElementById('save-pf-type');
 const saveGPFContributionBtn = document.getElementById('save-gpf-contribution');
 const saveHBAPrincipalBtn = document.getElementById('save-hba-principal');
 const saveHBAInterestBtn = document.getElementById('save-hba-interest');
+const save80cBtn = document.getElementById('save-80C');
+const saveVolutaryNPSBtn = document.getElementById('save-voluntary-nps');
 
 
 
@@ -47,13 +49,14 @@ let userProfessionalTax;
 let userPFType;
 let userGPF;
 let yearlyGPFSavings;
-let userHBAPrincipal = document.getElementById('hba-principal');
-let userHBAInterest = document.getElementById('hba-interest');
-let userLifeInsurance = document.getElementById('life-insurance');
-let userPPF = document.getElementById('ppf-investment');
-let userELSS = document.getElementById('elss-investment');
-let userOtherTTS = document.getElementById('tax-free-schemes-total');
+let userYearlyHBAPrincipal;
+let userYearlyHBAInterest;
+let userLifeInsurance;
+let userPPF;
+let userELSS;
+let userOtherTTS;
 let userMediclaim = document.getElementById('medical-insurance');
+let userVolNPSContribution = 0;
 let userSavingsInterest = document.getElementById('savings-interest');
 
 // Internal variables
@@ -82,6 +85,8 @@ let yearlyRentPaidInExcess = 0;
 let hraCityFactor = 0;
 let hraSalaryCap = 0;
 let finalHRARelief = 0;
+let userYearlyNPSContribution = 0;
+let empYearlyNPSContribution = 0;
 
 /* Calculation Functions */
 
@@ -224,13 +229,8 @@ saveSalaryBtn.addEventListener('click', () => {
         localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
         
 
+    
         
-        // localStorage.setItem('Yearly HBA Principal', userHBAPrincipal.value);
-        // localStorage.setItem('Yearly HBA Interest', userHBAInterest.value);
-        // localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance.value);
-        // localStorage.setItem('Yearly PPF Investment', userPPF.value);
-        // localStorage.setItem('Yearly ELSS Investment', userELSS.value);
-        // localStorage.setItem('Yearly Other TAX Savings', userOtherTTS.value);
         // localStorage.setItem('Yearly Mediclaim Premium', userMediclaim.value);
         // localStorage.setItem('Yearly Savings Interest', userSavingsInterest.value);
         }
@@ -283,6 +283,27 @@ saveSalaryBtn.addEventListener('click', () => {
     calcHraExemption();
     });
 
+// Calculate NPS contributions
+
+function calcNPSContribution(){
+    if(localStorage.getItem('User PF Type') === 'NPS') {
+        userYearlyNPSContribution = (
+            ((localStorage.getItem('March Basic') + localStorage.getItem('March DA'))*4) +
+            ((localStorage.getItem('July Basic') + localStorage.getItem('July DA'))*6) +
+            ((localStorage.getItem('January Basic') + localStorage.getItem('January DA'))*2)
+        )*0.10;
+
+        empYearlyNPSContribution = (
+            ((localStorage.getItem('March Basic') + localStorage.getItem('March DA'))*4) +
+            ((localStorage.getItem('July Basic') + localStorage.getItem('July DA'))*6) +
+            ((localStorage.getItem('January Basic') + localStorage.getItem('January DA'))*2)
+        )*0.14;
+    } else {
+        userYearlyNPSContribution = 0;
+        empYearlyNPSContribution = 0;
+    }
+}
+
 // Save Standard Deduction
 saveStandardDeductionBtn.addEventListener('click', () => {
         localStorage.setItem('Standard Deduction', userStandardDeduction.value);
@@ -300,17 +321,45 @@ savePTaxBtn.addEventListener('click', () => {
 savePFTypeBtn.addEventListener('click', () => {
     userPFType = document.querySelector('input[name="pf-type"]:checked').value;
     localStorage.setItem('User PF Type', userPFType);
-    // if(userPFType = "NPS"){
-    //     savePFTypeBtn.setAttribute('href', '#hba1');
-    // }
 });
 
 // Save GPF contribution
 saveGPFContributionBtn.addEventListener('click', () => {
     userGPF = document.getElementById('gpf-investment').value;
     yearlyGPFSavings = userGPF * 12;
+
+
     localStorage.setItem('Yearly GPF Savings', yearlyGPFSavings);
 });
 
 // Save Home Loan Principal and Interest
+saveHBAPrincipalBtn.addEventListener('click', () => {
+    userYearlyHBAPrincipal = document.getElementById('hba-principal').value;
+    localStorage.setItem('Yearly HBA Principal', userYearlyHBAPrincipal);
+});
 
+saveHBAInterestBtn.addEventListener('click', () => {
+    userYearlyHBAInterest = document.getElementById('hba-interest').value;
+    localStorage.setItem('Yearly HBA Interest', userYearlyHBAInterest);
+});
+
+// Save LIC, PPF, ELSS, Other Schemes under 80C
+
+save80cBtn.addEventListener('click', () => {
+    userLifeInsurance = document.getElementById('life-insurance').value;
+    userPPF = document.getElementById('ppf-investment').value;
+    userELSS = document.getElementById('elss-investment').value;
+    userOtherTTS = document.getElementById('tax-free-schemes-total').value;
+
+    localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance);
+    localStorage.setItem('Yearly PPF Investment', userPPF);
+    localStorage.setItem('Yearly ELSS Investment', userELSS);
+    localStorage.setItem('Yearly Other TAX Savings', userOtherTTS);
+});
+
+// Save NPS Contribution
+saveVolutaryNPSBtn.addEventListener('click', () => {
+    userVolNPSContribution = document.getElementById('nps-80ccd-1b').value;
+    localStorage.setItem('NPS 80 CCD 1B', userVolNPSContribution);
+    calcNPSContribution();
+});

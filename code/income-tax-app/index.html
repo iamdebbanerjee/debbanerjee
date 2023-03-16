@@ -269,7 +269,7 @@
                 <input type="number" name="hba-interest" id="hba-interest" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#hba1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#lic" class="" id="save-hba-interest">Enter</a>
+                    <a href="#lic" class="btn" id="save-hba-interest">Enter</a>
                     <a href="#lic" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -278,7 +278,7 @@
                 <input type="number" name="life-insurance" id="life-insurance" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#hba2" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#ppf" class="" id="">Enter</a></button>
+                    <a href="#ppf" class="btn" id="save-lic-premium">Enter</a>
                     <a href="#ppf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -287,7 +287,7 @@
                 <input type="number" name="ppf-investment" id="ppf-investment" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#lic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#elss" class="" id="">Enter</a></button>
+                    <a href="#elss" class="btn" id="">Enter</a>
                     <a href="#elss" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -296,7 +296,7 @@
                 <input type="number" name="elss-investment" id="elss-investment" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#ppf" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#tts" class="" id="">Enter</a></button>
+                    <a href="#tts" class="btn" id="">Enter</a>
                     <a href="#tts" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -306,7 +306,7 @@
                 <input type="number" name="tax-free-schemes-total" id="tax-free-schemes-total" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#elss" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#mediclaim" class="" id="">Enter</a></button>
+                    <a href="#mediclaim" class="btn" id="save-80c">Enter</a>
                     <a href="#mediclaim" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -316,10 +316,21 @@
                 <input type="number" name="medical-insurance" id="medical-insurance" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#savings" class="" id="">Enter</a></button>
+                    <a href="#NPS-voluntary" class="btn" id="">Enter</a>
+                    <a href="#NPS-voluntary" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="NPS-voluntary">
+                <h3 class="question">Any yearly voluntary contribution in NPS?</h3>
+                <p>Extra upto &#8377;50000 tax free scheme, u/s - 80CCD (1B)</p>
+                <input type="number" name="nps-80ccd-1b" id="nps-80ccd-1b" placeholder="Only value, no symbol/unit">
+                <div class="input-control">
+                    <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#savings" class="btn" id="save-voluntary-nps">Enter</a>
                     <a href="#savings" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
+
             <div class="form-group" id="savings">
                 <h3 class="question">Total expected interest from savings accounts this year?</h3>
                 <input type="number" name="savings-interest" id="savings-interest" placeholder="Only value, no symbol/unit">
