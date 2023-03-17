@@ -303,8 +303,8 @@ function calcNPSContribution(){
         userYearlyNPSContribution = 0;
         empYearlyNPSContribution = 0;
     }
-    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution);
-    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution);
+    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution.toFixed(2));
+    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
 }
 
 // Save Standard Deduction
