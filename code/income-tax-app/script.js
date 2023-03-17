@@ -17,9 +17,10 @@ const savePFTypeBtn = document.getElementById('save-pf-type');
 const saveGPFContributionBtn = document.getElementById('save-gpf-contribution');
 const saveHBAPrincipalBtn = document.getElementById('save-hba-principal');
 const saveHBAInterestBtn = document.getElementById('save-hba-interest');
-const save80cBtn = document.getElementById('save-80C');
+const save80cBtn = document.getElementById('save-80c');
+const saveMedicalPremiumBtn = document.getElementById('save-medical-premium');
 const saveVolutaryNPSBtn = document.getElementById('save-voluntary-nps');
-
+const saveSavingsInterestBtn = document.getElementById('save-savings-interest')
 
 
 
@@ -55,9 +56,9 @@ let userLifeInsurance;
 let userPPF;
 let userELSS;
 let userOtherTTS;
-let userMediclaim = document.getElementById('medical-insurance');
+let userMediclaim;
 let userVolNPSContribution = 0;
-let userSavingsInterest = document.getElementById('savings-interest');
+let userSavingsInterest;
 
 // Internal variables
 
@@ -288,20 +289,22 @@ saveSalaryBtn.addEventListener('click', () => {
 function calcNPSContribution(){
     if(localStorage.getItem('User PF Type') === 'NPS') {
         userYearlyNPSContribution = (
-            ((localStorage.getItem('March Basic') + localStorage.getItem('March DA'))*4) +
-            ((localStorage.getItem('July Basic') + localStorage.getItem('July DA'))*6) +
-            ((localStorage.getItem('January Basic') + localStorage.getItem('January DA'))*2)
+            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
+            ((parseInt(localStorage.getItem('July Basic'))+ parseInt(localStorage.getItem('July DA')))*6) +
+            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
         )*0.10;
 
         empYearlyNPSContribution = (
-            ((localStorage.getItem('March Basic') + localStorage.getItem('March DA'))*4) +
-            ((localStorage.getItem('July Basic') + localStorage.getItem('July DA'))*6) +
-            ((localStorage.getItem('January Basic') + localStorage.getItem('January DA'))*2)
+            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
+            ((parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')))*6) +
+            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
         )*0.14;
     } else {
         userYearlyNPSContribution = 0;
         empYearlyNPSContribution = 0;
     }
+    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution);
+    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution);
 }
 
 // Save Standard Deduction
@@ -357,9 +360,22 @@ save80cBtn.addEventListener('click', () => {
     localStorage.setItem('Yearly Other TAX Savings', userOtherTTS);
 });
 
+// Save 80D Medical Insurance Premium
+saveMedicalPremiumBtn.addEventListener('click', () => {
+    userMediclaim = document.getElementById('medical-insurance').value;
+    localStorage.setItem('Yearly Medical Premium', userMediclaim);
+});
+
+
 // Save NPS Contribution
 saveVolutaryNPSBtn.addEventListener('click', () => {
     userVolNPSContribution = document.getElementById('nps-80ccd-1b').value;
     localStorage.setItem('NPS 80 CCD 1B', userVolNPSContribution);
     calcNPSContribution();
+});
+
+// Savings account interest
+saveSavingsInterestBtn.addEventListener('click', () => {
+    userSavingsInterest = document.getElementById('savings-interest').value;
+    localStorage.setItem('Yearly Savings Interest', userSavingsInterest);
 });
