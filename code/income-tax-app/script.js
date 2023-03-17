@@ -20,7 +20,8 @@ const saveHBAInterestBtn = document.getElementById('save-hba-interest');
 const save80cBtn = document.getElementById('save-80c');
 const saveMedicalPremiumBtn = document.getElementById('save-medical-premium');
 const saveVolutaryNPSBtn = document.getElementById('save-voluntary-nps');
-const saveSavingsInterestBtn = document.getElementById('save-savings-interest')
+const saveSavingsInterestBtn = document.getElementById('save-savings-interest');
+const finalSubmitBtn = document.getElementById('final-submit');
 
 
 
@@ -88,10 +89,23 @@ let hraSalaryCap = 0;
 let finalHRARelief = 0;
 let userYearlyNPSContribution = 0;
 let empYearlyNPSContribution = 0;
+let taxFreeSavingsInterest = 0;
+let taxableSavingsInterest = 0;
+const taxSlab1 = 300000;
+const taxSlab2 = 600000;
+const taxSlab3 = 900000;
+const taxSlab4 = 1200000;
+const taxSlab5 = 1500000;
+let taxRate1 = 0.5;
+let taxRate2;
+let taxRate3;
+let taxRate4;
+let taxrate5;
+
 
 /* Calculation Functions */
 
-// Finding the smallest one between 3 given values
+// Finding the smallest one between 3 given values -- Function
 
 function leastAmong3 (val1, val2, val3) {
     let checkerValue = 0;
@@ -106,7 +120,7 @@ function leastAmong3 (val1, val2, val3) {
     return checkerValue;
 }
 
-// Calculate Yearly Gross Salary
+// Calculate Yearly Gross Salary -- Function
 
 function calculateGrossSalary(){
     incrementMonth = localStorage.getItem('Increment Month');
@@ -168,7 +182,7 @@ function calculateGrossSalary(){
     localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);            
 }
 
-// Calculate HRA Exemption
+// Calculate HRA Exemption -- Function
 
 function calcHraExemption() {
     /* HRA ExemPTION calculation and Save to LocalStorage */
@@ -176,7 +190,7 @@ function calcHraExemption() {
     yearlyHraReceived = (parseInt(localStorage.getItem('March HRA'))* 4) + 
                         (parseInt(localStorage.getItem('July HRA'))* 6) + 
                         (parseInt(localStorage.getItem('January HRA'))* 2);
-    console.log(yearlyHraReceived);
+    // console.log(yearlyHraReceived);
     // Yearly Rent paid in Excess of 10% of Salary (Basic + DA)
     yearlyRentPaidInExcess = (
         parseInt(localStorage.getItem('Monthly Rent Paid')) * 12
@@ -187,7 +201,7 @@ function calcHraExemption() {
             ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA'))) * 2)
         ) * 0.1
     );
-    console.log(yearlyRentPaidInExcess);
+    // console.log(yearlyRentPaidInExcess);
 
     // HRA City Factor and 40% or 50% of salary
     if (localStorage.getItem('Rent City Type') === "Metro") {
@@ -199,7 +213,7 @@ function calcHraExemption() {
                     ((parseInt(localStorage.getItem('March Basic'))+ parseInt(localStorage.getItem('March DA'))) * 4) + 
                     ((parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA'))) * 6) + 
                     ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA'))) * 2)) * hraCityFactor;
-    console.log(hraSalaryCap);
+    // console.log(hraSalaryCap);
     finalHRARelief = leastAmong3(yearlyHraReceived, yearlyRentPaidInExcess, hraSalaryCap);
     if (finalHRARelief < 0) {
         finalHRARelief = 0;
@@ -207,14 +221,50 @@ function calcHraExemption() {
     localStorage.setItem('Final HRA Exemption', finalHRARelief);
 }
 
+// Calculate NPS contributions
 
+function calcNPSContribution(){
+    if(localStorage.getItem('User PF Type') === 'NPS') {
+        userYearlyNPSContribution = (
+            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
+            ((parseInt(localStorage.getItem('July Basic'))+ parseInt(localStorage.getItem('July DA')))*6) +
+            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
+        )*0.10;
+
+        empYearlyNPSContribution = (
+            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
+            ((parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')))*6) +
+            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
+        )*0.14;
+    } else {
+        userYearlyNPSContribution = 0;
+        empYearlyNPSContribution = 0;
+    }
+    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution.toFixed(2));
+    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
+}
+
+// Calculate Income Tax --Function
+
+function taxCalculation(){
+    // Yearly Total Income Calculation
+    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay')) + parseInt(localStorage.getItem(''));
+    let incomeFromHouseProperty = parseInt(localStorage.getItem('House Property Income'));
+    let incomeFromBusinessProfession = parseInt(localStorage.getItem('Business Profession Income'));
+    let incomeFromCapitalGains = parseInt(localStorage.getItem('STCG')) + parseInt(localStorage.getItem('LTCG'));
+    let incomeFromOtherSources = parseInt(localStorage.getItem('Other Source Income')) + parseInt(localStorage.getItem('Taxable Savings Interest'));
+
+    let yearlyTotalIncome = incomeFromSalary + incomeFromHouseProperty + incomeFromBusinessProfession + incomeFromCapitalGains + incomeFromOtherSources;
+    localStorage.setItem('Yearly Total Income', yearlyTotalIncome);
+
+    // Less Standard Deduction, 
+}
 
 /* Button events */
 
 // Save Salary Button
 saveSalaryBtn.addEventListener('click', () => {
         userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
-
         localStorage.setItem('March Basic', userBasic.value);        
         localStorage.setItem('DA', userDA.value);
         localStorage.setItem('HRA', userHRA.value);
@@ -228,14 +278,8 @@ saveSalaryBtn.addEventListener('click', () => {
         localStorage.setItem('LTC', userLTC.value);
         localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
         localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
-        
-
-    
-        
-        // localStorage.setItem('Yearly Mediclaim Premium', userMediclaim.value);
-        // localStorage.setItem('Yearly Savings Interest', userSavingsInterest.value);
-        }
-    );
+    }
+);
 
 // Save House Property Income Button
     saveHousePropertyIncomeBtn.addEventListener('click', () =>{
@@ -284,28 +328,6 @@ saveSalaryBtn.addEventListener('click', () => {
     calcHraExemption();
     });
 
-// Calculate NPS contributions
-
-function calcNPSContribution(){
-    if(localStorage.getItem('User PF Type') === 'NPS') {
-        userYearlyNPSContribution = (
-            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
-            ((parseInt(localStorage.getItem('July Basic'))+ parseInt(localStorage.getItem('July DA')))*6) +
-            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
-        )*0.10;
-
-        empYearlyNPSContribution = (
-            ((parseInt(localStorage.getItem('March Basic')) + parseInt(localStorage.getItem('March DA')))*4) +
-            ((parseInt(localStorage.getItem('July Basic')) + parseInt(localStorage.getItem('July DA')))*6) +
-            ((parseInt(localStorage.getItem('January Basic')) + parseInt(localStorage.getItem('January DA')))*2)
-        )*0.14;
-    } else {
-        userYearlyNPSContribution = 0;
-        empYearlyNPSContribution = 0;
-    }
-    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution.toFixed(2));
-    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
-}
 
 // Save Standard Deduction
 saveStandardDeductionBtn.addEventListener('click', () => {
@@ -377,5 +399,17 @@ saveVolutaryNPSBtn.addEventListener('click', () => {
 // Savings account interest
 saveSavingsInterestBtn.addEventListener('click', () => {
     userSavingsInterest = document.getElementById('savings-interest').value;
+    if (userSavingsInterest <= 10000) {
+        taxFreeSavingsInterest = userSavingsInterest;
+        taxableSavingsInterest = 0;
+    } else {
+        taxFreeSavingsInterest = 10000;
+        taxableSavingsInterest = userSavingsInterest - 10000;
+    }
     localStorage.setItem('Yearly Savings Interest', userSavingsInterest);
+    localStorage.setItem('Tax Free Savings Interest', taxFreeSavingsInterest);
+    localStorage.setItem('Taxable Savings Interest', taxableSavingsInterest);
 });
+
+// Final Submit Actions
+finalSubmitBtn.addEventListener('click', taxCalculation);
