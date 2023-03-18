@@ -91,6 +91,12 @@ let userYearlyNPSContribution = 0;
 let empYearlyNPSContribution = 0;
 let taxFreeSavingsInterest = 0;
 let taxableSavingsInterest = 0;
+let taxFreeCEA;
+let taxableCEA;
+let taxFreeArrear;
+let taxableArrear;
+let homeLoanInterestTaxFreeLimit = 200000;
+let max80cLimit = 150000;
 const taxSlab1 = 300000;
 const taxSlab2 = 600000;
 const taxSlab3 = 900000;
@@ -244,11 +250,47 @@ function calcNPSContribution(){
     localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
 }
 
+// Calculate CEA -- Function
+
+taxFreeCEA = 0;
+taxableCEA = 0;
+
+
+
+
+// Calculate Taxable Arrears u/s 89(1) --Function
+taxFreeArrear = 0;
+taxableArrear = 0;
+
+// Calculate LTCG and STCG
+
+
+
+// Calculate Tax Free Home Loan Interest amount --Function
+
+function taxFreeHomeLoanInterest(amount) {
+    let taxFreeAmount = 0;
+    if (amount > homeLoanInterestTaxFreeLimit){
+        taxFreeAmount = homeLoanInterestTaxFreeLimit;
+    } else {
+        taxFreeAmount = amount;
+    }
+    return taxFreeAmount;
+}
+
+// Calculate Tax Free Medical Insurance premium --Function
+
+function calcMediclaimPremium(){
+    let premium = 0;
+
+    return premium;
+}
+
 // Calculate Income Tax --Function
 
 function taxCalculation(){
     // Yearly Total Income Calculation
-    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay')) + parseInt(localStorage.getItem(''));
+    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
     let incomeFromHouseProperty = parseInt(localStorage.getItem('House Property Income'));
     let incomeFromBusinessProfession = parseInt(localStorage.getItem('Business Profession Income'));
     let incomeFromCapitalGains = parseInt(localStorage.getItem('STCG')) + parseInt(localStorage.getItem('LTCG'));
@@ -257,8 +299,37 @@ function taxCalculation(){
     let yearlyTotalIncome = incomeFromSalary + incomeFromHouseProperty + incomeFromBusinessProfession + incomeFromCapitalGains + incomeFromOtherSources;
     localStorage.setItem('Yearly Total Income', yearlyTotalIncome);
 
-    // Less Standard Deduction, 
+    // Less Standard Deduction, Tax Free CEA, Home Loan Interest, LTC, 80C Total etc.
+    let standardDeduction =  parseInt(localStorage.getItem('Standard Deduction'));
+    let profTaxDeduction = parseInt(localStorage.getItem('Yearly Professional Tax'));
+    let taxFreeCEA = parseInt(localStorage.getItem('Tax Free CEA'));
+    let ltcDeduction = parseInt(localStorage.getItem('LTC'));
+    let employerNPSDeduction = parseInt(localStorage.getItem('Employer NPS Contribution'));
+    let homeLoanInterestDeduction = taxFreeHomeLoanInterest(parseInt(localStorage.getItem('Yearly HBA Interest')));
+    let hraTaxExemption = parseInt(localStorage.getItem('Final HRA Exemption'));
+    let voluntaryNPSDeduction = parseInt(localStorage.getItem('NPS 80 CCD 1B'));
+    let taxFreeArrearDeduction = parseInt(localStorage.getItem('Tax Free Arrear'));
+    let total80cDeduction = Math.min(
+        (
+            parseInt(localStorage.getItem('Yearly HBA Principal')) + 
+            parseInt(localStorage.getItem('Yearly GPF Savings')) +
+            parseInt(localStorage.getItem('Yearly GPF Savings')) +
+            parseInt(localStorage.getItem('Yearly Life Insurance Premium')) +
+            parseInt(localStorage.getItem('Yearly PPF Investment')) +
+            parseInt(localStorage.getItem('Yearly ELSS Investment')) +
+            parseInt(localStorage.getItem('Yearly Other TAX Savings'))
+        ), 
+        max80cLimit);
+    let taxFreeMedicalInsurancePremium = calcMediclaimPremium();
+
 }
+
+
+
+
+
+
+
 
 /* Button events */
 
