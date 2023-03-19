@@ -128,7 +128,8 @@ let surchargeRate1 = 1.1;
 let surchargeRate2 = 1.15;
 let surchargeRate3 = 1.25;
 let surchargeRate4 = 1.37;
-
+let oldEffectiveSurchargeRate;
+let newEffectiveSurchargeRate;
 
 
 /* Calculation Functions */
@@ -274,15 +275,25 @@ function calcNPSContribution(){
 
 // Calculate CEA -- Function
 
-taxFreeCEA = 0;
-taxableCEA = 0;
+function calculateCeaArrear(x, y){
+
+    taxFreeCEA = 0;
+    taxableCEA = 0;
+
+    localStorage.setItem('Tax Free CEA', taxFreeCEA);
+    localStorage.setItem('Taxable CEA', taxableCEA);
 
 
 
 
-// Calculate Taxable Arrears u/s 89(1) --Function
-taxFreeArrear = 0;
-taxableArrear = 0;
+    // Calculate Taxable Arrears u/s 89(1) --Function
+    taxFreeArrear = 0;
+    taxableArrear = 0;
+
+    localStorage.setItem('Tax Free Arrear', taxFreeArrear);
+    localStorage.setItem('Taxable Arrear', taxableArrear);
+
+}
 
 // Calculate LTCG and STCG
 
@@ -310,7 +321,7 @@ function calcMediclaimPremium(){
 
 // Calculate Income Tax --Function
 
-function taxCalculation(){
+function taxCalculation() {
     // Yearly Total Income Calculation
     let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
     let incomeFromHouseProperty = parseInt(localStorage.getItem('House Property Income'));
@@ -356,6 +367,26 @@ function taxCalculation(){
     annualTaxableIncome = yearlyTotalIncome - yearlyTotalDeduction;
     localStorage.setItem('Yearly Taxable Income', annualTaxableIncome);
 
+    // Setting Effective Surcharge Rate
+    if (yearlyTotalIncome < 5000000) {
+        oldEffectiveSurchargeRate = 1;
+        newEffectiveSurchargeRate = 1;
+    } else if (yearlyTotalIncome >= 5000000) {
+        oldEffectiveSurchargeRate = surchargeRate1;
+        newEffectiveSurchargeRate = surchargeRate1;
+    } else if (yearlyTotalIncome >= 10000000) {
+        oldEffectiveSurchargeRate = surchargeRate2;
+        newEffectiveSurchargeRate = surchargeRate2;
+    } else if (yearlyTotalIncome >= 20000000) {
+        oldEffectiveSurchargeRate = surchargeRate3;
+        newEffectiveSurchargeRate = surchargeRate3;
+    } else if (yearlyTotalIncome >= 50000000) {
+        oldEffectiveSurchargeRate = surchargeRate4;
+        newEffectiveSurchargeRate = surchargeRate3;
+    } 
+    localStorage.setItem('Old Effective Surcharge Rate', oldEffectiveSurchargeRate);
+    localStorage.setItem('New Effective Surcharge Rate', newEffectiveSurchargeRate);
+
     // Old Tax Regime Calculation
     if (annualTaxableIncome < oldRegimeTaxSlab1 ) {
         oldRegimeIncomeTaxPayable = 0;
@@ -363,7 +394,7 @@ function taxCalculation(){
         oldRegimeIncomeTaxPayable = Math.max((
             ((annualTaxableIncome - oldRegimeTaxSlab1)* oldRegimeTaxRate1) - oldRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome >= oldRegimeTaxSlab2 && annualTaxableIncome < oldRegimeTaxSlab3){
+    } else if (annualTaxableIncome >= oldRegimeTaxSlab2 && annualTaxableIncome < oldRegimeTaxSlab3) {
         oldRegimeIncomeTaxPayable = 12500 + (
             (annualTaxableIncome - oldRegimeTaxSlab2)* oldRegimeTaxRate2
             );
@@ -372,6 +403,8 @@ function taxCalculation(){
             (annualTaxableIncome - oldRegimeTaxSlab3)* oldRegimeTaxRate3
             );
     }
+    oldTaxRegimeTotalTaxPayable = (oldRegimeIncomeTaxPayable * oldEffectiveSurchargeRate)*cessOnIT;
+    localStorage.setItem('Total Tax under Old Tax Regime', oldTaxRegimeTotalTaxPayable);
 
     // New Tax Regime Calculation    
     if (annualTaxableIncome < newRegimeTaxSlab1 ) {
@@ -380,29 +413,29 @@ function taxCalculation(){
         newRegimeIncomeTaxPayable = Math.max((
             ((annualTaxableIncome - newRegimeTaxSlab1)* newRegimeTaxRate1) - newRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome >= newRegimeTaxSlab2 && annualTaxableIncome <= 700000){
+    } else if (annualTaxableIncome >= newRegimeTaxSlab2 && annualTaxableIncome <= 700000) {
         newRegimeIncomeTaxPayable = Math.max(
             15000 + (((annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2) - newRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome > 700000 && annualTaxableIncome <= newRegimeTaxSlab3){
+    } else if (annualTaxableIncome > 700000 && annualTaxableIncome <= newRegimeTaxSlab3) {
         newRegimeIncomeTaxPayable = 15000 + (
             (annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2
             );
-    } else if (annualTaxableIncome >= newRegimeTaxSlab3 && annualTaxableIncome <= newRegimeTaxSlab4){
+    } else if (annualTaxableIncome >= newRegimeTaxSlab3 && annualTaxableIncome <= newRegimeTaxSlab4) {
         newRegimeIncomeTaxPayable = 45000 + (
             (annualTaxableIncome - newRegimeTaxSlab3)* newRegimeTaxRate3
             );
-    } else if (annualTaxableIncome >= newRegimeTaxSlab4 && annualTaxableIncome <= newRegimeTaxSlab5){
+    } else if (annualTaxableIncome >= newRegimeTaxSlab4 && annualTaxableIncome <= newRegimeTaxSlab5) {
         newRegimeIncomeTaxPayable = 90000 + (
             (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate4
             );
-    } else if (annualTaxableIncome > newRegimeTaxSlab5){
+    } else if (annualTaxableIncome > newRegimeTaxSlab5) {
         newRegimeIncomeTaxPayable = 150000 + (
             (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate5
             );
     } 
-
-
+    newTaxRegimeTotalTaxPayable = (newRegimeIncomeTaxPayable * newEffectiveSurchargeRate)*cessOnIT;
+    localStorage.setItem('Total Tax under New Tax Regime', newTaxRegimeTotalTaxPayable);
 }
 
 
@@ -430,6 +463,8 @@ saveSalaryBtn.addEventListener('click', () => {
         localStorage.setItem('LTC', userLTC.value);
         localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
         localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
+
+        calculateCeaArrear(parseInt(localStorage.getItem('CEA')), parseInt(localStorage.getItem('Arrears')));
     }
 );
 
