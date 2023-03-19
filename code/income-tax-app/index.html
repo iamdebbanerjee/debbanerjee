@@ -312,11 +312,27 @@
             </div>
             <div class="form-group" id="mediclaim">
                 <h3 class="question">Total yearly medical insurance premium?</h3>
-                <p>Including CGHS, medical insurance for self & spouse, parents etc.</p>
+                <p>Including CGHS, medical insurance for self & spouse etc.</p>
                 <input type="number" name="medical-insurance" id="medical-insurance" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <a href="#NPS-voluntary" class="btn" id="save-medical-premium">Enter</a>
+                    <a href="#mediclaim-parents" class="btn" id="save-medical-premium">Enter</a>
+                    <a href="#mediclaim-parents" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="mediclaim-parents">
+                <h3 class="question">Is any of your parents senior citizen?</h3>
+                <div class="input-rd-chkbx">
+                    <input type="radio" name="parent-age" id="senior-citizen" value = "Yes">
+                    <label for="gpf-subscriber">Yes</label>
+                    <input type="radio" name="parent-age" id="non-senior-citizen" value = "No">
+                    <label for="nps-subscriber">No</label>           
+                </div>
+                <p>How much do you pay per year for their medical insurance?</p>
+                <input type="number" name="medical-insurance-parents" id="medical-insurance-parents" placeholder="Only value, no symbol/unit">
+                <div class="input-control">
+                    <a href="#mediclaim" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#NPS-voluntary" class="btn" id="save-medical-premium-parents">Enter</a>
                     <a href="#NPS-voluntary" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>

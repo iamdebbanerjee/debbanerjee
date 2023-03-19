@@ -19,6 +19,7 @@ const saveHBAPrincipalBtn = document.getElementById('save-hba-principal');
 const saveHBAInterestBtn = document.getElementById('save-hba-interest');
 const save80cBtn = document.getElementById('save-80c');
 const saveMedicalPremiumBtn = document.getElementById('save-medical-premium');
+const saveParentsMedicalPremiumBtn = document.getElementById('save-medical-premium-parents');
 const saveVolutaryNPSBtn = document.getElementById('save-voluntary-nps');
 const saveSavingsInterestBtn = document.getElementById('save-savings-interest');
 const finalSubmitBtn = document.getElementById('final-submit');
@@ -58,8 +59,13 @@ let userPPF;
 let userELSS;
 let userOtherTTS;
 let userMediclaim;
+let userTaxFreeMediclaimPremium = 0;
+let userParentsMediclaim = 0;
+let userParentsSeniorCitizen;
+let taxFreeParentsMediclaim = 0;
 let userVolNPSContribution = 0;
 let userSavingsInterest;
+let annualTaxableIncome = 0;
 
 // Internal variables
 
@@ -97,16 +103,32 @@ let taxFreeArrear;
 let taxableArrear;
 let homeLoanInterestTaxFreeLimit = 200000;
 let max80cLimit = 150000;
-const taxSlab1 = 300000;
-const taxSlab2 = 600000;
-const taxSlab3 = 900000;
-const taxSlab4 = 1200000;
-const taxSlab5 = 1500000;
-let taxRate1 = 0.5;
-let taxRate2;
-let taxRate3;
-let taxRate4;
-let taxrate5;
+const newRegimeTaxSlab1 = 300000;
+const newRegimeTaxSlab2 = 600000;
+const newRegimeTaxSlab3 = 900000;
+const newRegimeTaxSlab4 = 1200000;
+const newRegimeTaxSlab5 = 1500000;
+const oldRegimeTaxSlab1 = 250000;
+const oldRegimeTaxSlab2 = 500000;
+const oldRegimeTaxSlab3 = 1000000;
+let newRegimeTaxRate1 = 0.05;
+let newRegimeTaxRate2 = 0.1;
+let newRegimeTaxRate3 = 0.15;
+let newRegimeTaxRate4 = 0.2;
+let newRegimeTaxrate5 = 0.3;
+let oldRegimeTaxRate1 = 0.05;
+let oldRegimeTaxRate2 = 0.2;
+let oldRegimeTaxRate3 = 0.3;
+let oldRegimeRebate87A = 12500;
+let newRegimeRebate87A = 25000;
+let oldRegimeIncomeTaxPayable = 0;
+let newRegimeIncomeTaxPayable = 0;
+let cessOnIT = 1.04;
+let surchargeRate1 = 1.1;
+let surchargeRate2 = 1.15;
+let surchargeRate3 = 1.25;
+let surchargeRate4 = 1.37;
+
 
 
 /* Calculation Functions */
@@ -281,8 +303,8 @@ function taxFreeHomeLoanInterest(amount) {
 // Calculate Tax Free Medical Insurance premium --Function
 
 function calcMediclaimPremium(){
-    let premium = 0;
-
+    let premium = parseInt(localStorage.getItem('Yearly Tax Free Medical Premium')) +
+                  parseInt(localStorage.getItem('Tax Free Parents Medical Premium'));
     return premium;
 }
 
@@ -298,6 +320,8 @@ function taxCalculation(){
 
     let yearlyTotalIncome = incomeFromSalary + incomeFromHouseProperty + incomeFromBusinessProfession + incomeFromCapitalGains + incomeFromOtherSources;
     localStorage.setItem('Yearly Total Income', yearlyTotalIncome);
+
+
 
     // Less Standard Deduction, Tax Free CEA, Home Loan Interest, LTC, 80C Total etc.
     let standardDeduction =  parseInt(localStorage.getItem('Standard Deduction'));
@@ -321,6 +345,63 @@ function taxCalculation(){
         ), 
         max80cLimit);
     let taxFreeMedicalInsurancePremium = calcMediclaimPremium();
+    let taxFreeSavingsInterestDeduction = parseInt(localStorage.getItem('Tax Free Savings Interest'));
+
+    let yearlyTotalDeduction = standardDeduction + profTaxDeduction + taxFreeCEA + ltcDeduction + employerNPSDeduction + 
+                                homeLoanInterestDeduction + hraTaxExemption + voluntaryNPSDeduction + taxFreeArrearDeduction +
+                                total80cDeduction + taxFreeMedicalInsurancePremium + taxFreeSavingsInterestDeduction;
+    localStorage.setItem('Yearly Total Deduction', yearlyTotalDeduction);
+
+    // Tax Calculation Steps
+    annualTaxableIncome = yearlyTotalIncome - yearlyTotalDeduction;
+    localStorage.setItem('Yearly Taxable Income', annualTaxableIncome);
+
+    // Old Tax Regime Calculation
+    if (annualTaxableIncome < oldRegimeTaxSlab1 ) {
+        oldRegimeIncomeTaxPayable = 0;
+    } else if (annualTaxableIncome >= oldRegimeTaxSlab1 && annualTaxableIncome < oldRegimeTaxSlab2) {
+        oldRegimeIncomeTaxPayable = Math.max((
+            ((annualTaxableIncome - oldRegimeTaxSlab1)* oldRegimeTaxRate1) - oldRegimeRebate87A), 
+            0);
+    } else if (annualTaxableIncome >= oldRegimeTaxSlab2 && annualTaxableIncome < oldRegimeTaxSlab3){
+        oldRegimeIncomeTaxPayable = 12500 + (
+            (annualTaxableIncome - oldRegimeTaxSlab2)* oldRegimeTaxRate2
+            );
+    } else if (annualTaxableIncome >= oldRegimeTaxSlab3){
+        oldRegimeIncomeTaxPayable = 12500 + 100000 + (
+            (annualTaxableIncome - oldRegimeTaxSlab3)* oldRegimeTaxRate3
+            );
+    }
+
+    // New Tax Regime Calculation    
+    if (annualTaxableIncome < newRegimeTaxSlab1 ) {
+        newRegimeIncomeTaxPayable = 0;
+    } else if (annualTaxableIncome >= newRegimeTaxSlab1 && annualTaxableIncome < newRegimeTaxSlab2) {
+        newRegimeIncomeTaxPayable = Math.max((
+            ((annualTaxableIncome - newRegimeTaxSlab1)* newRegimeTaxRate1) - newRegimeRebate87A), 
+            0);
+    } else if (annualTaxableIncome >= newRegimeTaxSlab2 && annualTaxableIncome <= 700000){
+        newRegimeIncomeTaxPayable = Math.max(
+            15000 + (((annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2) - newRegimeRebate87A), 
+            0);
+    } else if (annualTaxableIncome > 700000 && annualTaxableIncome <= newRegimeTaxSlab3){
+        newRegimeIncomeTaxPayable = 15000 + (
+            (annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2
+            );
+    } else if (annualTaxableIncome >= newRegimeTaxSlab3 && annualTaxableIncome <= newRegimeTaxSlab4){
+        newRegimeIncomeTaxPayable = 45000 + (
+            (annualTaxableIncome - newRegimeTaxSlab3)* newRegimeTaxRate3
+            );
+    } else if (annualTaxableIncome >= newRegimeTaxSlab4 && annualTaxableIncome <= newRegimeTaxSlab5){
+        newRegimeIncomeTaxPayable = 90000 + (
+            (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate4
+            );
+    } else if (annualTaxableIncome > newRegimeTaxSlab5){
+        newRegimeIncomeTaxPayable = 150000 + (
+            (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate5
+            );
+    } 
+
 
 }
 
@@ -453,13 +534,26 @@ save80cBtn.addEventListener('click', () => {
     localStorage.setItem('Yearly Other TAX Savings', userOtherTTS);
 });
 
+
 // Save 80D Medical Insurance Premium
 saveMedicalPremiumBtn.addEventListener('click', () => {
     userMediclaim = document.getElementById('medical-insurance').value;
+    userTaxFreeMediclaimPremium = Math.min(userMediclaim, 25000)
     localStorage.setItem('Yearly Medical Premium', userMediclaim);
+    localStorage.setItem('Yearly Tax Free Medical Premium', userTaxFreeMediclaimPremium);
 });
 
-
+saveParentsMedicalPremiumBtn.addEventListener('click', () => {
+    userParentsMediclaim = document.getElementById('medical-insurance-parents').value;
+    userParentsSeniorCitizen = document.querySelector('input[name="parent-age"]:checked').value;
+    localStorage.setItem('Yearly Parents Medical Premium', userParentsMediclaim);
+    if (userParentsSeniorCitizen === "Yes"){
+        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 50000);
+    } else {
+        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 25000);
+    }
+    localStorage.setItem('Tax Free Parents Medical Premium', taxFreeParentsMediclaim);
+});
 // Save NPS Contribution
 saveVolutaryNPSBtn.addEventListener('click', () => {
     userVolNPSContribution = document.getElementById('nps-80ccd-1b').value;
