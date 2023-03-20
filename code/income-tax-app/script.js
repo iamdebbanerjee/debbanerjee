@@ -1,4 +1,8 @@
 
+/*********************************************************************************/
+/*                                  Index Page                                   */
+/********************************************************************************/
+
 /* User Input Variables*/
 
 // Action Buttons
@@ -621,3 +625,11 @@ saveSavingsInterestBtn.addEventListener('click', () => {
 
 // Final Submit Actions
 finalSubmitBtn.addEventListener('click', taxCalculation);
+
+
+
+/*********************************************************************************/
+/*                          Result & Details Result Pages                        */
+/********************************************************************************/
+
+let taxInOldRegime = 0;
