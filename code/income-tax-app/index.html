@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form id="main-form">
+        <div id="main-form">
             <!-- Income under the head Salary -->
             <!-- BASIC, DA, HRA,  TPA -->
             <div class="form-group" id="basic">
@@ -18,7 +18,7 @@
                 <input type="number" name="march-basic-salary" id="march-basic-salary" placeholder="Enter only value. Do not enter any symbol or unit.">
                 <div class="input-control">
                     <a href="" class="btn move-back" disabled><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#da" class="" id="">Enter</a></button>
+                    <a href="#da" class="btn" id="">Enter</a></button>
                     <a href="#da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <input type="number" name="da" id="da-rate" placeholder="Enter only value. Do not enter any symbol or unit.">
                 <div class="input-control">
                     <a href="#basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#hra" class="" id="">Enter</a></button>
+                    <a href="#hra" class="btn" id="">Enter</a>
                     <a href="#hra" class="btn move-ahead"><i class="fas fa-chevron-down"></i></button></a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <input type="number" name="hra" id="hra-rate" placeholder="Enter only value. Do not enter % symbol.">
                 <div class="input-control">
                     <a href="#da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#tpa" class="" id="">Enter</a></button>
+                    <a href="#tpa" class="btn" id="">Enter</a>
                     <a href="#tpa" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <input type="number" name="tpa" id="tpa-rate" placeholder="Enter only value. Do not enter any unit/symbol.">
                 <div class="input-control">
                     <a href="#hra" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#increment-month" class="" id="">Enter</a></button>
+                    <a href="#increment-month" class="btn" id="">Enter</a>
                     <a href="#increment-month" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -56,14 +56,14 @@
             <div class="form-group" id="increment-month">
                 <h3 class="question">What is your increment month?</h3>
                 <div class="input-rd-chkbx">
-                    <input type="radio" name="increment-month" id="increment-month-january" value = "January" checked>
+                    <input type="radio" name="increment-month" id="increment-month-january" value = "January">
                     <label for="increment-month-january">January</label>
                     <input type="radio" name="increment-month" id="increment-month-july" value = "July">
                     <label for="increment-month-july">July</label>           
                 </div>                     
                 <div class="input-control">
                     <a href="#tpa" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#next-basic" class="" id="">Enter</a></button>
+                    <a href="#next-basic" class="btn" id="">Enter</a>
                     <a href="#next-basic" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -73,19 +73,17 @@
                 <input type="number" name="next-basic-salary" id="next-basic-salary" placeholder="Enter only value. Do not enter any unit/symbol.">
                 <div class="input-control">
                     <a href="#increment-month" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#expected-da" class="" id="">Enter</a></button>
+                    <a href="#expected-da" class="btn" id="">Enter</a>
                     <a href="#expected-da" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
-            </div>
-            
-            
+            </div>  
             <div class="form-group" id="expected-da">
-                <h3 class="question">How much DA do you expect from July?</h3>
+                <h3 class="question">How much percent(%) DA increase do you expect from July?</h3>
                 <p>(Hint - You can use 3-4% as average or use <a href="https://govtempdiary.com/expected-da-from-july-2023-calculator" target="_blank">this calculator</a> to get an idea.)</p>
                 <input type="number" name="expected-da" id="july-expected-da">
                 <div class="input-control">
                     <a href="#next-basic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#additional-pay" class="" id="">Enter</a></button>
+                    <a href="#additional-pay" class="btn" id="">Enter</a>
                     <a href="#additional-pay" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -100,7 +98,7 @@
                 </div>                      -->
                 <div class="input-control">
                     <a href="#expected-da" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#additional-pay-details-1" class="" id="">Ok</a></button>
+                    <a href="#additional-pay-details-1" class="btn" id="">Ok</a>
                     <a href="#additional-pay-details-1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -115,7 +113,7 @@
                     <input type="number" name="arrears" id="arrears" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#additional-pay" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#additional-pay-details-2" class="" id="">Enter</a></button>
+                    <a href="#additional-pay-details-2" class="btn" id="">Enter</a>
                     <a href="#additional-pay-details-2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
                 </div>
@@ -132,7 +130,7 @@
                 </div>
                 <div class="input-control">
                     <a href="#additional-pay-details-1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save" id="calculate-gross-salary"><a href="#house-property" class="" id="">Enter</a></button>
+                    <a href="#house-property" class="btn" id="save-salary">Enter</a>
                     <a href="#house-property" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -143,7 +141,7 @@
                 <input type="number" name="income-house-property" id="income-house-property" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#additional-pay-details-2" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#business-profession" class="" id="">Enter</a></button>
+                    <a href="#business-profession" class="btn" id="save-house-property-income">Enter</a>
                     <a href="#business-profession" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -154,7 +152,7 @@
                 <input type="number" name="income-business-profession" id="income-business-profession" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#house-property" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#capital-gains" class="" id="">Enter</a></button>
+                    <a href="#capital-gains" class="btn" id="save-business-income">Enter</a>
                     <a href="#capital-gains" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -170,18 +168,18 @@
                 </div>                
                 <div class="input-control">
                     <a href="#business-profession" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#other-sources" class="" id="">Enter</a></button>
+                    <a href="#other-sources" class="btn" id="save-capital-gains">Enter</a>
                     <a href="#other-sources" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <!-- Income from other sources -->
             <div class="form-group" id="other-sources">
                 <h3 class="question">Income under Other Sources</h3>
-                <p>Please add any other income and enter here. Else enter 0 (zero).</p>
+                <p>Any other income like FD/Recurring interest etc. Else enter 0.</p>
                 <input type="number" name="income-other-sources" id="income-other-sources" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#capital-gains" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#deductions-intro" class="" id="">Enter</a></button>
+                    <a href="#deductions-intro" class="btn" id="save-other-sources-income">Enter</a>
                     <a href="#deductions-intro" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -191,7 +189,7 @@
                 <p>Please keep your GPF, Life & Health insurance, PLI, PPF, SSY, NSC, NPS, ELSS etc. documents ready.</p>
                 <div class="input-control">
                     <a href="#other-sources" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn"><a href="#hra-exemption" class="" id="">Ok</a></button>
+                    <a href="#hra-exemption" class="btn" id="calculate-gross-salary">Ok</a>
                     <a href="#hra-exemption" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -200,15 +198,15 @@
                 <h3 class="question">HRA & Rented Accomodation</h3>
                 <p>If you have rent receipts, enter your montly rent below. Otherwise enter 0(zero).</p>
                 <div class="input-rd-chkbx">
-                    <input type="radio" name="hra-city-type" id="hra-city-type-non-metro" value = "Non Metro" checked>
-                    <label for="increment-month-january">Non Metro</label>
+                    <input type="radio" name="hra-city-type" id="hra-city-type-non-metro" value = "Non Metro">
+                    <label for="hra-city-type-non-metro">Non Metro</label>
                     <input type="radio" name="hra-city-type" id="hra-city-type-metro" value = "Metro">
-                    <label for="increment-month-july">Metro</label>           
+                    <label for="hra-city-type-metro">Metro</label>           
                 </div>
                 <input type="number" name="rent-receipt" id="rent-receipt" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#deductions-intro" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save" id="calculate-hra-exemption"><a href="#sd" class="" id="">Enter</a></button>
+                    <a href="#sd" class="btn" id="save-monthly-rent-paid">Enter</a>
                     <a href="#sd" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>            
@@ -220,7 +218,7 @@
                 <input type="number" name="standard-deduction" id="standard-deduction" value="50000" disabled>
                 <div class="input-control">
                     <a href="#hra-exemption" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#p-tax" class="" id="">Enter</a></button>
+                    <a href="#p-tax" class="btn" id="save-standard-deduction">Enter</a>
                     <a href="#p-tax" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -229,7 +227,7 @@
                 <input type="number" name="monthly-p-tax" id="monthly-p-tax" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#sd" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#gpf-or-nps" class="" id="">Enter</a></button>
+                    <a href="#gpf-or-nps" class="btn" id="save-p-tax">Enter</a>
                     <a href="#gpf-or-nps" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -237,23 +235,23 @@
             <div class="form-group" id="gpf-or-nps">
                 <h3 class="question">Did you join Govt. Service before 01.01.2004?</h3>
                 <div class="input-rd-chkbx">
-                    <input type="radio" name="pf-type" id="gpf-subscriber" value = "GPF" checked>
-                    <label for="increment-month-january">Yes</label>
+                    <input type="radio" name="pf-type" id="gpf-subscriber" value = "GPF">
+                    <label for="gpf-subscriber">Yes</label>
                     <input type="radio" name="pf-type" id="nps-subscriber" value = "NPS">
-                    <label for="increment-month-july">No</label>           
+                    <label for="nps-subscriber">No</label>           
                 </div>                     
                 <div class="input-control">
                     <a href="#p-tax" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#gpf" class="move-ahead" id="">Enter</a></button>
+                    <a href="#gpf" class="btn" id="save-pf-type">Enter</a>
                     <a href="#gpf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="gpf">
-                <h3 class="question">How much you want to save in GPF this year?</h3>
-                <input type="number" name="gpf-investment" id="gpf-investment" placeholder="Only value, no symbol/unit">
+                <h3 class="question">How much do you want to save in GPF per month this year?</h3>
+                <input type="number" name="gpf-investment" id="gpf-investment" value = "0" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#gpf-or-nps" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#hba1" class="" id="">Enter</a></button>
+                    <a href="#hba1" class="btn" id="save-gpf-contribution">Enter</a>
                     <a href="#hba1" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -262,7 +260,7 @@
                 <input type="number" name="hba-principal" id="hba-principal" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#gpf" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#hba2" class="" id="">Enter</a></button>
+                    <a href="#hba2" class="btn" id="save-hba-principal">Enter</a>
                     <a href="#hba2" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -271,7 +269,7 @@
                 <input type="number" name="hba-interest" id="hba-interest" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#hba1" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#lic" class="" id="">Enter</a></button>
+                    <a href="#lic" class="btn" id="save-hba-interest">Enter</a>
                     <a href="#lic" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -280,7 +278,7 @@
                 <input type="number" name="life-insurance" id="life-insurance" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#hba2" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#ppf" class="" id="">Enter</a></button>
+                    <a href="#ppf" class="btn" id="save-lic-premium">Enter</a>
                     <a href="#ppf" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -289,7 +287,7 @@
                 <input type="number" name="ppf-investment" id="ppf-investment" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#lic" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#elss" class="" id="">Enter</a></button>
+                    <a href="#elss" class="btn" id="">Enter</a>
                     <a href="#elss" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -298,7 +296,7 @@
                 <input type="number" name="elss-investment" id="elss-investment" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#ppf" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#tts" class="" id="">Enter</a></button>
+                    <a href="#tts" class="btn" id="">Enter</a>
                     <a href="#tts" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -308,26 +306,53 @@
                 <input type="number" name="tax-free-schemes-total" id="tax-free-schemes-total" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#elss" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#mediclaim" class="" id="">Enter</a></button>
+                    <a href="#mediclaim" class="btn" id="save-80c">Enter</a>
                     <a href="#mediclaim" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
             <div class="form-group" id="mediclaim">
                 <h3 class="question">Total yearly medical insurance premium?</h3>
-                <p>Including CGHS, medical insurance for self & spouse, parents etc.</p>
+                <p>Including CGHS, medical insurance for self & spouse etc.</p>
                 <input type="number" name="medical-insurance" id="medical-insurance" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#savings" class="" id="">Enter</a></button>
+                    <a href="#mediclaim-parents" class="btn" id="save-medical-premium">Enter</a>
+                    <a href="#mediclaim-parents" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="mediclaim-parents">
+                <h3 class="question">Is any of your parents senior citizen?</h3>
+                <div class="input-rd-chkbx">
+                    <input type="radio" name="parent-age" id="senior-citizen" value = "Yes">
+                    <label for="senior-citizen">Yes</label>
+                    <input type="radio" name="parent-age" id="non-senior-citizen" value = "No">
+                    <label for="non-senior-citizen">No</label>           
+                </div>
+                <p>How much do you pay per year for their medical insurance?</p>
+                <input type="number" name="medical-insurance-parents" id="medical-insurance-parents" placeholder="Only value, no symbol/unit">
+                <div class="input-control">
+                    <a href="#mediclaim" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#NPS-voluntary" class="btn" id="save-medical-premium-parents">Enter</a>
+                    <a href="#NPS-voluntary" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
+                </div>
+            </div>
+            <div class="form-group" id="NPS-voluntary">
+                <h3 class="question">Any yearly voluntary contribution in NPS?</h3>
+                <p>Extra upto &#8377;50000 tax free scheme, u/s - 80CCD (1B)</p>
+                <input type="number" name="nps-80ccd-1b" id="nps-80ccd-1b" placeholder="Only value, no symbol/unit">
+                <div class="input-control">
+                    <a href="#tts" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
+                    <a href="#savings" class="btn" id="save-voluntary-nps">Enter</a>
                     <a href="#savings" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
+
             <div class="form-group" id="savings">
                 <h3 class="question">Total expected interest from savings accounts this year?</h3>
                 <input type="number" name="savings-interest" id="savings-interest" placeholder="Only value, no symbol/unit">
                 <div class="input-control">
                     <a href="#mediclaim" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save"><a href="#final-submit" class="" id="">Enter</a></button>
+                    <a href="#final-submit" class="btn" id="save-savings-interest">Enter</a>
                     <a href="#final-submit" class="btn move-ahead"><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
@@ -337,11 +362,11 @@
                 <p>When ready, hit <span class="bold-text">submit</span> below and let us estimate your expected income tax this year.</p>
                 <div class="input-control">
                     <a href="#savings" class="btn move-back"><i class="fas fa-chevron-up"></i></a>
-                    <button type="submit" class="btn save calculate"><a href="" class="" id="">Submit</a></button>
+                    <a href="" class="btn" id="final-submit">Submit</a>
                     <a href="" class="btn move-ahead" disabled><i class="fas fa-chevron-down"></i></a>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
