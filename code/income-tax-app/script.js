@@ -410,6 +410,7 @@ function taxCalculation() {
             );
     }
     oldTaxRegimeTotalTaxPayable = (oldRegimeIncomeTaxPayable * oldEffectiveSurchargeRate)*cessOnIT;
+    oldTaxRegimeTotalTaxPayable = oldTaxRegimeTotalTaxPayable.toFixed();
     localStorage.setItem('Total Tax under Old Tax Regime', oldTaxRegimeTotalTaxPayable);
 
     // New Tax Regime Calculation    
@@ -441,6 +442,7 @@ function taxCalculation() {
             );
     } 
     newTaxRegimeTotalTaxPayable = (newRegimeIncomeTaxPayable * newEffectiveSurchargeRate)*cessOnIT;
+    newTaxRegimeTotalTaxPayable = newTaxRegimeTotalTaxPayable.toFixed();    
     localStorage.setItem('Total Tax under New Tax Regime', newTaxRegimeTotalTaxPayable);
 }
 
