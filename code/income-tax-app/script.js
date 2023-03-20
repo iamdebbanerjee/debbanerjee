@@ -65,7 +65,8 @@ let userParentsSeniorCitizen;
 let taxFreeParentsMediclaim = 0;
 let userVolNPSContribution = 0;
 let userSavingsInterest;
-let annualTaxableIncome = 0;
+let oldAnnualTaxableIncome = 0;
+let newAnnualTaxableIncome = 0;
 
 // Internal variables
 
@@ -358,14 +359,19 @@ function taxCalculation() {
     let taxFreeMedicalInsurancePremium = calcMediclaimPremium();
     let taxFreeSavingsInterestDeduction = parseInt(localStorage.getItem('Tax Free Savings Interest'));
 
-    let yearlyTotalDeduction = standardDeduction + profTaxDeduction + taxFreeCEA + ltcDeduction + employerNPSDeduction + 
+    let yearlyTotalDeductionOldRegime = standardDeduction + profTaxDeduction + taxFreeCEA + ltcDeduction + employerNPSDeduction + 
                                 homeLoanInterestDeduction + hraTaxExemption + voluntaryNPSDeduction + taxFreeArrearDeduction +
                                 total80cDeduction + taxFreeMedicalInsurancePremium + taxFreeSavingsInterestDeduction;
-    localStorage.setItem('Yearly Total Deduction', yearlyTotalDeduction);
+
+    let yearlyTotalDeductionNewRegime = standardDeduction + profTaxDeduction + employerNPSDeduction;
+
+    localStorage.setItem('Yearly Total Deduction Old Regime', yearlyTotalDeductionOldRegime);
 
     // Tax Calculation Steps
-    annualTaxableIncome = yearlyTotalIncome - yearlyTotalDeduction;
-    localStorage.setItem('Yearly Taxable Income', annualTaxableIncome);
+    oldAnnualTaxableIncome = yearlyTotalIncome - yearlyTotalDeductionOldRegime;
+    newAnnualTaxableIncome = yearlyTotalIncome - yearlyTotalDeductionNewRegime;
+    localStorage.setItem('Yearly Taxable Income Old Regime', oldAnnualTaxableIncome);
+    localStorage.setItem('Yearly Taxable Income New Regime', newAnnualTaxableIncome);
 
     // Setting Effective Surcharge Rate
     if (yearlyTotalIncome < 5000000) {
@@ -388,50 +394,50 @@ function taxCalculation() {
     localStorage.setItem('New Effective Surcharge Rate', newEffectiveSurchargeRate);
 
     // Old Tax Regime Calculation
-    if (annualTaxableIncome < oldRegimeTaxSlab1 ) {
+    if (oldAnnualTaxableIncome < oldRegimeTaxSlab1 ) {
         oldRegimeIncomeTaxPayable = 0;
-    } else if (annualTaxableIncome >= oldRegimeTaxSlab1 && annualTaxableIncome < oldRegimeTaxSlab2) {
+    } else if (oldAnnualTaxableIncome >= oldRegimeTaxSlab1 && oldAnnualTaxableIncome < oldRegimeTaxSlab2) {
         oldRegimeIncomeTaxPayable = Math.max((
-            ((annualTaxableIncome - oldRegimeTaxSlab1)* oldRegimeTaxRate1) - oldRegimeRebate87A), 
+            ((oldAnnualTaxableIncome - oldRegimeTaxSlab1)* oldRegimeTaxRate1) - oldRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome >= oldRegimeTaxSlab2 && annualTaxableIncome < oldRegimeTaxSlab3) {
+    } else if (oldAnnualTaxableIncome >= oldRegimeTaxSlab2 && oldAnnualTaxableIncome < oldRegimeTaxSlab3) {
         oldRegimeIncomeTaxPayable = 12500 + (
-            (annualTaxableIncome - oldRegimeTaxSlab2)* oldRegimeTaxRate2
+            (oldAnnualTaxableIncome - oldRegimeTaxSlab2)* oldRegimeTaxRate2
             );
-    } else if (annualTaxableIncome >= oldRegimeTaxSlab3){
+    } else if (oldAnnualTaxableIncome >= oldRegimeTaxSlab3){
         oldRegimeIncomeTaxPayable = 12500 + 100000 + (
-            (annualTaxableIncome - oldRegimeTaxSlab3)* oldRegimeTaxRate3
+            (oldAnnualTaxableIncome - oldRegimeTaxSlab3)* oldRegimeTaxRate3
             );
     }
     oldTaxRegimeTotalTaxPayable = (oldRegimeIncomeTaxPayable * oldEffectiveSurchargeRate)*cessOnIT;
     localStorage.setItem('Total Tax under Old Tax Regime', oldTaxRegimeTotalTaxPayable);
 
     // New Tax Regime Calculation    
-    if (annualTaxableIncome < newRegimeTaxSlab1 ) {
+    if (newAnnualTaxableIncome < newRegimeTaxSlab1 ) {
         newRegimeIncomeTaxPayable = 0;
-    } else if (annualTaxableIncome >= newRegimeTaxSlab1 && annualTaxableIncome < newRegimeTaxSlab2) {
+    } else if (newAnnualTaxableIncome >= newRegimeTaxSlab1 && newAnnualTaxableIncome < newRegimeTaxSlab2) {
         newRegimeIncomeTaxPayable = Math.max((
-            ((annualTaxableIncome - newRegimeTaxSlab1)* newRegimeTaxRate1) - newRegimeRebate87A), 
+            ((newAnnualTaxableIncome - newRegimeTaxSlab1)* newRegimeTaxRate1) - newRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome >= newRegimeTaxSlab2 && annualTaxableIncome <= 700000) {
+    } else if (newAnnualTaxableIncome >= newRegimeTaxSlab2 && newAnnualTaxableIncome <= 700000) {
         newRegimeIncomeTaxPayable = Math.max(
-            15000 + (((annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2) - newRegimeRebate87A), 
+            15000 + (((newAnnualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2) - newRegimeRebate87A), 
             0);
-    } else if (annualTaxableIncome > 700000 && annualTaxableIncome <= newRegimeTaxSlab3) {
+    } else if (newAnnualTaxableIncome > 700000 && newAnnualTaxableIncome <= newRegimeTaxSlab3) {
         newRegimeIncomeTaxPayable = 15000 + (
-            (annualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2
+            (newAnnualTaxableIncome - newRegimeTaxSlab2)* newRegimeTaxRate2
             );
-    } else if (annualTaxableIncome >= newRegimeTaxSlab3 && annualTaxableIncome <= newRegimeTaxSlab4) {
+    } else if (newAnnualTaxableIncome >= newRegimeTaxSlab3 && newAnnualTaxableIncome <= newRegimeTaxSlab4) {
         newRegimeIncomeTaxPayable = 45000 + (
-            (annualTaxableIncome - newRegimeTaxSlab3)* newRegimeTaxRate3
+            (newAnnualTaxableIncome - newRegimeTaxSlab3)* newRegimeTaxRate3
             );
-    } else if (annualTaxableIncome >= newRegimeTaxSlab4 && annualTaxableIncome <= newRegimeTaxSlab5) {
+    } else if (newAnnualTaxableIncome >= newRegimeTaxSlab4 && newAnnualTaxableIncome <= newRegimeTaxSlab5) {
         newRegimeIncomeTaxPayable = 90000 + (
-            (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate4
+            (newAnnualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate4
             );
-    } else if (annualTaxableIncome > newRegimeTaxSlab5) {
+    } else if (newAnnualTaxableIncome > newRegimeTaxSlab5) {
         newRegimeIncomeTaxPayable = 150000 + (
-            (annualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate5
+            (newAnnualTaxableIncome - newRegimeTaxSlab4)* newRegimeTaxRate5
             );
     } 
     newTaxRegimeTotalTaxPayable = (newRegimeIncomeTaxPayable * newEffectiveSurchargeRate)*cessOnIT;
