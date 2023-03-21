@@ -40,8 +40,24 @@
     font-size: 2.75rem;
   }
 
+  h1.medium {
+    font-size: 2rem;
+  }
+
+  h1.small {
+    font-size: 1.5rem;
+  }
+
   h2 {
     font-size: 2.25rem;
+  }
+
+  h2.medium {
+    font-size: 1.25rem;
+  }
+
+  h2.small {
+    font-size: 1.125 rem;
   }
 
   h3 {
@@ -77,6 +93,28 @@
     color: var(--secondary-color);
     overflow: hidden;
   }
+
+  header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: ;
+  }
+
+  .focus {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-color);
+  }
+
 
   .question {
     font-size: 2.5rem;
@@ -193,4 +231,19 @@ input[attribute = "value"] {display: none;}
     border: 1px solid #5FA7AB;
   }
    
-/*  */
+/* Media Queries*/
+
+@media screen and (max-width: 760px) {
+  .container {
+    width: 85%;
+  }
+
+  h1 {
+    margin-bottom: 0;
+    padding: 0.5rem 0;
+  }
+
+  p, li {
+    font-size: 1rem;
+  }
+}

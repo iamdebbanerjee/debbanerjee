@@ -448,6 +448,14 @@ function taxCalculation() {
     newTaxRegimeTotalTaxPayable = (newRegimeIncomeTaxPayable * newEffectiveSurchargeRate) * cessOnIT;
     newTaxRegimeTotalTaxPayable = newTaxRegimeTotalTaxPayable.toFixed();
     localStorage.setItem('Total Tax under New Tax Regime', newTaxRegimeTotalTaxPayable);
+
+    if (oldTaxRegimeTotalTaxPayable >= newTaxRegimeTotalTaxPayable) {
+        localStorage.setItem('Better Regime', newTaxRegimeTotalTaxPayable);
+        localStorage.setItem('Regime Tax Savings', (oldTaxRegimeTotalTaxPayable - newTaxRegimeTotalTaxPayable));
+    } else {
+        localStorage.setItem('Better Regime', oldTaxRegimeTotalTaxPayable);
+        localStorage.setItem('Regime Tax Savings', (newTaxRegimeTotalTaxPayable - oldTaxRegimeTotalTaxPayable));
+    }
 }
 
 
