@@ -452,9 +452,11 @@ function taxCalculation() {
     if (oldTaxRegimeTotalTaxPayable >= newTaxRegimeTotalTaxPayable) {
         localStorage.setItem('Better Regime', newTaxRegimeTotalTaxPayable);
         localStorage.setItem('Regime Tax Savings', (oldTaxRegimeTotalTaxPayable - newTaxRegimeTotalTaxPayable));
+        localStorage.setItem('Better Regime', "New");
     } else {
         localStorage.setItem('Better Regime', oldTaxRegimeTotalTaxPayable);
         localStorage.setItem('Regime Tax Savings', (newTaxRegimeTotalTaxPayable - oldTaxRegimeTotalTaxPayable));
+        localStorage.setItem('Better Regime', "Old");
     }
 }
 
