@@ -40,6 +40,7 @@ let nextBasic = document.getElementById('next-basic-salary');
 let nextDA = document.getElementById('july-expected-da');
 let userBonus = document.getElementById('bonus');
 let userCEA = document.getElementById('cea');
+let userNumberOfChildren = document.getElementById('how-many-children');
 let userArrears = document.getElementById('arrears');
 let userLTC = document.getElementById('ltc');
 let userLeaveEncashment = document.getElementById('leave-encashment');
@@ -278,17 +279,28 @@ function calcNPSContribution() {
     localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
 }
 
-// Calculate CEA -- Function
+// Calculate CEA, Arrear-- Function
 
-function calculateCeaArrear(x, y) {
+function calculateCeaArrear(x, y, z) {
 
-    taxFreeCEA = 0;
-    taxableCEA = 0;
+    let receivedCea = x;
+    let childrenNumber = y;
+    let receivedArrear = z;
+
+    // CEA calculation
+    if (childrenNumber >= 2) {
+        taxFreeCEA = 2400;
+        taxableCEA = receivedCea - taxFreeCEA;
+    } else if (childrenNumber === 1) {
+        taxFreeCEA = 1200;
+        taxableCEA = receivedCea - taxFreeCEA;
+    } else if (childrenNumber === 0) {
+        taxFreeCEA = 0;
+        taxableCEA = 0;
+    }   
 
     localStorage.setItem('Tax Free CEA', taxFreeCEA);
     localStorage.setItem('Taxable CEA', taxableCEA);
-
-
 
 
     // Calculate Taxable Arrears u/s 89(1) --Function
@@ -449,14 +461,18 @@ function taxCalculation() {
     newTaxRegimeTotalTaxPayable = newTaxRegimeTotalTaxPayable.toFixed();
     localStorage.setItem('Total Tax under New Tax Regime', newTaxRegimeTotalTaxPayable);
 
-    if (oldTaxRegimeTotalTaxPayable >= newTaxRegimeTotalTaxPayable) {
+    if (oldTaxRegimeTotalTaxPayable > newTaxRegimeTotalTaxPayable) {
         localStorage.setItem('Better Regime', newTaxRegimeTotalTaxPayable);
         localStorage.setItem('Regime Tax Savings', (oldTaxRegimeTotalTaxPayable - newTaxRegimeTotalTaxPayable));
         localStorage.setItem('Better Regime', "New");
-    } else {
+    } else if (oldTaxRegimeTotalTaxPayable < newTaxRegimeTotalTaxPayable){
         localStorage.setItem('Better Regime', oldTaxRegimeTotalTaxPayable);
         localStorage.setItem('Regime Tax Savings', (newTaxRegimeTotalTaxPayable - oldTaxRegimeTotalTaxPayable));
         localStorage.setItem('Better Regime', "Old");
+    } else {
+        localStorage.setItem('Better Regime', oldTaxRegimeTotalTaxPayable);
+        localStorage.setItem('Regime Tax Savings', (newTaxRegimeTotalTaxPayable - oldTaxRegimeTotalTaxPayable));
+        localStorage.setItem('Better Regime', "Any of the two");
     }
 }
 
@@ -481,12 +497,13 @@ saveSalaryBtn.addEventListener('click', () => {
     localStorage.setItem('Next DA', nextDA.value);
     localStorage.setItem('Bonus', userBonus.value);
     localStorage.setItem('CEA', userCEA.value);
+    localStorage.setItem('Number of Children', userNumberOfChildren.value)
     localStorage.setItem('Arrears', userArrears.value);
     localStorage.setItem('LTC', userLTC.value);
     localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
     localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
 
-    calculateCeaArrear(parseInt(localStorage.getItem('CEA')), parseInt(localStorage.getItem('Arrears')));
+    calculateCeaArrear(parseInt(localStorage.getItem('CEA')), parseInt(localStorage.getItem('Number of Children')), parseInt(localStorage.getItem('Arrears')));
 }
 );
 
