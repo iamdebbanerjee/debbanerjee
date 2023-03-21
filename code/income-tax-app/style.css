@@ -53,11 +53,11 @@
   }
 
   h2.medium {
-    font-size: 1.25rem;
+    font-size: 1.8rem;
   }
 
   h2.small {
-    font-size: 1.125 rem;
+    font-size: 1.25rem;
   }
 
   h3 {
@@ -66,6 +66,10 @@
 
   p, li {
     margin-bottom: 1rem;
+  }
+
+  p.small {
+    font-size: 0.5rem;
   }
 
   label {
@@ -82,6 +86,7 @@
   /* Container */
 
   .container {
+    height: 90%;
     width: 80%;
     margin: 0 auto;
   }
@@ -94,8 +99,18 @@
     overflow: hidden;
   }
 
+  body#index-page {
+    height: 100vh;
+    width: 100%;
+    /* background-color: var(--secondary-color); */
+    background: rgb(2,0,36);
+    background: linear-gradient(118deg, rgba(2,0,36,1) 50%, rgba(51,51,51,1) 77%, rgba(95,167,171,1) 100%);
+    color: var(--light-color);
+  }
+
   header {
     width: 100%;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,16 +118,54 @@
     font-family: ;
   }
 
-  .focus {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    padding: 0.8rem 2rem;
+  .hero-section {
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+  }
+
+  .hero-section h2 {
+    text-transform: capitalize;
+  }
+
+  .focus {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
     color: var(--light-color);
+  }
+
+  #new-regime-details {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    color: var(--secondary-color);
+  }
+
+  #old-regime-details {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    color: var(--secondary-color);
   }
 
 
@@ -188,6 +241,13 @@ input[attribute = "value"] {display: none;}
     cursor: not-allowed;
   }
 
+  footer {
+    height: 3rem;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+
   /* Form Styles */
 
   #main-form {
@@ -235,12 +295,17 @@ input[attribute = "value"] {display: none;}
 
 @media screen and (max-width: 760px) {
   .container {
-    width: 85%;
+    width: 90%;
   }
 
   h1 {
+    font-size: 1.75rem;
     margin-bottom: 0;
     padding: 0.5rem 0;
+  }
+
+  h2 {
+    margin: 0.75rem 0;
   }
 
   p, li {
