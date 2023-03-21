@@ -46,7 +46,6 @@
 
   h1.small {
     font-size: 1.5rem;
-    margin-bottom: 0;
   }
 
   h2 {
@@ -109,7 +108,6 @@
     border: none;
     border-radius: 5px;
     padding: 0.8rem 2rem;
-    margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
