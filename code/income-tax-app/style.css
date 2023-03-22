@@ -64,6 +64,10 @@
     font-size: 1.75rem;
   }
 
+  h3.small {
+    font-size: 1.05rem;
+  }
+
   p, li {
     margin-bottom: 1rem;
   }
@@ -97,6 +101,10 @@
     background-color: var(--light-color);
     color: var(--secondary-color);
     overflow: hidden;
+  }
+
+  body.result-page {
+    overflow: auto;
   }
 
   body#index-page {
@@ -144,6 +152,18 @@
     color: var(--light-color);
   }
 
+  #income-details {
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    color: var(--secondary-color);
+  }
+
   #new-regime-details {
     border: 1px solid var(--secondary-color);
     border-radius: 5px;
@@ -168,7 +188,52 @@
     color: var(--secondary-color);
   }
 
+  .data-grid {
+    margin: 0;
+    height: 100%;
+    width:  100%;
+    padding: 0.25rem;
+    border: 3px solid var(--primary-color);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 0;
+  }
 
+  .data-grid .income-period {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid var(--secondary-color);
+    grid-column: 1 / span 3;
+  }
+
+  .data-grid .income-heading,
+  .data-grid .income-amount {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid var(--secondary-color);
+    grid-column: 1 / 2;
+  }
+
+  .data-grid .income-amount {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid var(--secondary-color);
+    grid-column: 2 / 3;
+  }
+  
+  .data-grid .income-period-total {
+    margin: 0;
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid var(--secondary-color);
+    grid-column: 1 / 2;
+    text-align: right;
+    font-weight: bold;
+  }
   .question {
     font-size: 2.5rem;
     margin-bottom: 2rem;;
@@ -306,6 +371,10 @@ input[attribute = "value"] {display: none;}
 
   h2 {
     margin: 0.75rem 0;
+  }
+
+  h3 {
+    margin: 0.25rem 0;
   }
 
   p, li {
