@@ -223,6 +223,7 @@
     padding: 0.25rem;
     border: 1px solid var(--secondary-color);
     grid-column: 2 / 3;
+    text-align: right;
   }
   
   .data-grid .income-period-total {
