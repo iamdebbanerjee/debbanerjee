@@ -87,7 +87,7 @@ let julyHRA = 0;
 let januaryHRA = 0;
 let julyTPA = 0;
 let januaryTPA = 0;
-let incrementMonth;
+let incrementMonth = "July";
 let marchToJuneGrossSalary = 0;
 let julyToDecGrossSalary = 0;
 let janToFebGrossSalary = 0;
@@ -155,16 +155,13 @@ function leastAmong3(val1, val2, val3) {
     return checkerValue;
 }
 
-// Calculate Yearly Gross Salary -- Function
+ // March to June Salary Incomes --Function
 
-function calculateGrossSalary() {
-    incrementMonth = localStorage.getItem('Increment Month');
-
-    // March to June Salary Incomes
+ function marToJunGrossSalary() {
     marchBasic = parseInt(localStorage.getItem('March Basic'));
-    marchDA = (parseInt(localStorage.getItem('DA'))) * marchBasic / 100;
-    marchHRA = (parseInt(localStorage.getItem('HRA'))) * marchBasic / 100;
-    marchTPA = (parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA'))) / 100 + (parseInt(localStorage.getItem('TPA')));
+    marchDA = ((parseInt(localStorage.getItem('DA'))) * marchBasic) / 100;
+    marchHRA = ((parseInt(localStorage.getItem('HRA'))) * marchBasic) / 100;
+    marchTPA = ((parseInt(localStorage.getItem('TPA'))) * (parseInt(localStorage.getItem('DA'))) / 100) + (parseInt(localStorage.getItem('TPA')));
     marchToJuneGrossSalary = (marchBasic + marchDA + marchHRA + marchTPA) * 4;
 
 
@@ -174,9 +171,12 @@ function calculateGrossSalary() {
     localStorage.setItem('March TPA', JSON.stringify(marchTPA));
     localStorage.setItem('March to June Gross Salary', JSON.stringify(marchToJuneGrossSalary));
 
+}
 
-    // July to February Salary Incomes
-    if (incrementMonth === "July") {
+// July to February Salary Incomes --Function
+
+function julToFebGrossSalary(x) {
+    if (x === "July") {
         julyBasic = parseInt(localStorage.getItem('Next Basic'));
         januaryBasic = julyBasic;
         julyDA = (julyBasic * (parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA')))) / 100;
@@ -189,7 +189,7 @@ function calculateGrossSalary() {
         janToFebGrossSalary = (januaryBasic + januaryDA + januaryHRA + januaryTPA) * 2;
         yearlyGrossSalary = marchToJuneGrossSalary + julyToDecGrossSalary + janToFebGrossSalary;
 
-    } else {
+    } else if (x === "January") {
         julyBasic = marchBasic;
         januaryBasic = parseInt(localStorage.getItem('Next Basic'));
         julyDA = julyBasic * ((parseInt(localStorage.getItem('DA')) + parseInt(localStorage.getItem('Next DA'))) / 100);
@@ -215,6 +215,14 @@ function calculateGrossSalary() {
     localStorage.setItem('January TPA', JSON.stringify(januaryTPA));
     localStorage.setItem('January to February Gross Salary', JSON.stringify(janToFebGrossSalary));
     localStorage.setItem("Yearly Gross Salary", yearlyGrossSalary);
+}
+
+// Calculate Yearly Gross Salary -- Function
+
+function calculateGrossSalary() {
+    incrementMonth = JSON.parse(localStorage.getItem('Increment Month'));
+    marToJunGrossSalary();
+    julToFebGrossSalary(incrementMonth);
 }
 
 // Calculate HRA Exemption -- Function
