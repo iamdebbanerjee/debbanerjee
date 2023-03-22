@@ -348,7 +348,7 @@ function calcMediclaimPremium() {
 
 function taxCalculation() {
     // Yearly Total Income Calculation
-    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
+    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Employer NPS Contribution')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
     let incomeFromHouseProperty = parseInt(localStorage.getItem('House Property Income'));
     let incomeFromBusinessProfession = parseInt(localStorage.getItem('Business Profession Income'));
     let incomeFromCapitalGains = parseInt(localStorage.getItem('STCG')) + parseInt(localStorage.getItem('LTCG'));
