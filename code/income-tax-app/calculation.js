@@ -6,8 +6,6 @@
 /* User Input Variables*/
 
 // Action Buttons
-// const calculateBtn = document.querySelector('.calculate');
-
 const saveSalaryBtn = document.getElementById('save-salary');
 const saveHousePropertyIncomeBtn = document.getElementById('save-house-property-income');
 const saveBusinessIncomeBtn = document.getElementById('save-business-income');
@@ -107,6 +105,7 @@ let taxFreeCEA;
 let taxableCEA;
 let taxFreeArrear;
 let taxableArrear;
+let totalCapitalGainIncome = 0;
 let homeLoanInterestTaxFreeLimit = 200000;
 let max80cLimit = 150000;
 const newRegimeTaxSlab1 = 300000;
@@ -136,6 +135,181 @@ let surchargeRate3 = 1.25;
 let surchargeRate4 = 1.37;
 let oldEffectiveSurchargeRate;
 let newEffectiveSurchargeRate;
+
+
+
+/* Button events */
+
+// Save Salary Button
+saveSalaryBtn.addEventListener('click', () => {
+    userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
+    localStorage.setItem('March Basic', userBasic.value);
+    localStorage.setItem('DA', userDA.value);
+    localStorage.setItem('HRA', userHRA.value);
+    localStorage.setItem('TPA', userTPA.value);
+    localStorage.setItem('Increment Month', JSON.stringify(userIncrementMonth.value));
+    localStorage.setItem('Next Basic', nextBasic.value);
+    localStorage.setItem('Next DA', nextDA.value);
+    localStorage.setItem('Bonus', userBonus.value);
+    localStorage.setItem('CEA', userCEA.value);
+    localStorage.setItem('Number of Children', userNumberOfChildren.value)
+    localStorage.setItem('Arrears', userArrears.value);
+    localStorage.setItem('LTC', userLTC.value);
+    localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
+    localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
+
+    calculateCeaArrear(parseInt(localStorage.getItem('CEA')), parseInt(localStorage.getItem('Number of Children')), parseInt(localStorage.getItem('Arrears')));
+}
+);
+
+// Save House Property Income Button
+saveHousePropertyIncomeBtn.addEventListener('click', () => {
+    userIncomeHouseProperty = document.getElementById('income-house-property');
+    localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
+}
+);
+
+// Save Business & Profession Income
+saveBusinessIncomeBtn.addEventListener('click', () => {
+    userIncomeBusinessProfession = document.getElementById('income-business-profession');
+    localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
+}
+);
+
+// Save Capital Gains Income Button
+saveCapitalGainsIncomeBtn.addEventListener('click', () => {
+    userSTCG = document.getElementById('stcg');
+    userLTCG = document.getElementById('ltcg');
+    localStorage.setItem('STCG', userSTCG.value);
+    localStorage.setItem('LTCG', userLTCG.value);
+}
+);
+
+// Save Other Sources Income Button
+saveOtherSourcesIncomeBtn.addEventListener('click', () => {
+    userIncomeOtherSources = document.getElementById('income-other-sources');
+    localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
+}
+);
+
+//  Calculate Gross Salary
+calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
+
+// Save Monthly Rent Paid & Calculate HRA Exemption Amount
+
+saveMonthlyRentPaidBtn.addEventListener('click', () => {
+    // Get HRA related user inputs and store them to Local STorage
+    userHraCityType = (document.querySelector('input[name="hra-city-type"]:checked')).value;
+    userRentReceipt = document.getElementById('rent-receipt').value;
+    localStorage.setItem('Rent City Type', userHraCityType);
+    localStorage.setItem('Monthly Rent Paid', userRentReceipt);
+
+    // Call HRA calculation function
+
+    calcHraExemption();
+});
+
+
+// Save Standard Deduction
+saveStandardDeductionBtn.addEventListener('click', () => {
+    localStorage.setItem('Standard Deduction', userStandardDeduction.value);
+}
+);
+
+// Save Professional Tax
+savePTaxBtn.addEventListener('click', () => {
+    userProfessionalTax = document.getElementById('monthly-p-tax');
+    localStorage.setItem('Yearly Professional Tax', userProfessionalTax.value * 12);
+}
+);
+
+// PF Type setting along with div#gpf scroll behaviour
+savePFTypeBtn.addEventListener('click', () => {
+    userPFType = document.querySelector('input[name="pf-type"]:checked').value;
+    localStorage.setItem('User PF Type', userPFType);
+});
+
+// Save GPF contribution
+saveGPFContributionBtn.addEventListener('click', () => {
+    userGPF = document.getElementById('gpf-investment').value;
+    yearlyGPFSavings = userGPF * 12;
+
+
+    localStorage.setItem('Yearly GPF Savings', yearlyGPFSavings);
+});
+
+// Save Home Loan Principal and Interest
+saveHBAPrincipalBtn.addEventListener('click', () => {
+    userYearlyHBAPrincipal = document.getElementById('hba-principal').value;
+    localStorage.setItem('Yearly HBA Principal', userYearlyHBAPrincipal);
+});
+
+saveHBAInterestBtn.addEventListener('click', () => {
+    userYearlyHBAInterest = document.getElementById('hba-interest').value;
+    localStorage.setItem('Yearly HBA Interest', userYearlyHBAInterest);
+});
+
+// Save LIC, PPF, ELSS, Other Schemes under 80C
+
+save80cBtn.addEventListener('click', () => {
+    userLifeInsurance = document.getElementById('life-insurance').value;
+    userPPF = document.getElementById('ppf-investment').value;
+    userELSS = document.getElementById('elss-investment').value;
+    userOtherTTS = document.getElementById('tax-free-schemes-total').value;
+
+    localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance);
+    localStorage.setItem('Yearly PPF Investment', userPPF);
+    localStorage.setItem('Yearly ELSS Investment', userELSS);
+    localStorage.setItem('Yearly Other TAX Savings', userOtherTTS);
+});
+
+
+// Save 80D Medical Insurance Premium
+saveMedicalPremiumBtn.addEventListener('click', () => {
+    userMediclaim = document.getElementById('medical-insurance').value;
+    userTaxFreeMediclaimPremium = Math.min(userMediclaim, 25000)
+    localStorage.setItem('Yearly Medical Premium', userMediclaim);
+    localStorage.setItem('Yearly Tax Free Medical Premium', userTaxFreeMediclaimPremium);
+});
+
+saveParentsMedicalPremiumBtn.addEventListener('click', () => {
+    userParentsMediclaim = document.getElementById('medical-insurance-parents').value;
+    userParentsSeniorCitizen = document.querySelector('input[name="parent-age"]:checked').value;
+    localStorage.setItem('Yearly Parents Medical Premium', userParentsMediclaim);
+    if (userParentsSeniorCitizen === "Yes") {
+        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 50000);
+    } else {
+        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 25000);
+    }
+    localStorage.setItem('Tax Free Parents Medical Premium', taxFreeParentsMediclaim);
+});
+// Save NPS Contribution
+saveVolutaryNPSBtn.addEventListener('click', () => {
+    userVolNPSContribution = document.getElementById('nps-80ccd-1b').value;
+    localStorage.setItem('NPS 80 CCD 1B', userVolNPSContribution);
+    calcNPSContribution();
+});
+
+// Savings account interest
+saveSavingsInterestBtn.addEventListener('click', () => {
+    userSavingsInterest = document.getElementById('savings-interest').value;
+    if (userSavingsInterest <= 10000) {
+        taxFreeSavingsInterest = userSavingsInterest;
+        taxableSavingsInterest = 0;
+    } else {
+        taxFreeSavingsInterest = 10000;
+        taxableSavingsInterest = userSavingsInterest - 10000;
+    }
+    localStorage.setItem('Yearly Savings Interest', userSavingsInterest);
+    localStorage.setItem('Tax Free Savings Interest', taxFreeSavingsInterest);
+    localStorage.setItem('Taxable Savings Interest', taxableSavingsInterest);
+});
+
+// Final Submit Actions
+finalSubmitBtn.addEventListener('click', taxCalculation);
+
+
+
 
 
 /* Calculation Functions */
@@ -322,6 +496,15 @@ function calculateCeaArrear(x, y, z) {
 
 // Calculate LTCG and STCG
 
+function calcCapitalGain() {
+    let ltcg = parseInt(localStorage.getItem('LTCG'));
+    let stcg = parseInt(localStorage.getItem('STCG'));
+    
+    totalCapitalGainIncome = ltcg + stcg;
+
+    return totalCapitalGainIncome;
+}
+
 
 
 // Calculate Tax Free Home Loan Interest amount --Function
@@ -348,14 +531,17 @@ function calcMediclaimPremium() {
 
 function taxCalculation() {
     // Yearly Total Income Calculation
-    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Employer NPS Contribution')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('Taxable CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
+    let incomeFromSalary = parseInt(localStorage.getItem('Yearly Gross Salary')) + parseInt(localStorage.getItem('Employer NPS Contribution')) + parseInt(localStorage.getItem('Bonus')) + parseInt(localStorage.getItem('CEA')) + parseInt(localStorage.getItem('Arrears')) + parseInt(localStorage.getItem('LTC')) + parseInt(localStorage.getItem('Leave Encashment')) + parseInt(localStorage.getItem('Other Pay'));
+    localStorage.setItem('Income From Salary', incomeFromSalary);
     let incomeFromHouseProperty = parseInt(localStorage.getItem('House Property Income'));
     let incomeFromBusinessProfession = parseInt(localStorage.getItem('Business Profession Income'));
-    let incomeFromCapitalGains = parseInt(localStorage.getItem('STCG')) + parseInt(localStorage.getItem('LTCG'));
+    let incomeFromCapitalGains = calcCapitalGain();
     let incomeFromOtherSources = parseInt(localStorage.getItem('Other Source Income')) + parseInt(localStorage.getItem('Taxable Savings Interest'));
 
     let yearlyTotalIncome = incomeFromSalary + incomeFromHouseProperty + incomeFromBusinessProfession + incomeFromCapitalGains + incomeFromOtherSources;
+    localStorage.setItem('Capital Gain Income', incomeFromCapitalGains);
     localStorage.setItem('Yearly Total Income', yearlyTotalIncome);
+
 
 
 
@@ -372,7 +558,6 @@ function taxCalculation() {
     let total80cDeduction = Math.min(
         (
             parseInt(localStorage.getItem('Yearly HBA Principal')) +
-            parseInt(localStorage.getItem('Yearly GPF Savings')) +
             parseInt(localStorage.getItem('Yearly GPF Savings')) +
             parseInt(localStorage.getItem('Yearly Life Insurance Premium')) +
             parseInt(localStorage.getItem('Yearly PPF Investment')) +
@@ -484,179 +669,3 @@ function taxCalculation() {
     }
 }
 
-
-
-
-
-
-
-
-/* Button events */
-
-// Save Salary Button
-saveSalaryBtn.addEventListener('click', () => {
-    userIncrementMonth = document.querySelector('input[name="increment-month"]:checked');
-    localStorage.setItem('March Basic', userBasic.value);
-    localStorage.setItem('DA', userDA.value);
-    localStorage.setItem('HRA', userHRA.value);
-    localStorage.setItem('TPA', userTPA.value);
-    localStorage.setItem('Increment Month', JSON.stringify(userIncrementMonth.value));
-    localStorage.setItem('Next Basic', nextBasic.value);
-    localStorage.setItem('Next DA', nextDA.value);
-    localStorage.setItem('Bonus', userBonus.value);
-    localStorage.setItem('CEA', userCEA.value);
-    localStorage.setItem('Number of Children', userNumberOfChildren.value)
-    localStorage.setItem('Arrears', userArrears.value);
-    localStorage.setItem('LTC', userLTC.value);
-    localStorage.setItem('Leave Encashment', userLeaveEncashment.value);
-    localStorage.setItem('Other Pay', userOtherAdditionalPay.value);
-
-    calculateCeaArrear(parseInt(localStorage.getItem('CEA')), parseInt(localStorage.getItem('Number of Children')), parseInt(localStorage.getItem('Arrears')));
-}
-);
-
-// Save House Property Income Button
-saveHousePropertyIncomeBtn.addEventListener('click', () => {
-    userIncomeHouseProperty = document.getElementById('income-house-property');
-    localStorage.setItem('House Property Income', userIncomeHouseProperty.value);
-}
-);
-
-// Save Business & Profession Income
-saveBusinessIncomeBtn.addEventListener('click', () => {
-    userIncomeBusinessProfession = document.getElementById('income-business-profession');
-    localStorage.setItem('Business Profession Income', userIncomeBusinessProfession.value);
-}
-);
-
-// Save Capital Gains Income Button
-saveCapitalGainsIncomeBtn.addEventListener('click', () => {
-    userSTCG = document.getElementById('stcg');
-    userLTCG = document.getElementById('ltcg');
-    localStorage.setItem('STCG', userSTCG.value);
-    localStorage.setItem('LTCG', userLTCG.value);
-}
-);
-
-// Save Other Sources Income Button
-saveOtherSourcesIncomeBtn.addEventListener('click', () => {
-    userIncomeOtherSources = document.getElementById('income-other-sources');
-    localStorage.setItem('Other Source Income', userIncomeOtherSources.value);
-}
-);
-
-//  Calculate Gross Salary
-calcGrossSalaryBtn.addEventListener('click', calculateGrossSalary);
-
-// Save Monthly Rent Paid & Calculate HRA Exemption Amount
-
-saveMonthlyRentPaidBtn.addEventListener('click', () => {
-    // Get HRA related user inputs and store them to Local STorage
-    userHraCityType = (document.querySelector('input[name="hra-city-type"]:checked')).value;
-    userRentReceipt = document.getElementById('rent-receipt').value;
-    localStorage.setItem('Rent City Type', userHraCityType);
-    localStorage.setItem('Monthly Rent Paid', userRentReceipt);
-
-    // Call HRA calculation function
-
-    calcHraExemption();
-});
-
-
-// Save Standard Deduction
-saveStandardDeductionBtn.addEventListener('click', () => {
-    localStorage.setItem('Standard Deduction', userStandardDeduction.value);
-}
-);
-
-// Save Professional Tax
-savePTaxBtn.addEventListener('click', () => {
-    userProfessionalTax = document.getElementById('monthly-p-tax');
-    localStorage.setItem('Yearly Professional Tax', userProfessionalTax.value * 12);
-}
-);
-
-// PF Type setting along with div#gpf scroll behaviour
-savePFTypeBtn.addEventListener('click', () => {
-    userPFType = document.querySelector('input[name="pf-type"]:checked').value;
-    localStorage.setItem('User PF Type', userPFType);
-});
-
-// Save GPF contribution
-saveGPFContributionBtn.addEventListener('click', () => {
-    userGPF = document.getElementById('gpf-investment').value;
-    yearlyGPFSavings = userGPF * 12;
-
-
-    localStorage.setItem('Yearly GPF Savings', yearlyGPFSavings);
-});
-
-// Save Home Loan Principal and Interest
-saveHBAPrincipalBtn.addEventListener('click', () => {
-    userYearlyHBAPrincipal = document.getElementById('hba-principal').value;
-    localStorage.setItem('Yearly HBA Principal', userYearlyHBAPrincipal);
-});
-
-saveHBAInterestBtn.addEventListener('click', () => {
-    userYearlyHBAInterest = document.getElementById('hba-interest').value;
-    localStorage.setItem('Yearly HBA Interest', userYearlyHBAInterest);
-});
-
-// Save LIC, PPF, ELSS, Other Schemes under 80C
-
-save80cBtn.addEventListener('click', () => {
-    userLifeInsurance = document.getElementById('life-insurance').value;
-    userPPF = document.getElementById('ppf-investment').value;
-    userELSS = document.getElementById('elss-investment').value;
-    userOtherTTS = document.getElementById('tax-free-schemes-total').value;
-
-    localStorage.setItem('Yearly Life Insurance Premium', userLifeInsurance);
-    localStorage.setItem('Yearly PPF Investment', userPPF);
-    localStorage.setItem('Yearly ELSS Investment', userELSS);
-    localStorage.setItem('Yearly Other TAX Savings', userOtherTTS);
-});
-
-
-// Save 80D Medical Insurance Premium
-saveMedicalPremiumBtn.addEventListener('click', () => {
-    userMediclaim = document.getElementById('medical-insurance').value;
-    userTaxFreeMediclaimPremium = Math.min(userMediclaim, 25000)
-    localStorage.setItem('Yearly Medical Premium', userMediclaim);
-    localStorage.setItem('Yearly Tax Free Medical Premium', userTaxFreeMediclaimPremium);
-});
-
-saveParentsMedicalPremiumBtn.addEventListener('click', () => {
-    userParentsMediclaim = document.getElementById('medical-insurance-parents').value;
-    userParentsSeniorCitizen = document.querySelector('input[name="parent-age"]:checked').value;
-    localStorage.setItem('Yearly Parents Medical Premium', userParentsMediclaim);
-    if (userParentsSeniorCitizen === "Yes") {
-        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 50000);
-    } else {
-        taxFreeParentsMediclaim = Math.min(userParentsMediclaim, 25000);
-    }
-    localStorage.setItem('Tax Free Parents Medical Premium', taxFreeParentsMediclaim);
-});
-// Save NPS Contribution
-saveVolutaryNPSBtn.addEventListener('click', () => {
-    userVolNPSContribution = document.getElementById('nps-80ccd-1b').value;
-    localStorage.setItem('NPS 80 CCD 1B', userVolNPSContribution);
-    calcNPSContribution();
-});
-
-// Savings account interest
-saveSavingsInterestBtn.addEventListener('click', () => {
-    userSavingsInterest = document.getElementById('savings-interest').value;
-    if (userSavingsInterest <= 10000) {
-        taxFreeSavingsInterest = userSavingsInterest;
-        taxableSavingsInterest = 0;
-    } else {
-        taxFreeSavingsInterest = 10000;
-        taxableSavingsInterest = userSavingsInterest - 10000;
-    }
-    localStorage.setItem('Yearly Savings Interest', userSavingsInterest);
-    localStorage.setItem('Tax Free Savings Interest', taxFreeSavingsInterest);
-    localStorage.setItem('Taxable Savings Interest', taxableSavingsInterest);
-});
-
-// Final Submit Actions
-finalSubmitBtn.addEventListener('click', taxCalculation);
