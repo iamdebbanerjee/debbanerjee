@@ -24,6 +24,14 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanJanTpa = document.querySelector('#jan-tpa');
 	const spanJanFebTotal = document.querySelector('#jan-feb-total');
 
+	const spanNpsGovtContrib = document.querySelector('#nps-govt-contrib');
+	const spanBonus = document.querySelector('#bonus');
+	const spanCea = document.querySelector('#cea');
+	const spanArrears = document.querySelector('#arrears');
+	const spanLtc = document.querySelector('#ltc');
+	const spanLeaveEncashment = document.querySelector('#leave-encashment');
+	const spanOtherPay = document.querySelector('#other-pay');
+
 	// Getting values from Local Storage
 	let taxUnderOldRegime = localStorage.getItem('Total Tax under Old Tax Regime');
 	let taxUnderNewRegime = localStorage.getItem('Total Tax under New Tax Regime');
@@ -45,6 +53,14 @@ window.addEventListener('DOMContentLoaded', () =>{
 	let janHra = localStorage.getItem('January HRA');
 	let janTpa = localStorage.getItem('January TPA');
 	let janFebTotal = localStorage.getItem('January to February Gross Salary');
+	let npsGovtContrib = localStorage.getItem('Employer NPS Contribution');
+	let bonus = localStorage.getItem('Bonus');
+	let cea = localStorage.getItem('CEA');
+	let arrears = localStorage.getItem('Arrears');
+	let ltc = localStorage.getItem('LTC');
+	let leaveEncashment = localStorage.getItem('Leave Encashment');
+	let otherPay = localStorage.getItem('Other Pay');
+
 
 	// Calling display function
 	displayTaxData();
@@ -74,6 +90,14 @@ window.addEventListener('DOMContentLoaded', () =>{
 		spanJanHra.appendChild(document.createTextNode(janHra));
 		spanJanTpa.appendChild(document.createTextNode(janTpa));
 		spanJanFebTotal.appendChild(document.createTextNode(janFebTotal));
+
+		spanNpsGovtContrib.appendChild(document.createTextNode(npsGovtContrib));
+		spanBonus.appendChild(document.createTextNode(bonus));
+		spanCea.appendChild(document.createTextNode(cea));
+		spanArrears.appendChild(document.createTextNode(arrears));
+		spanLtc.appendChild(document.createTextNode(ltc));
+		spanLeaveEncashment.appendChild(document.createTextNode(leaveEncashment));
+		spanOtherPay.appendChild(document.createTextNode(otherPay));
 	}
 });
 

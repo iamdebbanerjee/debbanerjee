@@ -283,8 +283,8 @@ function calcNPSContribution() {
         userYearlyNPSContribution = 0;
         empYearlyNPSContribution = 0;
     }
-    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution.toFixed(2));
-    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed(2));
+    localStorage.setItem('Employee NPS Contribution', userYearlyNPSContribution.toFixed());
+    localStorage.setItem('Employer NPS Contribution', empYearlyNPSContribution.toFixed());
 }
 
 // Calculate CEA, Arrear-- Function
