@@ -32,6 +32,14 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanLeaveEncashment = document.querySelector('#leave-encashment');
 	const spanOtherPay = document.querySelector('#other-pay');
 
+	const spanIncomeFromSalary	= document.querySelector('#income-from-salary');
+	const spanIncomeFromHouseProperty	= document.querySelector('#income-house-property');
+	const spanIncomeFromBusinessProfession	= document.querySelector('#income-business-profession');
+	const spanIncomeFromCapitalGains = document.querySelector('#income-capital-gains');
+	const spanIncomeFromOtherSources = document.querySelector('#income-other-sources');
+
+	const spanTotalAnnualIncome = document.querySelector('#total-annual-income');
+	
 	// Getting values from Local Storage
 	let taxUnderOldRegime = localStorage.getItem('Total Tax under Old Tax Regime');
 	let taxUnderNewRegime = localStorage.getItem('Total Tax under New Tax Regime');
@@ -61,6 +69,13 @@ window.addEventListener('DOMContentLoaded', () =>{
 	let leaveEncashment = localStorage.getItem('Leave Encashment');
 	let otherPay = localStorage.getItem('Other Pay');
 
+	let incomeFromSalary = localStorage.getItem('Income From Salary');
+	let incomeFromHouseProperty = localStorage.getItem('House Property Income');
+	let incomeFromBusinessProfession = localStorage.getItem('Business Profession Income');
+	let incomeFromCapitalGains = localStorage.getItem('Capital Gain Income');
+	let incomeFromOtherSources = localStorage.getItem('Other Source Income');
+
+	let totalAnnualIncome = localStorage.getItem('Yearly Total Income');
 
 	// Calling display function
 	displayTaxData();
@@ -98,6 +113,13 @@ window.addEventListener('DOMContentLoaded', () =>{
 		spanLtc.appendChild(document.createTextNode(ltc));
 		spanLeaveEncashment.appendChild(document.createTextNode(leaveEncashment));
 		spanOtherPay.appendChild(document.createTextNode(otherPay));
+		spanIncomeFromSalary.appendChild(document.createTextNode(incomeFromSalary));
+		spanIncomeFromHouseProperty.appendChild(document.createTextNode(incomeFromHouseProperty));
+		spanIncomeFromBusinessProfession.appendChild(document.createTextNode(incomeFromBusinessProfession));
+		spanIncomeFromCapitalGains.appendChild(document.createTextNode(incomeFromCapitalGains));
+		spanIncomeFromOtherSources.appendChild(document.createTextNode(incomeFromOtherSources));
+
+		spanTotalAnnualIncome.appendChild(document.createTextNode(totalAnnualIncome));
 	}
 });
 
