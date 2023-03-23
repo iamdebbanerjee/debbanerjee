@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>404 — Page not found</title>
+    <title>404 — Image not found: /2023/01/js-stencil.jpg</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -14,7 +14,7 @@
 
     <meta http-equiv="cleartype" content="on">
 
-    <link rel="stylesheet" href="./../../../../../public/ghost.css?v=67ba7f3ee3"/>
+    <link rel="stylesheet" href="/public/ghost.css?v=67ba7f3ee3"/>
 
   </head>
   <body>
@@ -26,8 +26,8 @@
                   <section class="error-details">
                     <section class="error-message">
                       <h1 class="error-code">404</h1>
-                      <h2 class="error-description">Page not found</h2>
-                      <a class="error-link" href="https://debbanerjee.com/blog">Go to the front page →</a>
+                      <h2 class="error-description">Image not found: /2023/01/js-stencil.jpg</h2>
+                      <a class="error-link" href="">Go to the front page →</a>
                     </section>
                   </section>
                 </section>
