@@ -562,7 +562,8 @@ function taxCalculation() {
             parseInt(localStorage.getItem('Yearly Life Insurance Premium')) +
             parseInt(localStorage.getItem('Yearly PPF Investment')) +
             parseInt(localStorage.getItem('Yearly ELSS Investment')) +
-            parseInt(localStorage.getItem('Yearly Other TAX Savings'))
+            parseInt(localStorage.getItem('Yearly Other TAX Savings')) + 
+            parseInt(localStorage.getItem('Employee NPS Contribution'))
         ),
         max80cLimit);
     let taxFreeMedicalInsurancePremium = calcMediclaimPremium();
