@@ -576,6 +576,7 @@ function taxCalculation() {
     let yearlyTotalDeductionNewRegime = standardDeduction + profTaxDeduction + employerNPSDeduction;
 
     localStorage.setItem('Yearly Total Deduction Old Regime', yearlyTotalDeductionOldRegime);
+    localStorage.setItem('Yearly Total Deduction New Regime', yearlyTotalDeductionNewRegime);
 
     // Tax Calculation Steps
     oldAnnualTaxableIncome = yearlyTotalIncome - yearlyTotalDeductionOldRegime;

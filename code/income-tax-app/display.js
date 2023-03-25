@@ -37,8 +37,31 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanIncomeFromBusinessProfession	= document.querySelector('#income-business-profession');
 	const spanIncomeFromCapitalGains = document.querySelector('#income-capital-gains');
 	const spanIncomeFromOtherSources = document.querySelector('#income-other-sources');
-
 	const spanTotalAnnualIncome = document.querySelector('#total-annual-income');
+
+	const spanStandardDeduction = document.querySelector('#standard-deduction');
+	const spanProfessionalTax = document.querySelector('#professional-tax');
+	const spanTaxFreeCEA = document.querySelector('#tax-free-cea');
+	const spanLTC = document.querySelector('#ltc');
+	const spanHomeLoanInterest = document.querySelector('#home-loan-interest');
+	const spanHRATaxExemption = document.querySelector('#tax-free-hra');
+	const spanTaxFreeArrear = document.querySelector('#tax-exempted-arrear');
+	const spanNPSEmployeeContribution = document.querySelector('#nps-employee-contribution');
+	const spanHomeLoanPrincipal = document.querySelector('#home-loan-principal');
+	const spanYearlyGPFContribution = document.querySelector('#yearly-gpf-contribution');
+	const spanLifeInsurancePremium = document.querySelector('#yearly-lic-premium');
+	const spanPPFInvestment = document.querySelector('#yearly-ppf-investment');
+	const spanELSSInvestment = document.querySelector('#yearly-elss-investment');
+	const spanOtherTaxSavingInvestment = document.querySelector('#other-tax-saving-investment');
+	const spanTotal80CDecution = document.querySelector('#total-80c-deduction');
+	const spanNPSVoluntaryContribution = document.querySelector('#voluntary-nps-contribution');
+	const spanMediclaimSelf = document.querySelector('#mediclaim-self');
+	const spanMediclaimparents = document.querySelector('#mediclaim-parents');
+	const spanSavingsInterest = document.querySelector('#Savings-interest');
+
+
+	const spanNewRegimeTotalDeduction = document.querySelector('#total-deduction-new-regime');
+	const spanOldRegimeTotalDeduction = document.querySelector('#total-deduction-old-regime');
 	
 	// Getting values from Local Storage
 	let taxUnderOldRegime = localStorage.getItem('Total Tax under Old Tax Regime');
@@ -74,8 +97,9 @@ window.addEventListener('DOMContentLoaded', () =>{
 	let incomeFromBusinessProfession = localStorage.getItem('Business Profession Income');
 	let incomeFromCapitalGains = localStorage.getItem('Capital Gain Income');
 	let incomeFromOtherSources = localStorage.getItem('Other Source Income');
-
 	let totalAnnualIncome = localStorage.getItem('Yearly Total Income');
+
+	let 
 
 	// Calling display function
 	displayTaxData();
