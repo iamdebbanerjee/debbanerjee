@@ -28,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanBonus = document.querySelector('#bonus');
 	const spanCea = document.querySelector('#cea');
 	const spanArrears = document.querySelector('#arrears');
-	const spanLtc = document.querySelector('#ltc');
+	const spanLtcReceived = document.querySelector('#ltc-received');
 	const spanLeaveEncashment = document.querySelector('#leave-encashment');
 	const spanOtherPay = document.querySelector('#other-pay');
 
@@ -39,10 +39,15 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanIncomeFromOtherSources = document.querySelector('#income-other-sources');
 	const spanTotalAnnualIncome = document.querySelector('#total-annual-income');
 
-	const spanStandardDeduction = document.querySelector('#standard-deduction');
-	const spanProfessionalTax = document.querySelector('#professional-tax');
+	const spanStandardDeductionOld = document.querySelector('#standard-deduction-old');
+	const spanProfessionalTaxOld = document.querySelector('#professional-tax-old');
+	const spanNPSEmployerContributionOld = document.querySelector('#nps-employer-contribution-old');
+	const spanStandardDeductionNew = document.querySelector('#standard-deduction-new');
+	const spanProfessionalTaxNew = document.querySelector('#professional-tax-new');
+	const spanNPSEmployerContributionNew = document.querySelector('#nps-employer-contribution-new');
+
 	const spanTaxFreeCEA = document.querySelector('#tax-free-cea');
-	const spanLTC = document.querySelector('#ltc');
+	const spanLTCExemption = document.querySelector('#ltc-exemption');
 	const spanHomeLoanInterest = document.querySelector('#home-loan-interest');
 	const spanHRATaxExemption = document.querySelector('#tax-free-hra');
 	const spanTaxFreeArrear = document.querySelector('#tax-exempted-arrear');
@@ -53,16 +58,25 @@ window.addEventListener('DOMContentLoaded', () =>{
 	const spanPPFInvestment = document.querySelector('#yearly-ppf-investment');
 	const spanELSSInvestment = document.querySelector('#yearly-elss-investment');
 	const spanOtherTaxSavingInvestment = document.querySelector('#other-tax-saving-investment');
-	const spanTotal80CDecution = document.querySelector('#total-80c-deduction');
+	const spanTotal80CDeduction = document.querySelector('#total-80c-deduction');
 	const spanNPSVoluntaryContribution = document.querySelector('#voluntary-nps-contribution');
 	const spanMediclaimSelf = document.querySelector('#mediclaim-self');
-	const spanMediclaimparents = document.querySelector('#mediclaim-parents');
-	const spanSavingsInterest = document.querySelector('#Savings-interest');
+	const spanMediclaimParents = document.querySelector('#mediclaim-parents');
+	const spanSavingsInterest = document.querySelector('#savings-interest');
 
 
 	const spanNewRegimeTotalDeduction = document.querySelector('#total-deduction-new-regime');
 	const spanOldRegimeTotalDeduction = document.querySelector('#total-deduction-old-regime');
-	
+
+	const spanTaxableIncomeNewRegime = document.querySelector('#taxable-income-new-regime');
+	const spanTaxableIncomeOldRegime = document.querySelector('#taxable-income-old-regime');
+
+	const spanTaxNewRegime2 = document.querySelector('#tax-new-regime-2');
+	const spanTaxOldRegime2 = document.querySelector('#tax-old-regime-2');
+
+
+
+
 	// Getting values from Local Storage
 	let taxUnderOldRegime = localStorage.getItem('Total Tax under Old Tax Regime');
 	let taxUnderNewRegime = localStorage.getItem('Total Tax under New Tax Regime');
@@ -99,7 +113,38 @@ window.addEventListener('DOMContentLoaded', () =>{
 	let incomeFromOtherSources = localStorage.getItem('Other Source Income');
 	let totalAnnualIncome = localStorage.getItem('Yearly Total Income');
 
-	let 
+	let standardDeductionOld = localStorage.getItem('Standard Deduction');
+	let professionalTaxOld = localStorage.getItem('Yearly Professional Tax');
+	let standardDeductionNew = localStorage.getItem('Standard Deduction');
+	let professionalTaxNew = localStorage.getItem('Yearly Professional Tax');
+	let npsEmployerContributionOld = localStorage.getItem('Employer NPS Contribution');
+	let npsEmployerContributionNew = localStorage.getItem('Employer NPS Contribution');
+
+	let taxFreeCEA = localStorage.getItem('Tax Free CEA');
+	let ltcExemption = localStorage.getItem('LTC');
+	let homeLoanInterest = localStorage.getItem('Yearly HBA Interest');
+	let hraTaxExemption = localStorage.getItem('Final HRA Exemption');
+	let taxFreeArrear = localStorage.getItem('Tax Free Arrear');
+	let npsEmployeeContribution = localStorage.getItem('Employee NPS Contribution');
+	let homeLoanPrincipal = localStorage.getItem('Yearly HBA Principal');
+	let yearlyGPFContribution = localStorage.getItem('Yearly GPF Savings');
+	let lifeInsurancePremium = localStorage.getItem('Yearly Life Insurance Premium');
+	let ppfInvestment = localStorage.getItem('Yearly PPF Investment');
+	let elssInvestment = localStorage.getItem('Yearly ELSS Investment');
+	let otherTaxSavingInvestment = localStorage.getItem('Yearly Other TAX Savings');
+	let total80cDeduction = localStorage.getItem('Yearly Total 80C Deduction');
+	let npsVoluntaryContribution = localStorage.getItem('NPS 80 CCD 1B');
+	let mediclaimSelf = localStorage.getItem('Yearly Tax Free Medical Premium');
+	let mediclaimParents = localStorage.getItem('Tax Free Parents Medical Premium');
+	let savingsInterest = localStorage.getItem('Tax Free Savings Interest');
+
+	let newRegimeTotalDeduction = localStorage.getItem('Yearly Total Deduction New Regime');
+	let oldRegimeTotalDeduction = localStorage.getItem('Yearly Total Deduction Old Regime');
+
+	let taxableIncomeNewRegime = localStorage.getItem('Yearly Taxable Income New Regime');
+	let taxableIncomeOldRegime = localStorage.getItem('Yearly Taxable Income Old Regime');
+
+
 
 	// Calling display function
 	displayTaxData();
@@ -134,7 +179,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 		spanBonus.appendChild(document.createTextNode(bonus));
 		spanCea.appendChild(document.createTextNode(cea));
 		spanArrears.appendChild(document.createTextNode(arrears));
-		spanLtc.appendChild(document.createTextNode(ltc));
+		spanLtcReceived.appendChild(document.createTextNode(ltc));
 		spanLeaveEncashment.appendChild(document.createTextNode(leaveEncashment));
 		spanOtherPay.appendChild(document.createTextNode(otherPay));
 		spanIncomeFromSalary.appendChild(document.createTextNode(incomeFromSalary));
@@ -142,8 +187,45 @@ window.addEventListener('DOMContentLoaded', () =>{
 		spanIncomeFromBusinessProfession.appendChild(document.createTextNode(incomeFromBusinessProfession));
 		spanIncomeFromCapitalGains.appendChild(document.createTextNode(incomeFromCapitalGains));
 		spanIncomeFromOtherSources.appendChild(document.createTextNode(incomeFromOtherSources));
-
 		spanTotalAnnualIncome.appendChild(document.createTextNode(totalAnnualIncome));
+
+		spanStandardDeductionOld.appendChild(document.createTextNode(standardDeductionOld));
+		spanProfessionalTaxOld.appendChild(document.createTextNode(professionalTaxOld));
+		spanNPSEmployerContributionOld.appendChild(document.createTextNode(npsEmployerContributionOld));
+		spanStandardDeductionNew.appendChild(document.createTextNode(standardDeductionNew));
+		spanProfessionalTaxNew.appendChild(document.createTextNode(professionalTaxNew));
+		spanNPSEmployerContributionNew.appendChild(document.createTextNode(npsEmployerContributionNew));
+
+
+
+
+		spanTaxFreeCEA.appendChild(document.createTextNode(taxFreeCEA));
+		spanLTCExemption.appendChild(document.createTextNode(ltcExemption));
+		spanHomeLoanInterest.appendChild(document.createTextNode(homeLoanInterest));
+		spanHRATaxExemption.appendChild(document.createTextNode(hraTaxExemption));
+		spanTaxFreeArrear.appendChild(document.createTextNode(taxFreeArrear));
+		spanNPSEmployeeContribution.appendChild(document.createTextNode(npsEmployeeContribution));
+		spanHomeLoanPrincipal.appendChild(document.createTextNode(homeLoanPrincipal));
+		spanYearlyGPFContribution.appendChild(document.createTextNode(yearlyGPFContribution));
+		spanLifeInsurancePremium.appendChild(document.createTextNode(lifeInsurancePremium));
+		spanPPFInvestment.appendChild(document.createTextNode(ppfInvestment));
+		spanELSSInvestment.appendChild(document.createTextNode(elssInvestment));
+		spanOtherTaxSavingInvestment.appendChild(document.createTextNode(otherTaxSavingInvestment));
+		spanTotal80CDeduction.appendChild(document.createTextNode(total80cDeduction));
+		spanNPSVoluntaryContribution.appendChild(document.createTextNode(npsVoluntaryContribution));
+		spanMediclaimSelf.appendChild(document.createTextNode(mediclaimSelf));
+		spanMediclaimParents.appendChild(document.createTextNode(mediclaimParents));
+		spanSavingsInterest.appendChild(document.createTextNode(savingsInterest));
+
+
+		spanNewRegimeTotalDeduction.appendChild(document.createTextNode(newRegimeTotalDeduction));
+		spanOldRegimeTotalDeduction.appendChild(document.createTextNode(oldRegimeTotalDeduction));
+
+		spanTaxableIncomeNewRegime.appendChild(document.createTextNode(taxableIncomeNewRegime));
+		spanTaxableIncomeOldRegime.appendChild(document.createTextNode(taxableIncomeOldRegime));
+
+		spanTaxNewRegime2.appendChild(document.createTextNode(taxUnderNewRegime));
+		spanTaxOldRegime2.appendChild(document.createTextNode(taxUnderOldRegime));
 	}
 });
 
