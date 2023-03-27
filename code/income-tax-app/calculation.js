@@ -205,7 +205,6 @@ saveMonthlyRentPaidBtn.addEventListener('click', () => {
     localStorage.setItem('Monthly Rent Paid', userRentReceipt);
 
     // Call HRA calculation function
-
     calcHraExemption();
 });
 
