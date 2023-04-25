@@ -29,3 +29,56 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
+
+// select UI elements
+
+const userImage = document.querySelector('#person-img'),
+      userName = document.querySelector('#author'),
+      userJob = document.querySelector('#job'),
+      userTestimonial = document.querySelector('#info');
+
+const prevBtn = document.querySelector('.prev-btn'),
+      nextBtn = document.querySelector('.next-btn');
+
+console.log(userName.innerText);
+
+// Logic
+
+let testimonialCounter = 0;
+
+window.addEventListener('DOMContentLoaded', function() {
+  let activeUser = reviews[testimonialCounter];
+  userImage.setAttribute('src', activeUser.img);
+  userName.innerText = activeUser.name;
+  userJob.innerText = activeUser.job;
+  userTestimonial.innerText = activeUser.text;
+});
+
+prevBtn.addEventListener('click', function(){
+  testimonialCounter--;
+  
+  if (testimonialCounter < 0) {
+    testimonialCounter = reviews.length -1;
+  }
+
+  let activeUser = reviews[testimonialCounter];
+  userImage.setAttribute('src', activeUser.img);
+  userName.innerText = activeUser.name;
+  userJob.innerText = activeUser.job;
+  userTestimonial.innerText = activeUser.text;
+});
+
+
+nextBtn.addEventListener('click', function(){
+  testimonialCounter++;
+  
+  if (testimonialCounter > (reviews.length - 1)) {
+    testimonialCounter = 0;
+  }
+
+  let activeUser = reviews[testimonialCounter];
+  userImage.setAttribute('src', activeUser.img);
+  userName.innerText = activeUser.name;
+  userJob.innerText = activeUser.job;
+  userTestimonial.innerText = activeUser.text;
+});
