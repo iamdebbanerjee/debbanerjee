@@ -46,39 +46,29 @@ console.log(userName.innerText);
 
 let testimonialCounter = 0;
 
-window.addEventListener('DOMContentLoaded', function() {
-  let activeUser = reviews[testimonialCounter];
-  userImage.setAttribute('src', activeUser.img);
-  userName.innerText = activeUser.name;
-  userJob.innerText = activeUser.job;
-  userTestimonial.innerText = activeUser.text;
-});
+window.addEventListener('DOMContentLoaded', displayTestimonial(testimonialCounter));
 
 prevBtn.addEventListener('click', function(){
-  testimonialCounter--;
-  
+  testimonialCounter--;  
   if (testimonialCounter < 0) {
     testimonialCounter = reviews.length -1;
   }
-
-  let activeUser = reviews[testimonialCounter];
-  userImage.setAttribute('src', activeUser.img);
-  userName.innerText = activeUser.name;
-  userJob.innerText = activeUser.job;
-  userTestimonial.innerText = activeUser.text;
+  displayTestimonial(testimonialCounter);
 });
 
 
 nextBtn.addEventListener('click', function(){
-  testimonialCounter++;
-  
+  testimonialCounter++;  
   if (testimonialCounter > (reviews.length - 1)) {
     testimonialCounter = 0;
   }
+  displayTestimonial(testimonialCounter);
+});
 
-  let activeUser = reviews[testimonialCounter];
+function displayTestimonial(counter) {
+  let activeUser = reviews[counter];
   userImage.setAttribute('src', activeUser.img);
   userName.innerText = activeUser.name;
   userJob.innerText = activeUser.job;
   userTestimonial.innerText = activeUser.text;
-});
+}
