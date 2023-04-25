@@ -5,7 +5,7 @@ const reviews = [
     name: 'susan smith',
     job: 'web developer',
     img: 'https://images2.imgbox.com/e0/57/qI5bbwvg_o.jpeg',
-    text: "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled coloring.",
+    text: "I'm baby meggings twee health goth +1. Bicycle rights tumeric chartreuse before they sold out chambray pop-up. Shaman humblebrag pickled.",
   },
   {
     id: 2,
