@@ -10,7 +10,42 @@
 </head>
 <body>
     <div class="container">
-
+        <h1>Add New Book To Reading List</h1>
+        <div id="alert">
+            <h3 id="alert-text"></h3>
+        </div>
+        <form id="book-form" onsubmit="return false">
+            <div class="form-group">
+                <label for="book-name">Book Name</label>
+                <input type="text" id="book-name" class="u-full-width">
+            </div>
+            <div class="form-group">
+                <label for="book-author">Book Author</label>
+                <input type="text" id="book-author" class="u-full-width">
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN</label>
+                <input type="number" id="isbn" class="u-full-width">
+            </div>
+            <input type="submit" value="Submit" id="submit" class="u-full-width">
+        </form>
+        <hr>
+        <h2>Your Reading List</h2>
+        <div id="display-table">
+            <table id="book-list-table">
+                <thead>
+                    <tr>
+                        <th>Book Name</th>
+                        <th>Book Author</th>
+                        <th>ISBN Number</th>
+                        <th>Delete Book</th>
+                    </tr> 
+                </thead>
+                <tbody id="book-list-body">
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
