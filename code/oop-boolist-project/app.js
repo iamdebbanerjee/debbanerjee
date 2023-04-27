@@ -19,7 +19,9 @@ const bookListTableBody = document.getElementById("book-list-body");
 function UI() {}
 
 UI.prototype.addBook = function(newBook) {
-	bookListTableBody.innerHTML = `<tr><td>${newBook.name}</td><td>${newBook.author}</td><td>${newBook.isbn}</td><td>delete</td></tr>`;
+	const newBookNode = document.createElement('tr');
+	newBookNode.innerHTML = `<td>${newBook.name}</td><td>${newBook.author}</td><td>${newBook.isbn}</td><td>delete</td></tr>`;
+	bookListTableBody.appendChild(newBookNode);
 }
 
 
