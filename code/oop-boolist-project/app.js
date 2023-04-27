@@ -18,8 +18,8 @@ const bookListTableBody = document.getElementById("book-list-body");
 
 function UI() {}
 
-UI.prototype.addBook = function(book) {
-	bookListTableBody.innerHTML = `<tr><td>${book.bookName}</td><td>${book.bookAuthor}</td><td>${book.bookISBN}</td><td>delete</td></tr>`;
+UI.prototype.addBook = function(newBook) {
+	bookListTableBody.innerHTML = `<tr><td>${newBook.name}</td><td>${newBook.author}</td><td>${newBook.isbn}</td><td>delete</td></tr>`;
 }
 
 
@@ -37,11 +37,13 @@ bookForm.addEventListener('submit', (e) => {
 
 
 	const newBook = new Book(bookName, bookAuthor, bookISBN);
+	console.log(newBook);
+
 	const ui = new UI();
 
 	ui.addBook(newBook);
 
-	e.preventDefault();
+	e.preventDefault(e);
 });
 
 
