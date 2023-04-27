@@ -14,17 +14,26 @@ function Book(name, author, isbn) {
 
 
 //create UI Object - constructor method
-const bookListTableBody = document.getElementById("book-list-body");
 
 function UI() {}
 
 UI.prototype.addBook = function(newBook) {
+	const bookListTableBody = document.getElementById("book-list-body");
 	const newBookNode = document.createElement('tr');
-	newBookNode.innerHTML = `<td>${newBook.name}</td><td>${newBook.author}</td><td>${newBook.isbn}</td><td>delete</td></tr>`;
+	newBookNode.innerHTML = `
+							<td>${newBook.name}</td>
+							<td>${newBook.author}</td>
+							<td>${newBook.isbn}</td>
+							<td><a href="#" class="delete">X</a></td></td>`;
 	bookListTableBody.appendChild(newBookNode);
 }
 
 
+UI.prototype.clearForm = function() {
+	document.getElementById('book-name').value = "";
+	document.getElementById('book-author').value = "";
+	document.getElementById('isbn').value = "";
+}
 
 // Event Listeners
 const bookForm = document.getElementById("book-form");
@@ -37,13 +46,12 @@ bookForm.addEventListener('submit', (e) => {
 		bookISBN = document.getElementById("isbn").value,		
 		bookSubmit = document.getElementById("submit");
 
-
-	const newBook = new Book(bookName, bookAuthor, bookISBN);
-	console.log(newBook);
+	const newBook = new Book(bookName, bookAuthor, bookISBN);	
 
 	const ui = new UI();
 
 	ui.addBook(newBook);
+	ui.clearForm();
 
 	e.preventDefault(e);
 });
