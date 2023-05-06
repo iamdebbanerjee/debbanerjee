@@ -1,0 +1,17 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	padding: 1rem 1.5rem;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+h1 {
+	grid-column: auto;
+	justify-self: center;
+	align-self: center;
+}
