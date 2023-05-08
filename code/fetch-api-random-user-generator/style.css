@@ -13,6 +13,8 @@
 body {
 	background-color: var(--primary-color);
 	color: var(--secondary-color);
+	line-height: 1.6;
+	font-size: 1.025rem;
 }
 
 .container {
@@ -26,9 +28,66 @@ body {
     align-items: center;
 }
 
+.header {
+	height: 7.5rem;
+	width: 30rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.header h1 {
+	border-bottom: 1px solid var(--secondary-color);
+	margin-bottom: 0.5rem;
+}
+
+.header .btn-primary {
+	padding: 0.75rem 2rem;
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
+	width: 100%;
+	font-size: 1.025rem;
+	border: none;
+	border-radius: 5px;
+}
+
+.header .btn-primary:hover {
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	border: 1px solid var(--secondary-color);
+	cursor: pointer;
+}
+
 .card {
+	height:15rem;
 	border: 1px solid var(--secondary-color);
 	border-radius: 5px;
-	height: 20rem;
 	width: 30rem;
+	display: grid;
+	grid-template-columns: .5fr 2fr 3fr .5fr;
+}
+
+.card #user-image {
+	grid-column: 2 / 3;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.card #user-details {
+	grid-column: 3 / 4;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 1rem;
+}
+
+.card #user-details #user-name {
+	border-bottom: 1px solid var(--secondary-color);
+}
+
+.card #user-details ul {
+	padding: 0.5rem 1rem;
 }
