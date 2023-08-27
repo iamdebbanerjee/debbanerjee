@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Typicode Todos</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script> 
 </head>
 <body>
     <div class="container">
@@ -17,12 +18,15 @@
                 <button type="submit">Add</button>
             </form>
             <div id="todo-list">
-                <div>Take out trash</div>
-                <div class="done">Take out trash</div>
+                <div id="todo-control">
+                    <div>Todos Due</div>
+                    <div class="done">Todos Completed</div>
+                </div>
+                <div id="todo-display">
+
+                </div>
             </div>
         </main>
-    </div>
-
-    <script src="app.js"></script>    
+    </div>   
 </body>
 </html>
