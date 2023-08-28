@@ -1,7 +1,7 @@
 const fetchTodos = async () => {
     const url = 'https://jsonplaceholder.typicode.com/todos';
     try {
-        const response = await fetch (url + "?_limit=10");
+        const response = await fetch (url + "?_limit=15");
         const data = await response.json();
         console.log(data);
         displayTodos(data);
@@ -12,11 +12,11 @@ const fetchTodos = async () => {
 
 function displayTodos(todos) {
     const todoDisplay = document.getElementById('todo-display');
-    const todoList = document.createElement('div');
-    todoDisplay.appendChild(todoList);
     todos.forEach(todo => {
-        const li = document.createElement('li');
-        todoList.appendChild(li);
+        const todoList = document.createElement('div');
+        todoDisplay.appendChild(todoList);
+        const singleTodo = document.createTextNode(todo.title);
+        todoList.appendChild(singleTodo);
     });
 }
 
