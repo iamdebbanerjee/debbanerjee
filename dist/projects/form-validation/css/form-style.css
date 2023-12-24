@@ -1,0 +1,89 @@
+
+/* Impoort fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap');
+
+
+/* CSS Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Base styles */
+
+body {
+    background-color: #fafafa;
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+}
+
+.container {
+    width: 50%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form styles */
+
+#form {
+    border: 2px solid #333;
+    border-radius: 5px;
+    padding: 16px 24px;    
+}
+
+#form h2 {
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.form-control {
+    /* border: 1px solid red; */
+    padding: 4px 8px;
+}
+
+.form-control label, input, small {
+    display: block;
+    padding-bottom: 4px;
+}
+
+.form-control input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.form-control.success input {
+    border: none;
+    outline: 2px solid green;
+}
+
+.form-control.error input {
+    border: none;
+    outline: 1px solid red;
+}
+
+button {
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fafafa;
+    font-size: 18px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #3f3f3f;
+    color: #ffffff;
+}
+
